@@ -1,0 +1,33 @@
+.filter-tags .title h5, .filter-archives .title h5{
+    color: #999;
+    font-size: 2rem;
+    margin: 1rem auto;
+    font-family: "Microsoft JhengHei", sans-serif;
+}
+
+.filter-tags ul, .filter-archives ul {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1rem;
+    -webkit-margin-after: 1rem;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -webkit-padding-start: 4rem;
+}
+
+.filter-tags li, .filter-archives li {
+    line-height: 3rem;
+    margin-bottom: 0.2rem;
+}
+
+.filter-tags .date, .filter-archives .date {
+    color: #666;
+    font-family: "Microsoft JhengHei", sans-serif;
+    font-size: 1.4rem;
+}
+.filter-tags a, .filter-archives a{
+    color: #111;
+    word-wrap: break-word;
+    -moz-text-decoration-color: rgba(0,0,0,.4);
+    text-decoration-color: rgba(0,0,0,.4);
+}

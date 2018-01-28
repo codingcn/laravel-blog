@@ -1,0 +1,180 @@
+<template>
+    <section class="main">
+        <div class="crumbs">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                <el-breadcrumb-item>文章管理</el-breadcrumb-item>
+                <el-breadcrumb-item>文章列表</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+        <div v-loading="loading">
+            <div style="float: right;margin-bottom: 2rem">
+                <router-link to="/article-create"><el-button type="primary" icon="plus">添加文章</el-button></router-link>
+            </div>
+            <el-table
+                    :data="tableData"
+                    style="width: 100%"
+                    >
+                <el-table-column type="expand">
+                    <template slot-scope="props">
+                        <el-form label-position="left" inline class="demo-table-expand">
+                            <el-form-item label="文集">
+                                <span>{{ props.row.category_id }}</span>
+                            </el-form-item>
+                            <el-form-item label="文章ID">
+                                <span>{{ props.row.id }}</span>
+                            </el-form-item>
+                            <el-form-item label="点击量">
+                                <span>{{ props.row.page_views }}</span>
+                            </el-form-item>
+                            <el-form-item label="标签">
+                                <el-tag type="primary" v-for="item in props.row.tags" :key="item.id">{{ item.name }}
+                                </el-tag>
+                            </el-form-item>
+                            <el-form-item label="是否推荐">
+                                <span>{{ props.row.recommend }}</span>
+                            </el-form-item>
+                            <el-form-item label="创建时间">
+                                <span>{{ props.row.created_at }}</span>
+                            </el-form-item>
+                            <el-form-item label="发布时间">
+                                <span>{{ props.row.published_at }}</span>
+                            </el-form-item>
+                            <el-form-item label="描述">
+                                <span>{{ props.row.summary }}</span>
+                            </el-form-item>
+                        </el-form>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        label="文章 ID"
+                        prop="id">
+                </el-table-column>
+                <el-table-column
+                        label="标题"
+                        prop="title">
+                </el-table-column>
+                <el-table-column
+                        label="作者"
+                        prop="user.username">
+                </el-table-column>
+                <el-table-column
+                        label="状态"
+                        prop="status">
+                </el-table-column>
+                <el-table-column
+                        label="更新时间"
+                        prop="updated_at">
+                </el-table-column>
+                <el-table-column label="操作">
+                    <template slot-scope="scope">
+                        <el-button
+                                size="small"
+                                @click="handleEdit(scope.$index, scope.row)">编辑
+                        </el-button>
+                        <el-button
+                                size="small"
+                                type="danger"
+                                @click="handleDelete(scope.$index, scope.row)">删除
+                        </el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <el-pagination
+                    layout="prev, pager, next"
+                    :page-size="page.pageSize"
+                    @current-change="currentChange"
+                    :total="page.total">
+            </el-pagination>
+        </div>
+    </section>
+</template>
+
+<script type="text/ecmascript-6">
+    export default {
+        mounted(){
+            this.getArticles()
+        },
+        data() {
+            return {
+                loading: false,
+                tableData: [],
+                page:{
+                }
+            }
+        },
+        methods: {
+            currentChange(p){
+                this.loading = true
+                this.$axios({
+                    url: this.$difines.root_url + '/api/admin/article/list?page='+p,
+                    method: 'get',
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$auth.getToken(),
+                    }
+                }).then(response => {
+                    this.tableData = response.data.data.data
+                    this.page.pageSize=response.data.data.per_page
+                    this.page.total=response.data.data.total
+//                    console.log(this.response.data.data)
+//                    this.tableData.recommend = data.recommend === 2 ? '是' : '否'
+//                    this.tableData.status = data.status === 2 ?'是' : '否'
+//                    this.tableData.cover_path = data.cover
+//                    console.log(this.tableData)
+                    this.loading = false
+                }).catch(response => {
+                });
+            },
+            getArticles(){
+                this.loading = true
+                this.$axios({
+                    url: this.$difines.root_url + '/api/admin/article/list',
+                    method: 'get',
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$auth.getToken(),
+                    }
+                }).then(response => {
+//                    console.log(this.response.data.data)
+                    this.tableData = response.data.data.data
+                    this.page.pageSize=response.data.data.per_page
+                    this.page.total=response.data.data.total
+//                    console.log(this.response.data.data)
+//                    this.tableData.recommend = data.recommend === 2 ? '是' : '否'
+//                    this.tableData.status = data.status === 2 ?'是' : '否'
+//                    this.tableData.cover_path = data.cover
+//                    console.log(this.tableData)
+                    this.loading = false
+                }).catch(response => {
+                });
+            },
+            handleEdit(index, row) {
+                this.$router.push({name: 'article', params: {id: row.id}})
+            },
+            handleDelete(index, row) {
+
+            }
+        }
+    }
+</script>
+
+<style>
+    .el-tag {
+        margin-right: 0.8rem;
+    }
+
+    .demo-table-expand {
+        font-size: 0;
+    }
+
+    .demo-table-expand label {
+        width: 90px;
+        color: #99a9bf;
+    }
+
+    .demo-table-expand .el-form-item {
+        margin-right: 0;
+        margin-bottom: 0;
+        width: 50%;
+    }
+</style>
+

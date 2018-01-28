@@ -1,0 +1,522 @@
+@charset "UTF-8";
+::-webkit-scrollbar{
+    width:6px;
+    height:6px
+}
+::-webkit-scrollbar-thumb{
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    background-color:#c3c3c3
+}
+::-webkit-scrollbar-track{
+    background-color:transparent
+}
+html {
+    font-size: 10px
+}
+
+body {
+    font: 400 16px/1.7 "Microsoft JhengHei", Graviola Soft Thin, -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+    min-width: 3.6rem;
+    font-size: 1.4rem; /*1.4 × 10px = 14px */
+    background-color: #ffffff;
+    color: #33333d;
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding-top: 0;
+    height: 5.4rem;
+    line-height: 5.4rem;
+    border-bottom: 0.1rem solid #f0f0f0;
+    background-color: #fff;
+    z-index: 1000;
+}
+.header .logo a{
+    text-decoration: none;
+}
+.header .logo a h1 {
+    display: inline-block;
+    height: 5.4rem;
+    line-height: 5.4rem;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+.header .logo a img {
+    height: 2.8rem;
+}
+
+.header a {
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+    color: #313131;
+}
+
+.menu-pc ul, .menu-pc li {
+    display: inline-block;
+    margin-left: 1.5rem;
+}
+
+.menu-pc .menu-item a {
+    font-size: 1.5rem;
+    margin-left: 2rem;
+
+}
+
+/*搜索框*/
+
+.menu-pc .search-box {
+    height: 3.2rem;
+    line-height: 3.2rem;
+    max-width: 16.5rem;
+    margin: 0 0 0 1.5rem;
+    border-bottom: 0.1rem solid #dfdfdf;
+    background-color: #ffffff;
+}
+
+.menu-pc .search-input {
+    background-color: transparent;
+    display: inline-block;
+    font-size: 1.2rem;
+    color: #969696;
+    height: 2.8rem;
+    width: 85%;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    margin-left: 0.5rem;
+}
+
+.menu-pc .fa-search {
+    cursor: pointer;
+    color: #969696;
+    margin-left: -0.8rem;
+}
+
+.menu-pc .member-btn {
+    font-size: 1.3rem;
+    display: inline-block;
+    margin-top: 1rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
+}
+
+.menu-pc .member-btn li {
+    float: left;
+    margin-left: 1rem;
+    color: #313131;
+}
+
+.menu-bar i {
+    height: 5.2rem;
+    line-height: 5.2rem;
+}
+
+/*顶部结束*/
+.menu-touch .menu-close {
+    margin-top: 1.6rem;
+    margin-left: 1.6rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    font-size: 1.6rem;
+    color: #ffffff;
+}
+
+.menu-touch .menu-close i {
+    margin-right: 0.5rem;
+}
+
+.menu-touch {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    background-color: #363d4c;
+    height: 100%;
+    z-index: 1031;
+}
+
+.menu-touch ul {
+    margin-top: 50%;
+    padding-left: 0;
+}
+
+.menu-touch li {
+    list-style: none;
+    height: 4.2rem;
+    text-align: center;
+}
+
+.menu-touch li a {
+    font-size: 1.8rem;
+    color: #FFFFFF;
+}
+
+.menu-touch .member-btn {
+
+    margin-bottom: 1.6rem;
+}
+
+.menu-touch .member-btn a {
+    font-size: 1.6rem;
+}
+
+.menu-touch .member-btn span {
+    font-size: 1.6rem;
+    color: #FFFFFF;
+}
+
+/*搜索框*/
+
+.menu-touch .search-box {
+    height: 2.8rem;
+    line-height: 2.8rem;
+    max-width: 16.5rem;
+    min-width: 50%;
+
+    margin: 0 auto;
+    border-radius: 3rem;
+    border: 0.1rem solid #FFFFFF;
+    background-color: #ffffff;
+
+}
+
+.menu-touch .search-input {
+    background-color: transparent;
+    display: inline-block;
+    font-size: 1.2rem;
+    color: #969696;
+    height: 2.8rem;
+    width: 70%;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+
+}
+
+.menu-touch .fa-search {
+    cursor: pointer;
+    color: #969696;
+    /*margin-left: -20px;*/
+}
+
+.menu-pc ul, .menu-pc li {
+    display: inline-block;
+    margin-left: 1.5rem;
+}
+
+.menu-pc .menu-item a {
+    font-size: 1.5rem;
+    margin-left: 2rem;
+
+}
+
+/*搜索框*/
+
+.menu-pc .search-box {
+    height: 3.2rem;
+    line-height: 3.2rem;
+    max-width: 16.5rem;
+    margin: 0 0 0 1.5rem;
+    border-bottom: 0.1rem solid #dfdfdf;
+    background-color: #ffffff;
+}
+.menu-pc .search-box form{
+    height: 3.2rem;
+    line-height: 3.2rem;
+}
+
+.menu-pc .search-input {
+    background-color: transparent;
+    display: inline-block;
+    font-size: 1.2rem;
+    color: #969696;
+    height: 2.8rem;
+    width: 85%;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    margin-left: 0.5rem;
+}
+
+.menu-pc .fa-search {
+    cursor: pointer;
+    color: #969696;
+    margin-left: -0.8rem;
+}
+.menu-pc .search-btn{
+    display: inline-block;
+    background: transparent;
+    margin-left: -0.8rem;
+    border: none;
+    outline:none;
+}
+
+.menu-pc .member-btn {
+    font-size: 1.3rem;
+    display: inline-block;
+    margin-top: 1rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
+}
+
+.menu-pc .member-btn li {
+    float: left;
+    margin-left: 1rem;
+    color: #313131;
+}
+
+.menu-bar i {
+    height: 5.2rem;
+    line-height: 5.2rem;
+}
+
+/*顶部结束*/
+.menu-touch .menu-close {
+    margin-top: 1.6rem;
+    margin-left: 1.6rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    font-size: 1.6rem;
+    color: #ffffff;
+}
+
+.menu-touch .menu-close i {
+    margin-right: 0.5rem;
+}
+
+.menu-touch {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    background-color: #363d4c;
+    height: 100%;
+    z-index: 1031;
+}
+
+.menu-touch ul {
+    margin-top: 50%;
+    padding-left: 0;
+}
+
+.menu-touch li {
+    list-style: none;
+    height: 4.2rem;
+    text-align: center;
+}
+
+.menu-touch li a {
+    font-size: 1.8rem;
+    color: #FFFFFF;
+}
+
+.menu-touch .member-btn {
+
+    margin-bottom: 1.6rem;
+}
+
+.menu-touch .member-btn a {
+    font-size: 1.6rem;
+}
+
+.menu-touch .member-btn span {
+    font-size: 1.6rem;
+    color: #FFFFFF;
+}
+
+/*搜索框*/
+
+.menu-touch .search-box {
+    height: 2.8rem;
+    line-height: 2.8rem;
+    max-width: 16.5rem;
+    min-width: 50%;
+
+    margin: 0 auto;
+    border-radius: 3rem;
+    border: 0.1rem solid #FFFFFF;
+    background-color: #ffffff;
+}
+
+.menu-touch .search-input {
+    background-color: transparent;
+    display: inline-block;
+    font-size: 1.2rem;
+    color: #969696;
+    height: 2.8rem;
+    width: 70%;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+}
+.menu-touch .search-btn{
+    display: inline-block;
+    background: transparent;
+    margin-left: -0.8rem;
+    border: none;
+    outline:none;
+}
+
+.menu-touch .fa-search {
+    cursor: pointer;
+    color: #969696;
+    /*margin-left: -20px;*/
+}
+
+.main{
+    padding-bottom: 15rem;
+}
+.aside {
+    padding-bottom: 15rem;
+}
+
+.aside > ul {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 0;
+    padding-bottom: 1.5rem;
+    border-bottom: solid 0.1rem #f0f0f0;
+}
+
+
+.aside .tags li,
+.aside .archives li,
+.aside .recommend li,
+.aside .links li {
+    font-size: 1.2rem;
+    list-style: none;
+    margin: 0.8rem auto;
+}
+
+.aside .tags li a {
+    display: inline-block;
+    border-radius: 0.2rem;
+    box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.03);
+    background-color: rgba(0, 0, 0, 0.02);
+    margin: 0.5rem 0.8rem 0.5rem 0;
+    padding: 0 0.7rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.aside .tags li a:hover {
+    color: #1d1e1f;
+    font-weight: bold;
+}
+
+.aside .recommend .title {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.aside .recommend .statistics {
+    float: right;
+    color: rgba(0, 0, 0, .55);
+}
+
+.aside .tags li a,
+.aside .archives li a,
+.aside .links li a,
+.aside .recommend li a {
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, .7);
+}
+
+.aside li .notice-new {
+}
+
+.aside li .notice-new .author {
+    color: rgba(0, 0, 0, .6);
+    display: inline-block;
+    margin-top: 0.3rem;
+    margin-right: 0.3rem;
+}
+
+.aside li .notice-new .date {
+    color: rgba(0, 0, 0, .44);
+}
+
+.aside .archives .date {
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin: 0.5rem auto;
+    display: block;
+}
+
+.aside .archives .title h3 {
+    display: inline-block;
+
+}
+
+.aside .archives .title a {
+    float: right;
+    font-size: 1.3rem;
+    color: #969696;
+}
+
+.aside .archives li span {
+    display: inline-block;
+    width: 49%;
+    font-size: 1.3rem;
+}
+
+.aside .links .title h3 {
+    display: inline-block;
+
+}
+
+.aside .links .title a {
+    float: right;
+    font-size: 1.3rem;
+    color: #969696;
+}
+
+.aside .links li {
+    width: 100%;
+}
+
+.aside .links li a {
+    display: inline-block;
+    width: 48%;
+    /*float: left;*/
+}
+
+.fixed-bottom {
+    z-index: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 1.1rem;
+    border-top: 0.1rem solid #f0f0f0;
+    background: #ffffff;
+}
+
+.footer a {
+    font-weight: 600;
+    color: #444;
+}
+
+.pagination {
+    margin: 0.8rem auto 12rem;
+}
+
+.pagination > li {
+    margin: auto 0.8rem;
+    font-size: 1.6rem;
+}
+
+.pagination > li.active {
+    font-weight: bolder;
+    font-size: 1.8rem;
+}

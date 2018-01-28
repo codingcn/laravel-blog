@@ -1,0 +1,88 @@
+.logo {
+    margin: 6% auto 12px;
+    font-family: 'Lucida Grande', 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 58px;
+    text-align: right;
+    height: 66px;
+    line-height: 66px;
+}
+
+.logo a {
+    color: #e6e6e6;
+    text-decoration: none;
+}
+
+.logo a:hover {
+    color: #bbbbbb;
+}
+
+.sign {
+    width: 400px;
+    margin: 0 auto;
+    padding: 30px 50px 30px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+    vertical-align: middle;
+}
+
+.sign .title {
+    margin: 0 auto 20px;
+    padding-bottom: 20px;
+    font-weight: 300;
+    text-align: center;
+    border-bottom: 1px solid #eee8d5;
+
+}
+
+.sign .title a {
+    color: #666;
+
+}
+
+.sign .title a.active {
+    font-weight: 400;
+}
+
+*:focus {
+    outline: none;
+    outline: 0;
+}
+
+.chose_sign_up_type {
+    margin-bottom: 10px;
+}
+
+.sign-up-mail {
+    margin-bottom: 10px;
+}
+
+.sign-up-phone {
+    margin-bottom: 10px;
+}
+
+.phone-input {
+    margin-bottom: 10px;
+}
+
+#vcode {
+    width: 96px;
+    font-size: 13px;
+    border-color: #ccc;
+}
+
+.send-validate-code {
+    color: #333;
+    background-color: #ffffff;
+}
+
+.click-send-validate-code {
+    color: #ccc;
+    background-color: #ffffff;
+}
+
+.btn-sub {
+    background-color: #1ab394;
+    border-color: #1ab394;
+    color: #FFFFFF;
+}
