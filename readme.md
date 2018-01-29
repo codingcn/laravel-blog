@@ -8,6 +8,8 @@ composer install
 ```
 ### 2. 修改`.env`中的数据库信息以及邮件服务器信息
 ```shell
+php artisan storage:link
+
 php artisan migrate
 
 php artisan db:seed

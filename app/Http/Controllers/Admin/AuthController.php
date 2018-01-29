@@ -28,9 +28,7 @@ class AuthController
             'username' => $credentials['username'],
             'phone' => $credentials['username'],
             'email' => $credentials['username'],
-            'password' => $credentials['pass
-            
-            word'],
+            'password' => $credentials['password'],
             'grant_type' => $credentials['grant_type'],
             'client_id' => config('passport.client_id'),
             'client_secret' => config('passport.client_secret'),
