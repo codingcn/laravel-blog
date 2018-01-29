@@ -1,0 +1,17 @@
+[2018-01-30 00:12:42] local.ERROR: Command "key" is not defined.
+
+Did you mean one of these?
+    key:generate
+    passport:keys {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"key\" is not defined.
+
+Did you mean one of these?
+    key:generate
+    passport:keys at F:\\www\\blog\\vendor\\symfony\\console\\Application.php:610)
+[stacktrace]
+#0 F:\\www\\blog\\vendor\\symfony\\console\\Application.php(221): Symfony\\Component\\Console\\Application->find('key')
+#1 F:\\www\\blog\\vendor\\symfony\\console\\Application.php(148): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 F:\\www\\blog\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(88): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 F:\\www\\blog\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(121): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 F:\\www\\blog\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 

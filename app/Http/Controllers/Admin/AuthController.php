@@ -24,12 +24,13 @@ class AuthController
     {
         $credentials = $request->only(['username', 'password', 'grant_type']);
         //这儿做一下账号密码过滤操作
-
         $request->request->add([
             'username' => $credentials['username'],
             'phone' => $credentials['username'],
             'email' => $credentials['username'],
-            'password' => $credentials['password'],
+            'password' => $credentials['pass
+            
+            word'],
             'grant_type' => $credentials['grant_type'],
             'client_id' => config('passport.client_id'),
             'client_secret' => config('passport.client_secret'),
