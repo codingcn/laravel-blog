@@ -169,6 +169,8 @@ return [
          */
         //Debugbar项目上线时须移除
         Barryvdh\Debugbar\ServiceProvider::class,
+
+
         Laravel\Passport\PassportServiceProvider::class,
 
         /*
@@ -180,9 +182,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        //视图合成器
+        // 视图合成器
         App\Providers\ComposerServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
+
+
 
     ],
 
