@@ -1,4 +1,12 @@
 ## 安装步骤
+### 1. 获取项目
+```
+git clone https://github.com/codingcn/blog.git
+cd blog/
+npm install
+composer install
+```
+### 2. 修改`.env`中的数据库信息以及邮件服务器信息
 ```shell
 php artisan migrate
 
