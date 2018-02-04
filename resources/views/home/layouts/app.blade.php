@@ -17,6 +17,7 @@ $categories = \App\Models\ArticleCategory::all();
     @show
 
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/app.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('static/home/css/loading.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('static/lib/font-awesome/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('static/lib/mCustomScrollbar/css/jquery.mCustomScrollbar.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/layout.css') }}">
@@ -34,8 +35,19 @@ $categories = \App\Models\ArticleCategory::all();
 </head>
 
 <body>
+<!--进度加载块start-->
+<div id="loading" class="loading">
+    <div class="icon">
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+    </div>
+</div>
+<!--进度加载块end-->
 <div id="app">
-    <div class="header ">
+    <div class="header">
         <div class="container">
             <div>
                 <div class="logo float-left">
@@ -145,59 +157,61 @@ $categories = \App\Models\ArticleCategory::all();
 <script src="{{ URL::asset('static/home/js/app.js') }}"></script>
 <script src="{{ asset('static/lib/svg3dtagcloud/jquery.svg3dtagcloud.min.js') }}"></script>
 <script>
-    var tags = '<?=json_encode($tags)?>';
-    tags = JSON.parse(tags);
-    var word_array = [];
-    tags.map(function (v, k) {
-        word_array.push({
-            label: v.name,
-            target: "_blank",
-            url: "{{url('/tags')}}/"+v.name
-        })
-    });
-    $('#tag-cloud').svg3DTagCloud(
-        {
-
-            //一个对象数组，用于初始化标签。
-            entries: word_array,
-            //标签云的宽度。
-            width: '90%',
-            //标签云的高度。
-            height: '90%',
-            //标签云的半径。
-            radius: '75%',
-            //标签云的最小半径。
-            radiusMin: '55',
-            //是否使用背景色。
-            bgDraw: true,
-            //背景颜色。
-            bgColor: '#fff',
-            //鼠标滑过标签时的标签透明度。
-            opacityOver: '0.8',
-            //鼠标离开标签时的标签透明度。
-            opacityOut: '0.2',
-            //标签透明度过渡速度。
-            opacitySpeed: 1,
-            //how the content is presented。
-            fov: 800,
-            //标签云动画的速度。
-            speed: 0.5,
-            //标签云的字体。
-            fontFamily: 'Oswald, Arial, sans-serif',
-            //标签云的字体大小。
-            fontSize: '15',
-            // 标签云的字体颜色。
-            fontColor: '#000',
-            // 标签云的字体的fontWeight。
-            fontWeight: 'normal',
-            // 标签云的字体样式。
-            fontStyle: 'normal',
-            // 标签云的字体的fontStretch。
-            fontStretch: 'normal',
-            // 标签云的字体的fontStretch。
-            fontToUpperCase: true
-        }
-    );
+    function init_tags() {
+        var tags = '<?=json_encode($tags)?>';
+        tags = JSON.parse(tags);
+        var word_array = [];
+        tags.map(function (v, k) {
+            word_array.push({
+                label: v.name,
+                target: "_blank",
+                url: "{{url('/tags')}}/" + v.name
+            })
+        });
+        $('#tag-cloud').svg3DTagCloud(
+            {
+                //一个对象数组，用于初始化标签。
+                entries: word_array,
+                //标签云的宽度。
+                width: '100%',
+                //标签云的高度。
+                height: '60%',
+                //标签云的半径。
+                radius: '100%',
+                //标签云的最小半径。
+                radiusMin: '55',
+                //是否使用背景色。
+                bgDraw: true,
+                //背景颜色。
+                bgColor: '#fff',
+                //鼠标滑过标签时的标签透明度。
+                opacityOver: '0.8',
+                //鼠标离开标签时的标签透明度。
+                opacityOut: '0.2',
+                //标签透明度过渡速度。
+                opacitySpeed: 1,
+                //how the content is presented。
+                fov: 800,
+                //标签云动画的速度。
+                speed: 0.5,
+                //标签云的字体。
+                fontFamily: 'Oswald, Arial, sans-serif',
+                //标签云的字体大小。
+                fontSize: '15',
+                // 标签云的字体颜色。
+                fontColor: '#000',
+                // 标签云的字体的fontWeight。
+                fontWeight: 'normal',
+                // 标签云的字体样式。
+                fontStyle: 'normal',
+                // 标签云的字体的fontStretch。
+                fontStretch: 'normal',
+                // 标签云字体是否转大写。
+                fontToUpperCase: false
+            }
+        );
+    };
+    init_tags();
 </script>
 <script>
     $(".menu-bar").click(function () {
@@ -210,7 +224,7 @@ $categories = \App\Models\ArticleCategory::all();
             $(".menu-touch").animate({'width': '0px'}, 300, function () {
             });
         }
-    )
+    );
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -220,6 +234,13 @@ $categories = \App\Models\ArticleCategory::all();
 </script>
 @section('app-js')
 @show
-</body>
 
+</body>
+<script>
+    document.onreadystatechange = function () {
+        if (document.readyState === "complete") {
+            document.body.removeChild(document.getElementById("loading"));
+        }
+    }
+</script>
 </html>
