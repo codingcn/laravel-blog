@@ -1,17 +1,20 @@
 @charset "UTF-8";
-::-webkit-scrollbar{
-    width:6px;
-    height:6px
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px
 }
-::-webkit-scrollbar-thumb{
-    border-radius:3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    background-color:#c3c3c3
+
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #c3c3c3
 }
-::-webkit-scrollbar-track{
-    background-color:transparent
+
+::-webkit-scrollbar-track {
+    background-color: transparent
 }
+
 html {
     font-size: 10px
 }
@@ -35,9 +38,11 @@ body {
     background-color: #fff;
     z-index: 1000;
 }
-.header .logo a{
+
+.header .logo a {
     text-decoration: none;
 }
+
 .header .logo a h1 {
     display: inline-block;
     height: 5.4rem;
@@ -45,6 +50,7 @@ body {
     margin-bottom: 0;
     font-weight: bold;
 }
+
 .header .logo a img {
     height: 2.8rem;
 }
@@ -224,7 +230,8 @@ body {
     border-bottom: 0.1rem solid #dfdfdf;
     background-color: #ffffff;
 }
-.menu-pc .search-box form{
+
+.menu-pc .search-box form {
     height: 3.2rem;
     line-height: 3.2rem;
 }
@@ -247,12 +254,13 @@ body {
     color: #969696;
     margin-left: -0.8rem;
 }
-.menu-pc .search-btn{
+
+.menu-pc .search-btn {
     display: inline-block;
     background: transparent;
     margin-left: -0.8rem;
     border: none;
-    outline:none;
+    outline: none;
 }
 
 .menu-pc .member-btn {
@@ -353,12 +361,13 @@ body {
     outline: none;
     -webkit-appearance: none;
 }
-.menu-touch .search-btn{
+
+.menu-touch .search-btn {
     display: inline-block;
     background: transparent;
     margin-left: -0.8rem;
     border: none;
-    outline:none;
+    outline: none;
 }
 
 .menu-touch .fa-search {
@@ -367,9 +376,10 @@ body {
     /*margin-left: -20px;*/
 }
 
-.main{
+.main {
     padding-bottom: 15rem;
 }
+
 .aside {
     padding-bottom: 15rem;
 }
@@ -381,7 +391,6 @@ body {
     padding-bottom: 1.5rem;
     border-bottom: solid 0.1rem #f0f0f0;
 }
-
 
 .aside .tags li,
 .aside .archives li,
@@ -410,7 +419,7 @@ body {
 
 .aside .recommend .title {
     color: rgba(0, 0, 0, 0.7);
-    font-weight: bold;
+    font-weight: 600;
     font-size: 1.4rem;
 }
 
@@ -427,7 +436,9 @@ body {
     letter-spacing: 1px;
     color: rgba(0, 0, 0, .7);
 }
-
+.aside .tags li a text {
+    cursor: pointer;
+}
 .aside li .notice-new {
 }
 

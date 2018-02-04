@@ -15,3 +15,20 @@ Did you mean one of these?
 #4 F:\\www\\blog\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #5 {main}
 "} 
+[2018-02-04 11:19:57] local.ERROR: Command "passport:" is ambiguous.
+Did you mean one of these?
+    passport:install Run the commands necessary to prepare Passport for use
+    passport:client  Create a client for issuing access tokens
+    passport:keys    Create the encryption keys for API authentication {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"passport:\" is ambiguous.
+Did you mean one of these?
+    passport:install Run the commands necessary to prepare Passport for use
+    passport:client  Create a client for issuing access tokens
+    passport:keys    Create the encryption keys for API authentication at F:\\www\\blog\\vendor\\symfony\\console\\Application.php:642)
+[stacktrace]
+#0 F:\\www\\blog\\vendor\\symfony\\console\\Application.php(221): Symfony\\Component\\Console\\Application->find('passport:')
+#1 F:\\www\\blog\\vendor\\symfony\\console\\Application.php(148): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 F:\\www\\blog\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(88): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 F:\\www\\blog\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(121): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 F:\\www\\blog\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 

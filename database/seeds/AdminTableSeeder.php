@@ -11,6 +11,7 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
+        \DB::table('settings')->truncate();
         \App\Models\Admin::create([
             'username' => 'admin',
             'phone' => 13529595970,

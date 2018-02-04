@@ -2,7 +2,7 @@
 ### 1. 获取项目
 ```
 git clone https://github.com/codingcn/blog.git
-cd blog/
+cd blog
 npm install
 composer install
 ```
@@ -13,7 +13,7 @@ php artisan storage:link
 php artisan migrate
 
 php artisan db:seed
-
+php artisan passport:keys
 php artisan passport:client --password
 ```
 将生成的密钥与令牌ID填写到.env

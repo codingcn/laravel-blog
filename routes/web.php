@@ -42,7 +42,7 @@ Route::get('/user/setting/self', 'Home\UserController@setting');
 
 
 //标签
-Route::get('/tag/{tag}', 'Home\TagController@index');
+Route::get('/tags/{tag}', 'Home\TagController@index');
 Route::get('/category/{category}', 'Home\ArticleCategoryController@show');
 
 //前台文章

@@ -15,10 +15,17 @@ class Tag extends Model
         return $this->belongsToMany(Article::class);
     }
 
-
+    /**
+     * 标签块
+     * @return mixed
+     */
     public static function asideTags()
     {
-        return self::withCount('articles')->orderBy(\DB::raw('RAND()'))->take(20)->get(['id','name'])->toArray();
+        return self::withCount('articles')
+            ->orderBy(\DB::raw('RAND()'))
+            ->take(20)
+            ->get(['id','name'])
+            ->toArray();
     }
     public function getRouteKeyName()
     {

@@ -19,7 +19,7 @@ class ArticleController extends CommonController
         $data = Article::orderBy('created_at', 'desc')
             ->with('user')
             ->with('tags')
-            ->paginate(1);
+            ->paginate(10);
         return $this->responseJson('OK', $data);
     }
 
@@ -56,7 +56,7 @@ class ArticleController extends CommonController
             'category_id' => $request->input('category_id', 0),
             'summary' => $request->input('summary'),
             'content_md' => trim($request->input('content_md')),
-            'content_html' => $request->input('content_html'),
+            'content_html' => trim($request->input('content_html')),
             'recommend' => $request->input('recommend'),
             'status' => $request->input('status'),
         ];

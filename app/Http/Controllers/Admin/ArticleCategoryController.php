@@ -9,7 +9,7 @@ class ArticleCategoryController extends CommonController
 {
     public function index()
     {
-        $list = ArticleCategory::orderBy('serial_number', 'asc')->paginate(1);
+        $list = ArticleCategory::orderBy('serial_number', 'asc')->paginate(10);
         return $this->responseJson('OK', $list);
     }
 
