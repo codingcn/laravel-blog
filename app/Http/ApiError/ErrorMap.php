@@ -30,6 +30,10 @@ trait ErrorMap
             'err_no' => 20005,
             'err_msg' => '删除失败',
         ],
+        'UPLOAD_FAIL' => [
+            'err_no' => 20006,
+            'err_msg' => '删除失败',
+        ],
 
 
 

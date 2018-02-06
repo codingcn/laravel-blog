@@ -14,6 +14,21 @@ class ArticleRepository
     }
 
     /**
+     * 首页文章列表
+     * @return mixed
+     */
+    public function indexArticles()
+    {
+        return Article::where('status','2')
+            ->withCount('comments')
+            ->with('tags')
+            ->with('articleCategory')
+            ->orderBy('created_at', 'desc')
+            ->latest()
+            ->paginate(8);
+    }
+
+    /**
      * 增加浏览量
      * @param Article $article
      */
@@ -26,7 +41,9 @@ class ArticleRepository
     public function showArticle(Article $article)
     {
         //取得当前文章的总评论数
-        $article = $article->withCount('comments')->find($article->id)->load('comments', 'tags', 'user');
+        $article = $article->withCount('comments')
+            ->find($article->id)
+            ->load('comments', 'tags', 'user');
         $article->comments = $article->comments()->withCount('likes')->get();
         $article->content_html = preg_replace("/<img\s+src=['\"](.+)['\"]\s(.*('|\"))>/", '<img src="' . asset('storage') . '${1}" ${2}>', $article->content_html);
         return $article;

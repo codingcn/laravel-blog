@@ -6,7 +6,7 @@
 @section('page')
     <div class="col-12 col-md-12 col-lg-12 main">
         <div class="logo">
-            <a href="{{ url('/index') }}">生活家</a>
+            <a href="{{ url('/index') }}">边城</a>
         </div>
         <div class="sign">
             <h4 class="title">

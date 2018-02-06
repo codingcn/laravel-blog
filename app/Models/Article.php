@@ -32,22 +32,6 @@ class Article extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
-
-    /**
-     * 首页文章列表
-     * @return mixed
-     */
-    public function indexArticles()
-    {
-        return $this->where('status', '=', '2')
-            ->withCount('comments')
-            ->with('tags')
-            ->with('articleCategory')
-            ->orderBy('created_at', 'desc')
-            ->latest()
-            ->paginate(8);
-    }
-
     /**
      * 获取归档列表
      * @return mixed

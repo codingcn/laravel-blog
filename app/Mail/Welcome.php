@@ -21,7 +21,7 @@ class Welcome extends Mailable
     public function __construct(User $user)
     {
         $this->user=$user;
-        $this->subject('欢迎加入生活家！');
+        $this->subject('欢迎加入边城！');
     }
 
     /**

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=0,shrink-to-fit=no">
-    <title>生活家-面朝大海，春暖花开</title>
+    <title>边城-面朝大海，春暖花开</title>
     <link rel="shortcut icon" href="{{ URL::asset('/favicon.ico') }}" />
     <link rel="bookmark" href="{{ URL::asset('/favicon.ico') }}" type="image/x-icon"/>
     <link rel="stylesheet" href="{{ URL::asset('static/lib/font-awesome/css/font-awesome.css') }}">

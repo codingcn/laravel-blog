@@ -16,12 +16,12 @@ class SettingSeeder extends Seeder
             [
                 [
                     'key' => 'site_title',
-                    'value' => '生活家',
+                    'value' => '边城',
                     'description' => '站点标题'
                 ],
                 [
                     'key' => 'logo',
-                    'value' => '生活家',
+                    'value' => '边城',
                     'description' => 'LOGO'
                 ],
                 [

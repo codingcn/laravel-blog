@@ -33,7 +33,7 @@ class ValidateController
             //$req->setExtend("123456");
             $req->setSmsType("normal");
             $req->setSmsFreeSignName("验证码");
-            $req->setSmsParam("{\"name\":\"生活家\",\"code\":\"" . $code . "\"}");
+            $req->setSmsParam("{\"name\":\"边城\",\"code\":\"" . $code . "\"}");
             $req->setRecNum($phone);
             $req->setSmsTemplateCode("SMS_68180394");
             $resp = $c->execute($req);
@@ -71,7 +71,7 @@ class ValidateController
         //        //$req->setExtend("123456");
         //        $req->setSmsType("normal");
         //        $req->setSmsFreeSignName("验证码");
-        //        $req->setSmsParam("{\"name\":\"生活家\",\"code\":\"" . $code . "\"}");
+        //        $req->setSmsParam("{\"name\":\"边城\",\"code\":\"" . $code . "\"}");
         //        $req->setRecNum($phone);
         //        $req->setSmsTemplateCode("SMS_68180394");
         //        $resp = $c->execute($req);

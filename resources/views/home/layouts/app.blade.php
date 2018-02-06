@@ -52,8 +52,8 @@ $categories = \App\Models\ArticleCategory::all();
             <div>
                 <div class="logo float-left">
                     <a href="{{url('/')}}">
-                        {{--<h1>生活家</h1>--}}
-                        <img src="{{ URL::asset('static/home/img/logo.png') }}" alt="生活家">
+                        {{--<h1>边城</h1>--}}
+                        <img src="{{ URL::asset('static/home/img/logo.png') }}" alt="边城">
                     </a>
                 </div>
 
@@ -144,8 +144,8 @@ $categories = \App\Models\ArticleCategory::all();
         </div>
     </div>
     <div class="footer">
-        <p> ©2015-2017
-            <a href="https://199461.com" target="_blank">生活家</a> All Rights Reserved. Powered by Alan
+        <p> ©2015-2018
+            <a href="https://ashub.cn" target="_blank">AsHub</a> All Rights Reserved. Powered by Alan
         </p>
         <p>
             <a href="http://www.miitbeian.gov.cn/" target="_blank"><?=getSetting('icp')?></a>

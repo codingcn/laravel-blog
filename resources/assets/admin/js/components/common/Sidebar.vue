@@ -46,7 +46,7 @@
                     },
                     {
                         icon: 'fa fa-users',
-                        index: '2',
+                        index: 'member',
                         title: '用户管理',
                         subs: [
                             {
@@ -57,7 +57,7 @@
                     },
                     {
                         icon: 'el-icon-tickets',
-                        index: '3',
+                        index: 'article',
                         title: '文章管理',
                         subs: [
                             {
@@ -72,9 +72,28 @@
                     },
                     {
                         icon: 'fa fa-cogs',
-                        index: '/options',
+                        index: '/settings',
                         title: '站点设置'
-                    }
+                    },
+                    {
+                        icon: 'el-icon-tickets',
+                        index: 'auth',
+                        title: '权限管理',
+                        subs: [
+                            {
+                                index: '/admin_users',
+                                title: '管理员列表'
+                            },
+                            {
+                                index: '/roles',
+                                title: '角色列表'
+                            },
+                            {
+                                index: '/permissions',
+                                title: '权限列表'
+                            }
+                        ]
+                    },
                 ]
             }
         },
@@ -104,7 +123,6 @@
         width: 200px;
         min-height: 400px;
     }
-
     .sidebar {
         display: block;
         position: absolute;

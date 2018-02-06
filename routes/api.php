@@ -18,7 +18,10 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'admin/tag', 'namespace' =
 });
 Route::group(['middleware' => 'auth:api', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/users', 'UserController@index');
-    Route::get('/options', 'OptionController@index');
+    Route::get('/settings', 'SettingController@index');
+    Route::put('/settings', 'SettingController@update');
+    Route::post('/settings/upload-logo', 'SettingController@logoUpload');
+    Route::post('/settings/upload-logo-delete', 'SettingController@logoDestroy');
     Route::get('/users/search', 'UserController@search');
 });
 Route::group(['middleware' => 'auth:api', 'prefix' => 'admin/article', 'namespace' => 'Admin'], function () {

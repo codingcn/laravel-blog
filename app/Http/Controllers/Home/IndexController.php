@@ -17,13 +17,18 @@ class IndexController extends CommonController
     {
         $this->articleRepository = $articleRepository;
     }
+
+    /**
+     * @param Request $request
+     * 首页
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
     public function index(Request $request)
     {
         if ($request->session()->has('hello')) {
-            $articles = new Article();
             $data = [
-                'seo' => $this->getSeoInfo(getSetting('site_title'),'生活家','面朝大海，春暖花开'),
-                'articles' => $articles->indexArticles(),
+                'seo' => $this->getSeoInfo(getSetting('site_title'),'边城','面朝大海，春暖花开'),
+                'articles' => $this->articleRepository->indexArticles(),
             ];
             return view('home/index', $data);
         } else {

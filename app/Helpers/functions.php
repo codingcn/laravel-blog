@@ -32,7 +32,7 @@ if (!function_exists('getSetting')) {
      */
     function getSetting($key='')
     {
-        $data=\App\Models\Setting::where('key',$key)->first(['value'])->toArray();
-        return $data['value'];
+        return \App\Models\Setting::where('key',$key)
+            ->value('value');
     }
 }

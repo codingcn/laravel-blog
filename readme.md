@@ -4,14 +4,13 @@
 git clone https://github.com/codingcn/blog.git
 cd blog
 npm install
+npm run prod
 composer install
 ```
 ### 2. 修改`.env`中的数据库信息以及邮件服务器信息
 ```shell
 php artisan storage:link
-
 php artisan migrate
-
 php artisan db:seed
 php artisan passport:keys
 php artisan passport:client --password

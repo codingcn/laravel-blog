@@ -115,13 +115,15 @@ class ArticleController extends CommonController
 
     public function uploadCoverDel(Request $request)
     {
-        if ($cover_path = $request->has('cover_path')) {
-            $cover_path = $request->input('cover_path');
+
+        if ($request->has('cover_path')) {
+            $cover_path =preg_replace("/storage(\/.+)/m", '${1}', $request->input('cover_path'));
             if (Storage::delete($cover_path) === false) {
                 return $this->responseJson('DELETE_FAIL');
             }
             return $this->responseJson('OK');
-
+        }else{
+            return $this->responseJson('DELETE_FAIL');
         }
     }
 
@@ -161,7 +163,7 @@ class ArticleController extends CommonController
         $data = $article->toArray();
         $data['content_html'] = preg_replace("/<img\s+src=['\"](.+)['\"]\s(.*('|\"))>/", '<img src="' . asset('storage') . '${1}" ${2}>', $data['content_html']);
         $data['content_md'] = preg_replace("/^(!\[.*\])\((.*)\)/m", '${1}(' . asset('storage') . '${2})', $data['content_md']);
-        $data['cover'] = !empty($data['cover']) ? asset('storage') . '/' . $data['cover'] : '';
+        $data['cover'] = !empty($data['cover']) ? \Storage::url($data['cover'])  : '';
         // $data['current_categories'] = $article->articleCategory()->get(['id', 'name']);
         $data['categories'] = ArticleCategory::all(['id', 'name']);
         $tags = $article->tags()->get(['name'])->toArray();
