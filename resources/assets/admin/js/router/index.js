@@ -74,7 +74,6 @@ let router = new Router({
                     path: '/settings',
                     component: Settings     // 文章新建
                 }
-
             ]
         }
     ]

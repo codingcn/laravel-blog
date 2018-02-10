@@ -59,10 +59,9 @@ class SettingController extends CommonController
         //2，post_max_size
         //3，以及 upload_tmp_dir 的权限
         //等等关于上传文件的设置。
-
         if ($request->hasFile('site_logo')) {
             if ($request->file('site_logo')->isValid()) {
-                $site_logo = $request->file('site_logo')->storePublicly('upload/settings/site_logo/' . date('Ymd', time()));
+                $site_logo = $request->file('site_logo')->store('settings/site_logo/' . date('Y', time()) . '/' . date('md', time()));
                 return $this->responseJson('OK', ['site_logo' => $site_logo]);
             } else {
                 return responseApi(1, 'error');
@@ -75,13 +74,19 @@ class SettingController extends CommonController
     public function logoDestroy(Request $request)
     {
         if ($request->has('site_logo')) {
-            $site_logo = preg_replace("/storage(\/.+)/m", '${1}', $request->input('site_logo'));
+            $site_logo = preg_replace("/.+\/storage\/(.+)/m", '${1}', $request->input('site_logo'));
+            $data = [
+                $request->input('site_logo'),
+                $site_logo,
+                \Storage::url($site_logo)
+            ];
+
             if (\Storage::delete($site_logo) === false) {
-                return $this->responseJson('DELETE_FAIL');
+                return $this->responseJson('DELETE_FAIL', $data);
             }
-            return $this->responseJson('OK');
+            return $this->responseJson('OK', $data);
         } else {
-            return $this->responseJson('DELETE_FAIL');
+            return $this->responseJson('INVALID_REQUEST');
         }
     }
 }

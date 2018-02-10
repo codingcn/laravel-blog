@@ -15,7 +15,7 @@ class ArticleCategoryController extends CommonController
 
     public function show(ArticleCategory $category)
     {
-        return $this->responseJson('OK',$category);
+        return $this->responseJson('OK', $category);
     }
 
     public function store(Request $request)
@@ -25,19 +25,19 @@ class ArticleCategoryController extends CommonController
             return $this->responseJson('INVALID_REQUEST', [], $validator->errors());
         }
         $data = $request->only(['name', 'serial_number']);
-        $res=ArticleCategory::firstOrCreate($data);
+        $res = ArticleCategory::firstOrCreate($data);
         return $this->responseJson('OK', $res);
     }
 
-    public function update(ArticleCategory $category,Request $request)
+    public function update(ArticleCategory $category, Request $request)
     {
         $validator = \Validator::make($request->all(), ['name' => 'required']);
         if ($validator->fails()) {
             return $this->responseJson('INVALID_REQUEST', [], $validator->errors());
         }
         $data = $request->only(['name', 'serial_number']);
-        $category->name=$data['name'];
-        $category->serial_number=$data['serial_number'];
+        $category->name = $data['name'];
+        $category->serial_number = $data['serial_number'];
         $category->save();
         return $this->responseJson('OK', $category);
     }

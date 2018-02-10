@@ -30,11 +30,9 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'admin/article', 'namespac
     Route::post('/upload-cover-del', 'ArticleController@uploadCoverDel');
     //文章列表
     Route::get('/list', 'ArticleController@index');
-    Route::get('/categories', 'ArticleCategoryController@index');
     Route::get('/categories/all', 'ArticleController@categories');
-    Route::get('/categories/{category}', 'ArticleCategoryController@show');
-    Route::post('/category', 'ArticleCategoryController@store');
-    Route::put('/category/{category}', 'ArticleCategoryController@update');
+    Route::resource('/categories', 'ArticleCategoryController',['index','show','update','store']);
+
     //创建文章
     Route::post('/store', 'ArticleController@store');
     //编辑文章

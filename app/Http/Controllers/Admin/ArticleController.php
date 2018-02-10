@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\ArticleCategory;
 use App\Models\Tag;
 use Carbon\Carbon;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -96,7 +97,7 @@ class ArticleController extends CommonController
         //等等关于上传文件的设置。
         if ($request->hasFile('cover')) {
             if ($request->file('cover')->isValid()) {
-                $cover_path = $request->file('cover')->storePublicly('upload/article/cover/' . date('Ymd', time()));
+                $cover_path = $request->file('cover')->storePublicly('article/cover/' . date('Y', time()) . '/' . date('md', time()));
                 return $this->responseJson('OK', ['cover_path' => $cover_path]);
             } else {
                 return responseApi(1, 'error');
@@ -117,12 +118,12 @@ class ArticleController extends CommonController
     {
 
         if ($request->has('cover_path')) {
-            $cover_path =preg_replace("/storage(\/.+)/m", '${1}', $request->input('cover_path'));
+            $cover_path = preg_replace("/storage(\/.+)/m", '${1}', $request->input('cover_path'));
             if (Storage::delete($cover_path) === false) {
                 return $this->responseJson('DELETE_FAIL');
             }
             return $this->responseJson('OK');
-        }else{
+        } else {
             return $this->responseJson('DELETE_FAIL');
         }
     }
@@ -130,7 +131,7 @@ class ArticleController extends CommonController
     public function uploadBase64(Request $request)
     {
         $base64_img = trim($request->input('image'));
-        $upload_path = '/storage/upload/article/editor/' . date('Ymd', time()) . '/';
+        $upload_path = storage_path().'/article/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
         if (!is_dir('.' . $upload_path)) {
             mkdir('.' . $upload_path, 0777, true);
         }
@@ -163,7 +164,7 @@ class ArticleController extends CommonController
         $data = $article->toArray();
         $data['content_html'] = preg_replace("/<img\s+src=['\"](.+)['\"]\s(.*('|\"))>/", '<img src="' . asset('storage') . '${1}" ${2}>', $data['content_html']);
         $data['content_md'] = preg_replace("/^(!\[.*\])\((.*)\)/m", '${1}(' . asset('storage') . '${2})', $data['content_md']);
-        $data['cover'] = !empty($data['cover']) ? \Storage::url($data['cover'])  : '';
+        $data['cover'] = !empty($data['cover']) ? \Storage::url($data['cover']) : '';
         // $data['current_categories'] = $article->articleCategory()->get(['id', 'name']);
         $data['categories'] = ArticleCategory::all(['id', 'name']);
         $tags = $article->tags()->get(['name'])->toArray();

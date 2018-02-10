@@ -37,7 +37,7 @@
                         </el-dialog>
                     </el-upload>
                 </el-form-item>
-                <el-form-item label="文本框">
+                <el-form-item label="内容">
                     <editor v-bind:markdown="form.content_md"
                             v-bind:upload_action_editor="upload_action_editor"
                             v-on:getEditorContent="getEditorContent"
@@ -200,13 +200,13 @@
                 this.file_list.push(file)
             },
             handleRemove(file, file_list) {
-                console.log(file.response.data.cover_path)
+                console.log(file.url)
                 console.log(file_list)
                 this.$axios({
                     url: this.$difines.root_url + '/api/admin/article/upload-cover-del',
                     method: 'post',
                     data: {
-                        cover_path: file.response.data.cover_path
+                        cover_path: file.url
                     }
                 }).then(response => {
                     this.form.cover=''

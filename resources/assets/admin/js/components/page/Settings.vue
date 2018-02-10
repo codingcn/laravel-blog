@@ -74,7 +74,6 @@
                     console.log(data)
                     this.form = data
                     if(data.site_logo===''){
-                        console.log(44)
                         this.file_list.splice(0)
                     }else{
                         this.file_list.push({
@@ -91,29 +90,26 @@
             },
             handleChange(file, file_list) {
                 this.file_list.splice(0)
+                console.log(file)
                 this.file_list.push(file)
             },
             handleRemove(file, file_list) {
-                console.log(1)
-                console.log(file)
-                console.log(file.response)
-                console.log(2)
-                console.log(file_list)
-                console.log(3)
                 this.$axios({
                     url: this.$difines.root_url + '/api/admin/settings/upload-logo-delete',
                     method: 'POST',
                     data: {
-                        site_logo: file.response.data.site_logo
+                        site_logo: file.url
                     }
                 }).then(response => {
-                    this.form.site_logo = ''
                     if (response.data.err_no !== 0) {
                         this.$notify.error({
                             title: '错误',
                             message: '移除文件出错了'
                         });
+                    }else{
+                        this.form.site_logo = ''
                     }
+
                 }).catch(response => {
                 });
             },

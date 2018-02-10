@@ -9,12 +9,14 @@
         </div>
         <div v-loading="loading">
             <div style="float: right;margin-bottom: 2rem">
-                <router-link to="/article-create"><el-button type="primary" icon="plus">添加文章</el-button></router-link>
+                <router-link to="/article-create">
+                    <el-button type="primary" icon="plus">添加文章</el-button>
+                </router-link>
             </div>
             <el-table
                     :data="tableData"
                     style="width: 100%"
-                    >
+            >
                 <el-table-column type="expand">
                     <template slot-scope="props">
                         <el-form label-position="left" inline class="demo-table-expand">
@@ -48,25 +50,32 @@
                 </el-table-column>
                 <el-table-column
                         label="文章 ID"
+                        width="150"
                         prop="id">
                 </el-table-column>
                 <el-table-column
                         label="标题"
+                        width="150"
                         prop="title">
                 </el-table-column>
                 <el-table-column
                         label="作者"
+                        width="180"
                         prop="user.username">
                 </el-table-column>
                 <el-table-column
                         label="状态"
+                        width="150"
                         prop="status">
                 </el-table-column>
                 <el-table-column
                         label="更新时间"
+                        width="180"
                         prop="updated_at">
                 </el-table-column>
-                <el-table-column label="操作">
+                <el-table-column
+                        width="250"
+                        label="操作">
                     <template slot-scope="scope">
                         <el-button
                                 size="small"
@@ -76,6 +85,10 @@
                                 size="small"
                                 type="danger"
                                 @click="handleDelete(scope.$index, scope.row)">删除
+                        </el-button>
+                        <el-button
+                                size="small"
+                                @click="handlePreview(scope.$index, scope.row)">预览
                         </el-button>
                     </template>
                 </el-table-column>
@@ -92,40 +105,40 @@
 
 <script type="text/ecmascript-6">
     export default {
-        mounted(){
+        mounted() {
             this.getArticles()
         },
         data() {
             return {
                 loading: false,
                 tableData: [],
-                page:{
-                }
+                page: {}
             }
         },
         methods: {
-            currentChange(p){
+            currentChange(p) {
                 this.loading = true
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/list?page='+p,
+                    url: this.$difines.root_url + '/api/admin/article/list?page=' + p,
                     method: 'get',
                     headers: {
                         'Authorization': 'Bearer ' + this.$auth.getToken(),
                     }
                 }).then(response => {
                     this.tableData = response.data.data.data
-                    this.page.pageSize=response.data.data.per_page
-                    this.page.total=response.data.data.total
-//                    console.log(this.response.data.data)
-//                    this.tableData.recommend = data.recommend === 2 ? '是' : '否'
-//                    this.tableData.status = data.status === 2 ?'是' : '否'
+                    this.page.pageSize = response.data.data.per_page
+                    this.page.total = response.data.data.total
+                    console.log(this.response.data.data)
+                    this.tableData.recommend = response.data.data.data.recommend === 2 ? '是' : '否'
+                    this.tableData.status = response.data.data.data.status === 2 ? '是' : '否'
+                    console.log(this.tableData)
 //                    this.tableData.cover_path = data.cover
 //                    console.log(this.tableData)
                     this.loading = false
                 }).catch(response => {
                 });
             },
-            getArticles(){
+            getArticles() {
                 this.loading = true
                 this.$axios({
                     url: this.$difines.root_url + '/api/admin/article/list',
@@ -134,24 +147,52 @@
                         'Authorization': 'Bearer ' + this.$auth.getToken(),
                     }
                 }).then(response => {
-//                    console.log(this.response.data.data)
-                    this.tableData = response.data.data.data
-                    this.page.pageSize=response.data.data.per_page
-                    this.page.total=response.data.data.total
-//                    console.log(this.response.data.data)
-//                    this.tableData.recommend = data.recommend === 2 ? '是' : '否'
-//                    this.tableData.status = data.status === 2 ?'是' : '否'
-//                    this.tableData.cover_path = data.cover
-//                    console.log(this.tableData)
+                    this.tableData = response.data.data.data;
+                    this.page.pageSize = response.data.data.per_page;
+                    this.page.total = response.data.data.total;
+                    this.tableData.recommend = response.data.data.data.recommend === 2 ? '是' : '否';
+                    this.tableData.status = response.data.data.data.status === 2 ? '是' : '否';
                     this.loading = false
                 }).catch(response => {
+                    console.log(response)
+                    this.loading = false
                 });
+
+
             },
             handleEdit(index, row) {
                 this.$router.push({name: 'article', params: {id: row.id}})
             },
             handleDelete(index, row) {
-
+                this.loading = true
+                this.$axios({
+                    url: this.$difines.root_url + '/api/admin/articles/' + row.id,
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$auth.getToken(),
+                    }
+                }).then(response => {
+                    if (response.data.err_no == 0) {
+                        this.$notify.success({
+                            title: '成功',
+                            message: '文章删除成功'
+                        });
+                    } else {
+                        this.$notify.error({
+                            title: '错误',
+                            message: '文章删除失败'
+                        });
+                    }
+                }).catch(response => {
+                    this.$notify.error({
+                        title: '错误',
+                        message: '文章删除失败'
+                    });
+                });
+                this.loading = false
+            },
+            handlePreview(index, row) {
+                window.open("/article/" + row.id)
             }
         }
     }

@@ -27,19 +27,9 @@
 </template>
 
 <script>
-    import editor from './Editor'
     import qs from 'qs';
 
     export default {
-        components: {
-            editor
-        },
-        beforeMount() {
-            console.log(this.$route.params.id)
-            if (this.$route.params.id) {
-                this.getCategory()
-            }
-        },
         data: function () {
             return {
                 loading: false,
@@ -50,79 +40,30 @@
             }
         },
         methods: {
-            getCategory() {
-                this.loading = true
+            onSubmit() {
+                // 编辑
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/category' + this.$route.params.id,
-                    method: 'get',
+                    url: this.$difines.root_url + '/api/admin/article/categories',
+                    method: 'post',
                     headers: {
                         'Authorization': 'Bearer ' + this.$auth.getToken(),
-                    }
+                    },
+                    data: qs.stringify(this.form)
                 }).then(response => {
-                    let data = response.data.data
-                    this.form = data
-                    this.loading = false
+                    if (response.data.err_no === 0) {
+                        this.$notify.success({
+                            title: '成功',
+                            message: response.data.err_msg
+                        });
+                        this.$router.push({path: '/articles'})
+                    } else {
+                        this.$notify.error({
+                            title: '失败',
+                            message: response.data.err_msg
+                        });
+                    }
                 }).catch(response => {
                 });
-            },
-            onSubmit() {
-//                let data = this.form
-                let data = {
-                    serial_num: this.form.serial_number,
-                    name: this.form.name,
-                }
-                // 编辑
-                if (this.$route.params.id) {
-                    data.id= this.form.id
-                    this.$axios({
-                        url: this.$difines.root_url + '/api/admin/article/category/' + data.id,
-                        method: 'put',
-                        headers: {
-                            'Authorization': 'Bearer ' + this.$auth.getToken(),
-                        },
-                        data: qs.stringify(data)
-                    }).then(response => {
-                        console.log(response.data)
-                        if (response.data.err_no === 0) {
-                            this.$notify.success({
-                                title: '成功',
-                                message: response.data.err_msg
-                            });
-                            this.$router.push({path: '/articles'})
-                        }else {
-                            this.$notify.error({
-                                title: '失败',
-                                message: response.data.err_msg
-                            });
-                        }
-                    }).catch(response => {
-                    });
-                }else {
-                    this.$axios({
-                        url: this.$difines.root_url + '/api/admin/article/category',
-                        method: 'post',
-                        headers: {
-                            'Authorization': 'Bearer ' + this.$auth.getToken(),
-                        },
-                        data: qs.stringify(data)
-                    }).then(response => {
-                        if (response.data.err_no === 0) {
-                            this.$notify.success({
-                                title: '成功',
-                                message: response.data.err_msg
-                            });
-                            this.$router.push({path: '/articles'})
-                        }else {
-                            this.$notify.error({
-                                title: '失败',
-                                message: response.data.err_msg
-                            });
-                        }
-                    }).catch(response => {
-                    });
-                }
-                console.log(data);
-
             }
         }
     }
