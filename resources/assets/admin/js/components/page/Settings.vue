@@ -71,7 +71,6 @@
                     method: 'GET',
                 }).then(response => {
                     let data = response.data.data
-                    console.log(data)
                     this.form = data
                     if(data.site_logo===''){
                         this.file_list.splice(0)
@@ -81,7 +80,6 @@
                             url: data.site_logo,
                         })
                     }
-                    console.log(this.file_list)
                     this.loading = false
                 }).catch(response => {
                     // console.log(response)
@@ -90,7 +88,6 @@
             },
             handleChange(file, file_list) {
                 this.file_list.splice(0)
-                console.log(file)
                 this.file_list.push(file)
             },
             handleRemove(file, file_list) {
@@ -107,24 +104,28 @@
                             message: '移除文件出错了'
                         });
                     }else{
+                        this.$notify.success({
+                            title: '成功',
+                            message: '移除文件成功'
+                        });
                         this.form.site_logo = ''
                     }
-
                 }).catch(response => {
                 });
             },
             handlePictureCardPreview(file) {
-                console.log(file);
+                // console.log(file);
             },
             handleUploadSuccess(file, file_list) {
                 this.form.site_logo = file.data.site_logo
             },
             onSubmit() {
 //                let data = this.form
+                console.log(this.form)
                 let data = {
                     site_title: this.form.site_title,
                     site_icp: this.form.site_icp,
-                    // site_logo: this.form.site_logo
+                    site_logo: this.form.site_logo
                 }
                 this.$axios({
                     url: this.$difines.root_url + '/api/admin/settings',

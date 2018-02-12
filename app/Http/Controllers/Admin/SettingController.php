@@ -74,11 +74,10 @@ class SettingController extends CommonController
     public function logoDestroy(Request $request)
     {
         if ($request->has('site_logo')) {
-            $site_logo = preg_replace("/.+\/storage\/(.+)/m", '${1}', $request->input('site_logo'));
+            $site_logo = preg_replace("/.+\/storage\/uploads\/(.+)/m", '${1}', $request->input('site_logo'));
             $data = [
                 $request->input('site_logo'),
                 $site_logo,
-                \Storage::url($site_logo)
             ];
 
             if (\Storage::delete($site_logo) === false) {

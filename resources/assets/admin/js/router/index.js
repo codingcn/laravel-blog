@@ -10,6 +10,7 @@ import Categories from '../components/page/Categories.vue';
 import Category from '../components/page/Category.vue';
 import Articles from '../components/page/Articles.vue';
 import Article from '../components/page/Article.vue';
+import Links from '../components/page/Links.vue';
 import Settings from '../components/page/Settings.vue';
 
 
@@ -69,6 +70,12 @@ let router = new Router({
                     path: '/article-create',
                     component: Article     // 文章新建
                 },
+                {
+                    name: 'links',
+                    path: '/links',
+                    component: Links     // 文章新建
+                }
+                ,
                 {
                     name: 'settings',
                     path: '/settings',

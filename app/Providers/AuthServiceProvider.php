@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
 use Carbon\Carbon;
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
@@ -34,7 +35,9 @@ class AuthServiceProvider extends ServiceProvider
             //不需要那么多路由，对于密码授权的方式只要这几个路由就可以了
             $router->forAccessTokens();
         });
+        Gate::define('setting', function ($user){
 
+        });
         //
     }
 }

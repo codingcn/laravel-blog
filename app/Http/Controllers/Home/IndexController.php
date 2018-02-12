@@ -30,7 +30,7 @@ class IndexController extends CommonController
                 'seo' => $this->getSeoInfo(getSetting('site_title'),'边城','面朝大海，春暖花开'),
                 'articles' => $this->articleRepository->indexArticles(),
             ];
-            return view('home/index', $data);
+            return view('home.index', $data);
         } else {
             return redirect('/welcome');
         }

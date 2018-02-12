@@ -71,6 +71,21 @@
                         ]
                     },
                     {
+                        icon: 'fa fa-link',
+                        index: 'link',
+                        title: '运营管理',
+                        subs: [
+                            {
+                                index: '/links',
+                                title: '友情列表'
+                            },
+                            {
+                                index: '/articles',
+                                title: '文章管理'
+                            }
+                        ]
+                    },
+                    {
                         icon: 'fa fa-cogs',
                         index: '/settings',
                         title: '站点设置'
