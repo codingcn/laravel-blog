@@ -116,8 +116,10 @@
             handlePictureCardPreview(file) {
                 // console.log(file);
             },
-            handleUploadSuccess(file, file_list) {
-                this.form.site_logo = file.data.site_logo
+            handleUploadSuccess(response, file, fileList) {
+                this.file_list.splice(0)
+                this.file_list.push(file)
+                this.form.site_logo = response.data.site_logo
             },
             onSubmit() {
 //                let data = this.form

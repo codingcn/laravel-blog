@@ -61,7 +61,7 @@ class ArticleController extends CommonController
             'recommend' => $request->input('recommend'),
             'status' => $request->input('status'),
         ];
-        if ($request->has('cover')) {
+        if (!empty($request->input('cover'))) {
             $data['cover'] = preg_replace("/storage(\/.+)/m", '${1}', $request->get('cover'));
         }
 
@@ -116,7 +116,6 @@ class ArticleController extends CommonController
 
     public function uploadCoverDel(Request $request)
     {
-
         if ($request->has('cover_path')) {
             $cover_path = preg_replace("/storage(\/.+)/m", '${1}', $request->input('cover_path'));
             if (Storage::delete($cover_path) === false) {
@@ -187,13 +186,12 @@ class ArticleController extends CommonController
             'content_html' => 'required|string|min:5',
             'status' => 'required|int',
         ]);
-        if ($request->has('cover')) {
-            $article->cover = preg_replace("/storage(\/.+)/m", '${1}', $request->get('cover'));
-        }
         $article->title = $request->input('title');
         $article->summary = $request->input('summary');
         //正则去除url地址前缀入库
-        $article->cover = preg_replace('/^http.*storage(.*)/m', '${1}', $request->get('cover'));
+        if (!empty($request->input('cover'))){
+            $article->cover = preg_replace('/^http.*storage\/uploads\/(.*)/m', '${1}', $request->input('cover'));
+        }
         $article->content_md = preg_replace('/^!\[.*\]\(http.*\/storage(\/.*)\)/m', '![](${1})', $request->get('content_md'));
         $article->content_html = preg_replace("/<img\s+src=['\"].+storage(.+)['\"]\s(.*('|\"))>/", '<img src="${1}" ${2}>', $request->get('content_html'));
         $article->content_length = mb_strlen($article->content_html);

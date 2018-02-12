@@ -200,21 +200,24 @@
                 this.file_list.push(file)
             },
             handleRemove(file, file_list) {
-                console.log(file.url)
-                console.log(file_list)
                 this.$axios({
                     url: this.$difines.root_url + '/api/admin/article/upload-cover-del',
                     method: 'post',
                     data: {
-                        cover_path: file.url
+                        cover_path: this.form.cover
                     }
                 }).then(response => {
-                    this.form.cover=''
                     if (response.data.err_no !== 0) {
                         this.$notify.error({
                             title: '错误',
                             message: '移除文件出错了'
                         });
+                    }else{
+                        this.$notify.success({
+                            title: '成功',
+                            message: '移除文件成功'
+                        });
+                        this.form.cover=''
                     }
                 }).catch(response => {
                 });
@@ -222,8 +225,10 @@
             handlePictureCardPreview(file) {
                 console.log(file);
             },
-            handleUploadSuccess(file, file_list) {
-                this.form.cover = file.data.cover_path
+            handleUploadSuccess(response, file, fileList) {
+                this.file_list.splice(0)
+                this.file_list.push(file)
+                this.form.cover = response.data.cover_path
             },
             onSubmit() {
 //                let data = this.form

@@ -39,8 +39,6 @@ Route::get('/sign-out', 'Home\UserController@signOut');
 
 //用户设置行为
 Route::get('/user/setting/self', 'Home\UserController@setting');
-
-
 //标签
 Route::get('/tags/{tag}', 'Home\TagController@index');
 Route::get('/category/{category}', 'Home\ArticleCategoryController@show');
@@ -53,7 +51,6 @@ Route::group(['prefix' => 'article', 'namespace' => 'Home'], function () {
     Route::get('/', 'ArticleController@index');
     //文章详情
     Route::get('/{article}', 'ArticleController@show');
-
 });
 Route::group(['prefix' => 'comment', 'namespace' => 'Home'], function () {
     //评论列表
@@ -70,4 +67,8 @@ Route::view('/admin', 'admin.layout');
 Route::view('/admin/{query}', 'admin.layout')->where('query', '.*');
 
 
+
 Route::post('/service/sendsms', 'Service\ValidateController@sendSMS');
+
+
+

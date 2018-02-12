@@ -101,8 +101,7 @@
           smartLists: true,
           smartypants: false,
           highlight: function (code) {
-
-              console.log(code)
+              // console.log(code)
             return require('highlight.js').highlightAuto(code).value
           }
         })
