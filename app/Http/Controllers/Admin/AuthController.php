@@ -65,7 +65,7 @@ class AuthController
     public function adminUser()
     {
         $user = \Auth::guard('api')->user();
-        return \GuzzleHttp\json_encode($user);
+        return json_encode($user);
     }
 
 }

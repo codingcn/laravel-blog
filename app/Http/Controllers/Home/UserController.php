@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends CommonController
 {
-    public function signIn()
-    {
-        return view('home.signIn');
-    }
 
     public function signInStore(Request $request)
     {
@@ -37,11 +33,6 @@ class UserController extends CommonController
         }
         return \Redirect::back()->withErrors('账号或密码错误！');
 
-    }
-
-    public function signUp()
-    {
-        return view('home.signUp');
     }
 
     public function signUpStore(Request $request)
@@ -74,17 +65,7 @@ class UserController extends CommonController
 
     public function signOut()
     {
-        \Auth::logout();
+        \Auth::guard('api')->logout();
         return back();
-    }
-
-    public function setting()
-    {
-
-    }
-
-    public function settingStore()
-    {
-
     }
 }

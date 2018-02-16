@@ -1,5 +1,5 @@
 <?php
-$categories = \App\Models\ArticleCategory::all();
+$categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(['id', 'name']);
 ?>
         <!DOCTYPE html>
 <html lang="zh-CN">
@@ -53,7 +53,8 @@ $categories = \App\Models\ArticleCategory::all();
                 <div class="logo float-left">
                     <a href="{{url('/')}}">
                         {{--<h1>边城</h1>--}}
-                        <img src="{{ URL::asset('static/home/img/logo.png') }}" alt="边城">
+                        <img src="{{ !empty(getSetting('site_logo'))?\Storage::url(getSetting('site_log')):asset('static/home/img/logo.png') }}"
+                             alt="边城">
                     </a>
                 </div>
 
@@ -64,7 +65,7 @@ $categories = \App\Models\ArticleCategory::all();
                         </li>
                         @foreach($categories as $category)
                             <li>
-                                <a href="{{ url('/category/'.$category->id) }}">{{$category->name}}</a>
+                                <a href="{{ url('/categories',$category->id) }}">{{$category->name}}</a>
                             </li>
                         @endforeach
                         <li>
@@ -120,7 +121,7 @@ $categories = \App\Models\ArticleCategory::all();
                         </li>
                         @foreach($categories as $category)
                             <li>
-                                <a href="{{ url('/category/'.$category->id) }}">{{$category->name}}</a>
+                                <a href="{{ url('/categories',$category->id) }}">{{$category->name}}</a>
                             </li>
                         @endforeach
                         <li>
@@ -148,7 +149,7 @@ $categories = \App\Models\ArticleCategory::all();
             <a href="https://ashub.cn" target="_blank">AsHub</a> All Rights Reserved. Powered by Alan
         </p>
         <p>
-            <a href="http://www.miitbeian.gov.cn/" target="_blank"><?=getSetting('icp')?></a>
+            <a href="http://www.miitbeian.gov.cn/" target="_blank"><?=getSetting('site_icp')?></a>
         </p>
     </div>
 </div>

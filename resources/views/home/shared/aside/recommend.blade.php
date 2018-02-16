@@ -5,7 +5,7 @@
         </div>
         @foreach($recommends as $recommend)
             <li>
-                <a class="title" href="{{url('/article/'.$recommend->id)}}" target="_blank">{{$recommend->title}}</a>
+                <a class="title" href="{{url('/articles/'.$recommend->id)}}" target="_blank">{{$recommend->title}}</a>
 
                 <div class="notice-new">
                     <span class="date">{{$recommend->published_at}}</span>

@@ -155,7 +155,7 @@
             getArticleCategories() {
                 this.loading = true
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/categories/all',
+                    url: this.$difines.root_url + '/api/admin/article/categories',
                     method: 'get',
                 }).then(response => {
                     let data = response.data.data
@@ -168,8 +168,8 @@
             getArticle() {
                 this.loading = true
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/edit/' + this.$route.params.id,
-                    method: 'get',
+                    url: this.$difines.root_url + '/api/admin/articles/' + this.$route.params.id,
+                    method: 'GET',
                 }).then(response => {
                     let data = response.data.data
                     this.form = data
@@ -178,9 +178,9 @@
                     this.form.cover = data.cover
                     this.form.category_options = data.categories
 //                    this.form.tags = data.tags
-                    if(data.cover===''){
+                    if (data.cover === '') {
                         this.file_list.splice(0)
-                    }else{
+                    } else {
                         this.file_list.push({
                             name: data.title,
                             url: data.cover,
@@ -212,12 +212,12 @@
                             title: '错误',
                             message: '移除文件出错了'
                         });
-                    }else{
+                    } else {
                         this.$notify.success({
                             title: '成功',
                             message: '移除文件成功'
                         });
-                        this.form.cover=''
+                        this.form.cover = ''
                     }
                 }).catch(response => {
                 });
@@ -248,7 +248,7 @@
                 if (this.$route.params.id) {
                     data.id = this.form.id
                     this.$axios({
-                        url: this.$difines.root_url + '/api/admin/article/edit/' + data.id,
+                        url: this.$difines.root_url + '/api/admin/articles/' + data.id,
                         method: 'put',
                         data: qs.stringify(data)
                     }).then(response => {
@@ -268,8 +268,8 @@
                     });
                 } else {
                     this.$axios({
-                        url: this.$difines.root_url + '/api/admin/article/store',
-                        method: 'post',
+                        url: this.$difines.root_url + '/api/admin/articles',
+                        method: 'POST',
                         data: qs.stringify(data)
                     }).then(response => {
                         console.log(response.data)

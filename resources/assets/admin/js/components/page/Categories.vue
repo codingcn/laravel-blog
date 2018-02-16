@@ -9,9 +9,7 @@
         </div>
         <div>
             <div style="float: right;margin-bottom: 2rem">
-                <router-link to="/category-create">
-                    <el-button type="primary" icon="plus">添加分类</el-button>
-                </router-link>
+                <el-button type="primary" icon="plus"  @click="dialogCreateFormVisible = true">添加分类</el-button>
             </div>
             <el-table
                     v-loading="loading"
@@ -45,7 +43,7 @@
                     <template slot-scope="scope">
                         <el-button
                                 size="small"
-                                @click="handleEdit(scope.$index, scope.row);dialogFormVisible = true">
+                                @click="handleEdit(scope.$index, scope.row);dialogEditFormVisible = true">
                             编 辑
                         </el-button>
                         <el-button
@@ -62,18 +60,32 @@
                     @current-change="currentChange"
                     :total="page.total">
             </el-pagination>
-            <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
-                <el-form :model="form">
+            <el-dialog title="修改分类" :visible.sync="dialogEditFormVisible">
+                <el-form :model="editForm">
                     <el-form-item label="分类名称" :label-width="formLabelWidth">
-                        <el-input v-model="form.name" auto-complete="off"></el-input>
+                        <el-input v-model="editForm.name" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="分类序号" :label-width="formLabelWidth">
-                        <el-input v-model="form.serial_number" auto-complete="off"></el-input>
+                        <el-input v-model="editForm.serial_number" auto-complete="off"></el-input>
                     </el-form-item>
                 </el-form>
                 <div slot="footer" class="dialog-footer">
-                    <el-button @click="dialogFormVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="updateCategory();dialogFormVisible = false">确 定</el-button>
+                    <el-button @click="dialogEditFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="updateCategory();dialogEditFormVisible = false">确 定</el-button>
+                </div>
+            </el-dialog>
+            <el-dialog title="新增分类" :visible.sync="dialogCreateFormVisible">
+                <el-form :model="createForm">
+                    <el-form-item label="分类名称" :label-width="formLabelWidth">
+                        <el-input v-model="createForm.name" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="分类序号" :label-width="formLabelWidth">
+                        <el-input v-model="createForm.serial_number" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogCreateFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="storeCategory();dialogCreateFormVisible = false">确 定</el-button>
                 </div>
             </el-dialog>
         </div>
@@ -90,9 +102,14 @@
                 loading: false,
                 tableData: [],
                 page: {},
-                dialogFormVisible: false,
-                form: {
+                dialogEditFormVisible: false,
+                dialogCreateFormVisible: false,
+                editForm: {
                     id: 0,
+                    name: '',
+                    serial_number: 0
+                },
+                createForm: {
                     name: '',
                     serial_number: 0
                 },
@@ -103,7 +120,7 @@
             currentChange(p) {
                 this.loading = true
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/categories?page=' + p,
+                    url: this.$difines.root_url + '/api/admin/article-categories?page=' + p,
                     method: 'get'
                 }).then(response => {
                     this.tableData = response.data.data.data
@@ -116,7 +133,7 @@
             getCategories() {
                 this.loading = true
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/categories',
+                    url: this.$difines.root_url + '/api/admin/article-categories',
                     method: 'get'
                 }).then(response => {
                     // 提示: 如果这个位置console.log()那么就会出错。。
@@ -132,17 +149,17 @@
             },
             updateCategory() {
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/categories/' + this.form.id,
+                    url: this.$difines.root_url + '/api/admin/article-categories/' + this.editForm.id,
                     method: 'PUT',
                     data: {
-                        name: this.form.name,
-                        serial_number: this.form.serial_number
+                        name: this.editForm.name,
+                        serial_number: this.editForm.serial_number
                     }
                 }).then(response => {
                     if (response.data.err_no !== 0) {
                         this.$notify.error({
                             title: '错误',
-                            message: '移除文件出错了'
+                            message: '分类修改失败'
                         });
                     } else {
                         this.$notify.success({
@@ -154,10 +171,32 @@
                 }).catch(response => {
                 });
             },
+            storeCategory() {
+                this.$axios({
+                    url: this.$difines.root_url + '/api/admin/article-categories',
+                    method: 'POST',
+                    data: {
+                        name: this.createForm.name,
+                        serial_number: this.createForm.serial_number
+                    }
+                }).then(response => {
+                    if (response.data.err_no !== 0) {
+                        this.$notify.error({
+                            title: '错误',
+                            message: '分类添加失败'
+                        });
+                    } else {
+                        this.$notify.success({
+                            title: '成功',
+                            message: '分类添加成功'
+                        });
+                        this.getCategories();
+                    }
+                }).catch(response => {
+                });
+            },
             handleEdit(index, row) {
-                this.form.id = row.id;
-                this.form.name = row.name;
-                this.form.serial_number = row.serial_number;
+                this.editForm = row;
             },
             handleDelete(index, row) {
 

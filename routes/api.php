@@ -9,44 +9,38 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 // 用户管理
 Route::group(['middleware' => 'auth:api', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/users', 'UserController@index');
     Route::get('/users/search', 'UserController@search');
 });
 // 系统设置
-Route::group(['middleware' => ['auth:api','can:setting'], 'prefix' => 'admin/settings', 'namespace' => 'Admin'], function () {
-    Route::resource('/', 'SettingController', ['index', 'update']);
+Route::group(['middleware' => ['auth:api', 'can:setting'], 'prefix' => 'admin/settings', 'namespace' => 'Admin'], function () {
+    Route::get('/', 'SettingController@index');
+    Route::put('/', 'SettingController@update');
     Route::post('/upload-logo', 'SettingController@logoUpload');
     Route::post('/upload-logo-delete', 'SettingController@logoDestroy');
 });
 // 文章管理
-Route::group(['middleware' => 'auth:api', 'prefix' => 'admin/article', 'namespace' => 'Admin'], function () {
-    Route::post('/upload-editor', 'ArticleController@uploadBase64');
-    Route::post('/upload-cover', 'ArticleController@uploadCover');
-    Route::post('/upload-cover-del', 'ArticleController@uploadCoverDel');
-    //文章列表
-    Route::get('/list', 'ArticleController@index');
-    Route::get('/categories/all', 'ArticleController@categories');
-    Route::resource('/categories', 'ArticleCategoryController', ['index', 'show', 'update', 'store']);
+Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function () {
+    Route::post('/admin/articles/upload-editor', 'ArticleController@uploadBase64');
+    Route::post('/admin/articles/upload-cover', 'ArticleController@uploadCover');
+    Route::post('/admin/articles/upload-cover-del', 'ArticleController@uploadCoverDel');
+    // 文章分类
+    Route::resource('/admin/article-categories', 'ArticleCategoryController', ['index', 'show', 'update', 'store']);
+    // 文章
+    Route::resource('/admin/articles', 'ArticleController', ['index', 'update', 'store', 'show', 'destroy']);
 
-    //创建文章
-    Route::post('/store', 'ArticleController@store');
-    //编辑文章
-    Route::get('/edit/{article}', 'ArticleController@edit');
-    Route::put('/edit/{article}', 'ArticleController@update');
-    Route::get('/tag/search', 'ArticleController@searchTag');
-    //删除文章
-    Route::get('/delete/{article}', 'ArticleController@delete');
+    Route::get('/admin/article/categories', 'ArticleController@categories');
+    Route::get('/admin/article/tag/search', 'ArticleController@searchTag');
 
-    //editor.md图片上传
-    Route::post('/upload/image', 'ArticleController@imageUpload');
+
+    // editor.md图片上传
+    Route::post('/admin/articles/upload/image', 'ArticleController@imageUpload');
 });
-
+Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function () {
+    Route::resource('/admin/links', 'LinkController', ['index', 'update', 'destroy']);
+});
 
 Route::post('/oauth/token', 'Admin\AuthController@token');
 Route::post('/oauth/refresh-token', 'Admin\AuthController@refreshToken');

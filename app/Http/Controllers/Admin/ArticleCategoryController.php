@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ArticleCategoryController extends CommonController
 {
+    /**
+     * 分类列表
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index()
     {
         $list = ArticleCategory::orderBy('serial_number', 'asc')->paginate(10);

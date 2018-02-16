@@ -6,7 +6,7 @@
             @if($article->cover )
                 <li class="article-item">
                     <div class="title">
-                        <strong><a href="{{url('/article',$article->id )}}">{{ $article->title }}</a></strong>
+                        <strong><a href="{{url('/articles',$article->id )}}">{{ $article->title }}</a></strong>
                         <span class="date float-right">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
                             {{ $article->created_at->diffForHumans() }}
@@ -17,13 +17,13 @@
                         {{ str_limit($article->summary,250,'...') }}
                     </span>
                         <span class="col-3 col-sm-3 cover">
-                        <a href="{{url('/article',$article->id )}}"><img src="{{ \Storage::url($article->cover) }}"
+                        <a href="{{url('/articles',$article->id )}}"><img src="{{ \Storage::url($article->cover) }}"
                                                                          alt="{{ $article->title }}"></a>
                     </span>
                     </div>
                     <div class="meta">
                         <span class="category">
-                            <a href="{{url('/category',$article->articleCategory->id)}}">{{$article->articleCategory->name}}</a>
+                            <a href="{{url('/categories',$article->articleCategory->id)}}">{{$article->articleCategory->name}}</a>
                         </span>
                         @if(count($article->tags))
                             <span class="tags">
@@ -45,7 +45,7 @@
             @else
                 <li class="article-item">
                     <div class="title">
-                        <b><a href="article/{{ $article->id }}">{{ $article->title }}</a></b>
+                        <b><a href="articles/{{ $article->id }}">{{ $article->title }}</a></b>
                         <span class="date float-right">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
                             {{ $article->created_at->diffForHumans() }}
@@ -56,7 +56,7 @@
                     </div>
                     <div class="meta">
                         <span class="category">
-                            <a href="{{url('/category',$article->articleCategory->id)}}">{{$article->articleCategory->name}}</a>
+                            <a href="{{url('/categories',$article->articleCategory->id)}}">{{$article->articleCategory->name}}</a>
                         </span>
                         @if(count($article->tags))
                             <span class="tags">

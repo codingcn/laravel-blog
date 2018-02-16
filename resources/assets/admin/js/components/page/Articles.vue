@@ -9,7 +9,7 @@
         </div>
         <div v-loading="loading">
             <div style="float: right;margin-bottom: 2rem">
-                <router-link to="/article-create">
+                <router-link to="/articles/create">
                     <el-button type="primary" icon="plus">添加文章</el-button>
                 </router-link>
             </div>
@@ -119,7 +119,7 @@
             currentChange(p) {
                 this.loading = true
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/list?page=' + p,
+                    url: this.$difines.root_url + '/api/admin/articles?page=' + p,
                     method: 'get',
                     headers: {
                         'Authorization': 'Bearer ' + this.$auth.getToken(),
@@ -141,7 +141,7 @@
             getArticles() {
                 this.loading = true
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/list',
+                    url: this.$difines.root_url + '/api/admin/articles',
                     method: 'get',
                     headers: {
                         'Authorization': 'Bearer ' + this.$auth.getToken(),
@@ -161,7 +161,7 @@
 
             },
             handleEdit(index, row) {
-                this.$router.push({name: 'article', params: {id: row.id}})
+                this.$router.push({name: 'articles/edit', params: {id: row.id}})
             },
             handleDelete(index, row) {
                 this.loading = true
@@ -192,7 +192,7 @@
                 this.loading = false
             },
             handlePreview(index, row) {
-                window.open("/article/" + row.id)
+                window.open("/articles/" + row.id)
             }
         }
     }

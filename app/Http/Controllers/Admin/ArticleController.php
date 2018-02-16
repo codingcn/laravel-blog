@@ -158,7 +158,7 @@ class ArticleController extends CommonController
     }
 
 
-    public function edit(Article $article)
+    public function show(Article $article)
     {
         $data = $article->toArray();
         $data['content_html'] = preg_replace("/<img\s+src=['\"](.+)['\"]\s(.*('|\"))>/", '<img src="' . asset('storage') . '${1}" ${2}>', $data['content_html']);
@@ -215,7 +215,7 @@ class ArticleController extends CommonController
         return $this->responseJson('OK');
     }
 
-    public function delete(Article $article)
+    public function destroy(Article $article)
     {
         //权限
         $article->delete();

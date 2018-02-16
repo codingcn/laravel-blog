@@ -72,6 +72,9 @@
                 }).then(response => {
                     let data = response.data.data
                     this.form = data
+                    console.log(data.site_logo)
+                    console.log(5555)
+                    console.log(typeof data.site_logo==='')
                     if(data.site_logo===''){
                         this.file_list.splice(0)
                     }else{

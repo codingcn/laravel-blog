@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SettingSeeder extends Seeder
+class SettingTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,13 +20,13 @@ class SettingSeeder extends Seeder
                     'description' => '站点标题'
                 ],
                 [
-                    'key' => 'logo',
-                    'value' => '边城',
+                    'key' => 'site_logo',
+                    'value' => '',
                     'description' => 'LOGO'
                 ],
                 [
-                    'key' => 'icp',
-                    'value' => '滇ICP备15008347号-1',
+                    'key' => 'site_icp',
+                    'value' => '滇ICP备15008347号',
                     'description' => 'ICP备案号'
                 ]
             ]

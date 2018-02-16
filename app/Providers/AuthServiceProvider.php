@@ -36,6 +36,9 @@ class AuthServiceProvider extends ServiceProvider
             $router->forAccessTokens();
         });
         Gate::define('setting', function ($user){
+            if ($user->id===1){
+                return true;
+            }
 
         });
         //

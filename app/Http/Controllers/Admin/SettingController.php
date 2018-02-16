@@ -25,7 +25,7 @@ class SettingController extends CommonController
         foreach ($settings as $k => $v) {
             $res[$v['key']] = $v['value'];
         }
-        $res['site_logo'] = \Storage::url($res['site_logo']);
+        $res['site_logo'] = !empty($res['site_logo']) ? \Storage::url($res['site_logo']) : '';
         return $this->responseJson('OK', $res);
     }
 

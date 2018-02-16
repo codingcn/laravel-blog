@@ -9,9 +9,7 @@
         </div>
         <div>
             <div style="float: right;margin-bottom: 2rem">
-                <router-link to="/category-create">
-                    <el-button type="primary" icon="plus">添加友链</el-button>
-                </router-link>
+                <el-button type="primary" icon="plus" @click="dialogCreateFormVisible = true">添加友链</el-button>
             </div>
             <el-table
                     v-loading="loading"
@@ -21,18 +19,28 @@
                 </el-table-column>
                 <el-table-column
                         prop="id"
-                        label="分类ID"
-                        width="180">
+                        label="ID"
+                        width="60">
                 </el-table-column>
                 <el-table-column
                         prop="name"
-                        label="分类名"
+                        label="站点名"
+                        width="100">
+                </el-table-column>
+                <el-table-column
+                        prop="uri"
+                        label="站点链接"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="description"
+                        label="站点描述"
                         width="180">
                 </el-table-column>
                 <el-table-column
                         prop="serial_number"
                         label="排序"
-                        width="180">
+                        width="60">
                 </el-table-column>
                 <el-table-column
                         prop="updated_at"
@@ -45,7 +53,7 @@
                     <template slot-scope="scope">
                         <el-button
                                 size="small"
-                                @click="handleEdit(scope.$index, scope.row);dialogFormVisible = true">
+                                @click="handleEdit(scope.$index, scope.row);dialogEditFormVisible = true">
                             编 辑
                         </el-button>
                         <el-button
@@ -62,18 +70,44 @@
                     @current-change="currentChange"
                     :total="page.total">
             </el-pagination>
-            <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
-                <el-form :model="form">
-                    <el-form-item label="分类名称" :label-width="formLabelWidth">
-                        <el-input v-model="form.name" auto-complete="off"></el-input>
+            <el-dialog title="编辑友链" :visible.sync="dialogEditFormVisible">
+                <el-form :model="editForm">
+                    <el-form-item label="站点名称" :label-width="formLabelWidth">
+                        <el-input v-model="editForm.name" auto-complete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="分类序号" :label-width="formLabelWidth">
-                        <el-input v-model="form.serial_number" auto-complete="off"></el-input>
+                    <el-form-item label="站点链接" :label-width="formLabelWidth">
+                        <el-input v-model="editForm.uri" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="站点描述" :label-width="formLabelWidth">
+                        <el-input v-model="editForm.description" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="排序" :label-width="formLabelWidth">
+                        <el-input v-model="editForm.serial_number" auto-complete="off"></el-input>
                     </el-form-item>
                 </el-form>
                 <div slot="footer" class="dialog-footer">
-                    <el-button @click="dialogFormVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="updateCategory();dialogFormVisible = false">确 定</el-button>
+                    <el-button @click="dialogEditFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="updateLink();dialogEditFormVisible = false">确 定</el-button>
+                </div>
+            </el-dialog>
+            <el-dialog title="编辑友链" :visible.sync="dialogCreateFormVisible">
+                <el-form :model="createForm">
+                    <el-form-item label="站点名称" :label-width="formLabelWidth">
+                        <el-input v-model="createForm.name" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="站点链接" :label-width="formLabelWidth">
+                        <el-input v-model="createForm.uri" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="站点描述" :label-width="formLabelWidth">
+                        <el-input v-model="createForm.description" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="排序" :label-width="formLabelWidth">
+                        <el-input v-model="createForm.serial_number" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogCreateFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="storeLink();dialogCreateFormVisible = false">确 定</el-button>
                 </div>
             </el-dialog>
         </div>
@@ -83,27 +117,49 @@
 <script type="text/ecmascript-6">
     export default {
         beforeMount() {
-            this.getCategories()
+            this.getLinks();
         },
         data() {
             return {
                 loading: false,
                 tableData: [],
                 page: {},
-                dialogFormVisible: false,
-                form: {
+                dialogEditFormVisible: false,
+                dialogCreateFormVisible: false,
+                editForm: {
                     id: 0,
                     name: '',
+                    uri: '',
+                    description: '',
+                    serial_number: 0
+                },
+                createForm: {
+                    name: '',
+                    uri: '',
+                     description: '',
                     serial_number: 0
                 },
                 formLabelWidth: '120px'
             }
         },
         methods: {
+            getLinks() {
+                this.loading = true
+                this.$axios({
+                    url: this.$difines.root_url + '/api/admin/links',
+                    method: 'get'
+                }).then(response => {
+                    this.tableData = response.data.data.data
+                    this.page.pageSize = response.data.data.per_page
+                    this.page.total = response.data.data.total
+                    this.loading = false
+                }).catch(response => {
+                });
+            },
             currentChange(p) {
                 this.loading = true
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/categories?page=' + p,
+                    url: this.$difines.root_url + '/api/admin/links?page=' + p,
                     method: 'get'
                 }).then(response => {
                     this.tableData = response.data.data.data
@@ -113,54 +169,81 @@
                 }).catch(response => {
                 });
             },
-            getCategories() {
-                this.loading = true
+            updateLink() {
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/categories',
-                    method: 'get'
-                }).then(response => {
-                    // 提示: 如果这个位置console.log()那么就会出错。。
-                    this.tableData = response.data.data.data
-                    this.page.pageSize = response.data.data.per_page
-                    this.page.total = response.data.data.total
-                    this.loading = false
-
-                }).catch(response => {
-                    this.loading = false
-                });
-
-            },
-            updateCategory() {
-                this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/categories/' + this.form.id,
+                    url: this.$difines.root_url + '/api/admin/links/' + this.editForm.id,
                     method: 'PUT',
                     data: {
-                        name: this.form.name,
-                        serial_number: this.form.serial_number
+                        name: this.editForm.name,
+                        uri: this.editForm.uri,
+                        description: this.editForm.description,
+                        serial_number: this.editForm.serial_number
                     }
                 }).then(response => {
                     if (response.data.err_no !== 0) {
                         this.$notify.error({
                             title: '错误',
-                            message: '移除文件出错了'
+                            message: '友链修改失败'
                         });
                     } else {
                         this.$notify.success({
                             title: '成功',
-                            message: '分类修改成功'
+                            message: '友链修改成功'
                         });
-                        this.getCategories();
+                    }
+                }).catch(response => {
+                });
+            },
+            storeLink() {
+                this.$axios({
+                    url: this.$difines.root_url + '/api/admin/links',
+                    method: 'POST',
+                    data: {
+                        name: this.createForm.name,
+                        uri: this.createForm.uri,
+                        description: this.createForm.description,
+                        serial_number: this.createForm.serial_number
+                    }
+                }).then(response => {
+                    if (response.data.err_no !== 0) {
+                        this.$notify.error({
+                            title: '错误',
+                            message: '友链添加失败'
+                        });
+                        this.getLinks();
+                    } else {
+                        this.$notify.success({
+                            title: '成功',
+                            message: '友链添加成功'
+                        });
+                        this.getLinks();
                     }
                 }).catch(response => {
                 });
             },
             handleEdit(index, row) {
-                this.form.id = row.id;
-                this.form.name = row.name;
-                this.form.serial_number = row.serial_number;
+                this.editForm = row;
             },
             handleDelete(index, row) {
-
+                this.$axios({
+                    url: this.$difines.root_url + '/api/admin/links/' + row.id,
+                    method: 'DELETE'
+                }).then(response => {
+                    if (response.data.err_no !== 0) {
+                        this.$notify.error({
+                            title: '错误',
+                            message: '删除失败'
+                        });
+                        this.getLinks();
+                    } else {
+                        this.$notify.success({
+                            title: '成功',
+                            message: '删除成功'
+                        });
+                        this.getLinks();
+                    }
+                }).catch(response => {
+                });
             }
         }
     }

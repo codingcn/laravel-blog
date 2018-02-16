@@ -7,7 +7,6 @@ import Home from '../components/common/Home.vue';
 import Users from '../components/page/Users.vue';
 import Index from '../components/page/Index.vue';
 import Categories from '../components/page/Categories.vue';
-import Category from '../components/page/Category.vue';
 import Articles from '../components/page/Articles.vue';
 import Article from '../components/page/Article.vue';
 import Links from '../components/page/Links.vue';
@@ -47,27 +46,17 @@ let router = new Router({
                     component: Categories     // 分类列表
                 },
                 {
-                    name:'/category',
-                    path: '/category/:id',
-                    component: Category     // 分类更新
-                },
-                {
-                    name:'/category-create',
-                    path: '/category-create',
-                    component: Category     // 分类创建
-                },
-                {
                     path: '/articles',
                     component: Articles     // 文章列表
                 },
                 {
-                    name: 'article',
-                    path: '/article/:id',
+                    name: 'articles/edit',
+                    path: '/articles/:id/edit',
                     component: Article     // 文章更新
                 },
                 {
-                    name: 'article-create',
-                    path: '/article-create',
+                    name: 'articles/create',
+                    path: '/articles/create',
                     component: Article     // 文章新建
                 },
                 {

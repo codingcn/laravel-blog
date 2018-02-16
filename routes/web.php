@@ -24,14 +24,14 @@ Route::get('/index', 'Home\IndexController@index');
 Route::get('/welcome', 'Home\IndexController@welcome');
 
 //文章搜索
-Route::get('/article/search', 'Home\ArticleController@search');
+Route::get('/articles/search', 'Home\ArticleController@search');
 
 //用户登录
-Route::get('/sign-in', 'Home\UserController@signIn');
+Route::view('/sign-in', 'home.signIn');
 //登录行为
 Route::post('/sign-in', 'Home\UserController@signInStore');
 //用户注册
-Route::get('/sign-up', 'Home\UserController@signUp');
+Route::view('/sign-up', 'home.signUp');
 //注册行为
 Route::post('/sign-up', 'Home\UserController@signUpStore');
 //登出行为
@@ -41,14 +41,12 @@ Route::get('/sign-out', 'Home\UserController@signOut');
 Route::get('/user/setting/self', 'Home\UserController@setting');
 //标签
 Route::get('/tags/{tag}', 'Home\TagController@index');
-Route::get('/category/{category}', 'Home\ArticleCategoryController@show');
+Route::get('/categories/{category}', 'Home\ArticleCategoryController@show');
 
 //前台文章
-Route::group(['prefix' => 'article', 'namespace' => 'Home'], function () {
+Route::group(['prefix' => 'articles', 'namespace' => 'Home'], function () {
     //归档,置于文章详情之前，否者路由冲突
     Route::get('/archives', 'ArticleController@archives');
-    //文章列表
-    Route::get('/', 'ArticleController@index');
     //文章详情
     Route::get('/{article}', 'ArticleController@show');
 });
