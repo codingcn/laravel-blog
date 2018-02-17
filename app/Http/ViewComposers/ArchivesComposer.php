@@ -13,7 +13,7 @@ use App\Models\Article;
 use Illuminate\View\View;
 
 
-class ArchviesComposer
+class ArchivesComposer
 {
     public function __construct()
     {

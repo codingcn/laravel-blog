@@ -24,7 +24,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         // Using class based composers...
         \View::composers([
-            'App\Http\ViewComposers\ArchviesComposer' => 'home.shared.aside.archives',
+            'App\Http\ViewComposers\ArchivesComposer' => 'home.shared.aside.archives',
             'App\Http\ViewComposers\LinkComposer' => 'home.shared.aside.links',
             'App\Http\ViewComposers\TagsComposer' => [
                 'home.layouts.app',
