@@ -72250,29 +72250,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 title: '运营管理',
                 subs: [{
                     index: '/links',
-                    title: '友情列表'
-                }, {
-                    index: '/articles',
-                    title: '文章管理'
+                    title: '友链列表'
                 }]
             }, {
                 icon: 'fa fa-cogs',
                 index: '/settings',
                 title: '站点设置'
-            }, {
-                icon: 'el-icon-tickets',
-                index: 'auth',
-                title: '权限管理',
-                subs: [{
-                    index: '/admin_users',
-                    title: '管理员列表'
-                }, {
-                    index: '/roles',
-                    title: '角色列表'
-                }, {
-                    index: '/permissions',
-                    title: '权限列表'
-                }]
             }]
         };
     },
@@ -73352,7 +73335,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         handleEdit: function handleEdit(index, row) {
             this.editForm = row;
         },
-        handleDelete: function handleDelete(index, row) {}
+        handleDelete: function handleDelete(index, row) {
+            var _this5 = this;
+
+            this.$axios({
+                url: this.$difines.root_url + '/api/admin/article-categories/' + row.id,
+                method: 'DELETE'
+            }).then(function (response) {
+                if (response.data.err_no !== 0) {
+                    _this5.$notify.error({
+                        title: '错误',
+                        message: response.data.err_msg
+                    });
+                } else {
+                    _this5.$notify.success({
+                        title: '成功',
+                        message: '分类删除成功'
+                    });
+                    _this5.getCategories();
+                }
+            }).catch(function (response) {});
+        }
     }
 });
 
@@ -73379,7 +73382,7 @@ var render = function() {
             _vm._v(" "),
             _c("el-breadcrumb-item", [_vm._v("文章管理")]),
             _vm._v(" "),
-            _c("el-breadcrumb-item", [_vm._v("文章列表")])
+            _c("el-breadcrumb-item", [_vm._v("分类列表")])
           ],
           1
         )
@@ -73950,10 +73953,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.tableData = response.data.data.data;
                 _this.page.pageSize = response.data.data.per_page;
                 _this.page.total = response.data.data.total;
-                console.log(_this.response.data.data);
                 _this.tableData.recommend = response.data.data.data.recommend === 2 ? '是' : '否';
-                _this.tableData.status = response.data.data.data.status === 2 ? '是' : '否';
-                console.log(_this.tableData);
+                _this.tableData.publish_status = response.data.data.data.publish_status === 2 ? '是' : '否';
                 //                    this.tableData.cover_path = data.cover
                 //                    console.log(this.tableData)
                 _this.loading = false;
@@ -73973,8 +73974,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.tableData = response.data.data.data;
                 _this2.page.pageSize = response.data.data.per_page;
                 _this2.page.total = response.data.data.total;
-                _this2.tableData.recommend = response.data.data.data.recommend === 2 ? '是' : '否';
-                _this2.tableData.status = response.data.data.data.status === 2 ? '是' : '否';
                 _this2.loading = false;
             }).catch(function (response) {
                 console.log(response);
@@ -73987,7 +73986,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         handleDelete: function handleDelete(index, row) {
             var _this3 = this;
 
-            this.loading = true;
             this.$axios({
                 url: this.$difines.root_url + '/api/admin/articles/' + row.id,
                 method: 'DELETE',
@@ -74000,19 +73998,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         title: '成功',
                         message: '文章删除成功'
                     });
+                    _this3.getArticles();
                 } else {
                     _this3.$notify.error({
                         title: '错误',
                         message: '文章删除失败'
                     });
+                    _this3.getArticles();
                 }
             }).catch(function (response) {
                 _this3.$notify.error({
                     title: '错误',
                     message: '文章删除失败'
                 });
+                _this3.getArticles();
             });
-            this.loading = false;
         },
         handlePreview: function handlePreview(index, row) {
             window.open("/articles/" + row.id);
@@ -74100,7 +74100,7 @@ var render = function() {
                           attrs: { "label-position": "left", inline: "" }
                         },
                         [
-                          _c("el-form-item", { attrs: { label: "文集" } }, [
+                          _c("el-form-item", { attrs: { label: "分类" } }, [
                             _c("span", [_vm._v(_vm._s(props.row.category_id))])
                           ]),
                           _vm._v(" "),
@@ -74166,7 +74166,7 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("el-table-column", {
-              attrs: { label: "状态", width: "150", prop: "status" }
+              attrs: { label: "状态", width: "150", prop: "publish_status" }
             }),
             _vm._v(" "),
             _c("el-table-column", {
@@ -74467,7 +74467,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 title: '',
                 summary: '',
                 recommend: '',
-                status: '',
+                publish_status: '',
                 content_md: '',
                 category_id: '',
                 category_options: [],
@@ -74533,7 +74533,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var data = response.data.data;
                 _this3.form = data;
                 _this3.form.recommend = data.recommend === 2 ? true : false;
-                _this3.form.status = data.status === 2 ? true : false;
+                _this3.form.publish_status = data.publish_status === 2 ? true : false;
                 _this3.form.cover = data.cover;
                 _this3.form.category_options = data.categories;
                 //                    this.form.tags = data.tags
@@ -74596,7 +74596,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //                let data = this.form
             var data = {
                 recommend: this.form.recommend ? 2 : 1,
-                status: this.form.status ? 2 : 1,
+                publish_status: this.form.publish_status ? 2 : 1,
                 cover: this.form.cover,
                 content_html: this.form.content_html,
                 category_id: this.form.category_id,
@@ -94913,11 +94913,11 @@ var render = function() {
                 _c("el-switch", {
                   attrs: { "on-text": "on", "off-text": "off" },
                   model: {
-                    value: _vm.form.status,
+                    value: _vm.form.publish_status,
                     callback: function($$v) {
-                      _vm.$set(_vm.form, "status", $$v)
+                      _vm.$set(_vm.form, "publish_status", $$v)
                     },
-                    expression: "form.status"
+                    expression: "form.publish_status"
                   }
                 })
               ],
@@ -95942,9 +95942,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 var data = response.data.data;
                 _this.form = data;
-                console.log(data.site_logo);
-                console.log(5555);
-                console.log(typeof data.site_logo === '');
                 if (data.site_logo === '') {
                     _this.file_list.splice(0);
                 } else {
@@ -95998,17 +95995,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onSubmit: function onSubmit() {
             var _this3 = this;
 
-            //                let data = this.form
             console.log(this.form);
-            var data = {
-                site_title: this.form.site_title,
-                site_icp: this.form.site_icp,
-                site_logo: this.form.site_logo
-            };
             this.$axios({
                 url: this.$difines.root_url + '/api/admin/settings',
                 method: 'PUT',
-                data: __WEBPACK_IMPORTED_MODULE_0_qs___default.a.stringify(data)
+                data: __WEBPACK_IMPORTED_MODULE_0_qs___default.a.stringify(this.form)
             }).then(function (response) {
                 if (response.data.err_no === 0) {
                     _this3.$notify.success({

@@ -53,7 +53,7 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
                 <div class="logo float-left">
                     <a href="{{url('/')}}">
                         {{--<h1>边城</h1>--}}
-                        <img src="{{ !empty(getSetting('site_logo'))?\Storage::url(getSetting('site_log')):asset('static/home/img/logo.png') }}"
+                        <img src="{{ !empty(getSetting('site_logo'))?\Storage::url(getSetting('site_logo')):asset('static/home/img/logo.png') }}"
                              alt="边城">
                     </a>
                 </div>

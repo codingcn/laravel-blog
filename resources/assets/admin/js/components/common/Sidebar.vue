@@ -77,11 +77,7 @@
                         subs: [
                             {
                                 index: '/links',
-                                title: '友情列表'
-                            },
-                            {
-                                index: '/articles',
-                                title: '文章管理'
+                                title: '友链列表'
                             }
                         ]
                     },
@@ -89,26 +85,7 @@
                         icon: 'fa fa-cogs',
                         index: '/settings',
                         title: '站点设置'
-                    },
-                    {
-                        icon: 'el-icon-tickets',
-                        index: 'auth',
-                        title: '权限管理',
-                        subs: [
-                            {
-                                index: '/admin_users',
-                                title: '管理员列表'
-                            },
-                            {
-                                index: '/roles',
-                                title: '角色列表'
-                            },
-                            {
-                                index: '/permissions',
-                                title: '权限列表'
-                            }
-                        ]
-                    },
+                    }
                 ]
             }
         },

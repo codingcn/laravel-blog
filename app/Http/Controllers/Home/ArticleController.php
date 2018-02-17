@@ -19,7 +19,7 @@ class ArticleController extends CommonController
 
     public function show(Article $article)
     {
-        if ($article->status == 1) {
+        if ($article->publish_status == 1) {
             return response()->view('errors.404', [], 404);
         }
         $this->articleRepository->addPageViews($article);

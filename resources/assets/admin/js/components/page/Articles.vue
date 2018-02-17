@@ -20,7 +20,7 @@
                 <el-table-column type="expand">
                     <template slot-scope="props">
                         <el-form label-position="left" inline class="demo-table-expand">
-                            <el-form-item label="文集">
+                            <el-form-item label="分类">
                                 <span>{{ props.row.category_id }}</span>
                             </el-form-item>
                             <el-form-item label="文章ID">
@@ -66,7 +66,7 @@
                 <el-table-column
                         label="状态"
                         width="150"
-                        prop="status">
+                        prop="publish_status">
                 </el-table-column>
                 <el-table-column
                         label="更新时间"
@@ -128,10 +128,8 @@
                     this.tableData = response.data.data.data
                     this.page.pageSize = response.data.data.per_page
                     this.page.total = response.data.data.total
-                    console.log(this.response.data.data)
                     this.tableData.recommend = response.data.data.data.recommend === 2 ? '是' : '否'
-                    this.tableData.status = response.data.data.data.status === 2 ? '是' : '否'
-                    console.log(this.tableData)
+                    this.tableData.publish_status = response.data.data.data.publish_status === 2 ? '是' : '否'
 //                    this.tableData.cover_path = data.cover
 //                    console.log(this.tableData)
                     this.loading = false
@@ -150,8 +148,6 @@
                     this.tableData = response.data.data.data;
                     this.page.pageSize = response.data.data.per_page;
                     this.page.total = response.data.data.total;
-                    this.tableData.recommend = response.data.data.data.recommend === 2 ? '是' : '否';
-                    this.tableData.status = response.data.data.data.status === 2 ? '是' : '否';
                     this.loading = false
                 }).catch(response => {
                     console.log(response)
@@ -164,7 +160,6 @@
                 this.$router.push({name: 'articles/edit', params: {id: row.id}})
             },
             handleDelete(index, row) {
-                this.loading = true
                 this.$axios({
                     url: this.$difines.root_url + '/api/admin/articles/' + row.id,
                     method: 'DELETE',
@@ -177,19 +172,21 @@
                             title: '成功',
                             message: '文章删除成功'
                         });
+                        this.getArticles()
                     } else {
                         this.$notify.error({
                             title: '错误',
                             message: '文章删除失败'
                         });
+                        this.getArticles()
                     }
                 }).catch(response => {
                     this.$notify.error({
                         title: '错误',
                         message: '文章删除失败'
                     });
+                    this.getArticles()
                 });
-                this.loading = false
             },
             handlePreview(index, row) {
                 window.open("/articles/" + row.id)

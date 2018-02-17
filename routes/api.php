@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function () {
     Route::post('/admin/articles/upload-cover', 'ArticleController@uploadCover');
     Route::post('/admin/articles/upload-cover-del', 'ArticleController@uploadCoverDel');
     // 文章分类
-    Route::resource('/admin/article-categories', 'ArticleCategoryController', ['index', 'show', 'update', 'store']);
+    Route::resource('/admin/article-categories', 'ArticleCategoryController', ['index',  'update', 'store','destroy']);
     // 文章
     Route::resource('/admin/articles', 'ArticleController', ['index', 'update', 'store', 'show', 'destroy']);
 

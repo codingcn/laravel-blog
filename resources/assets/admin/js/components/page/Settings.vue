@@ -72,9 +72,6 @@
                 }).then(response => {
                     let data = response.data.data
                     this.form = data
-                    console.log(data.site_logo)
-                    console.log(5555)
-                    console.log(typeof data.site_logo==='')
                     if(data.site_logo===''){
                         this.file_list.splice(0)
                     }else{
@@ -125,17 +122,11 @@
                 this.form.site_logo = response.data.site_logo
             },
             onSubmit() {
-//                let data = this.form
                 console.log(this.form)
-                let data = {
-                    site_title: this.form.site_title,
-                    site_icp: this.form.site_icp,
-                    site_logo: this.form.site_logo
-                }
                 this.$axios({
                     url: this.$difines.root_url + '/api/admin/settings',
                     method: 'PUT',
-                    data: qs.stringify(data)
+                    data: qs.stringify(this.form)
                 }).then(response => {
                     if (response.data.err_no === 0) {
                         this.$notify.success({

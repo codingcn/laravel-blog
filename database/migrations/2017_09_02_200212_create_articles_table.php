@@ -22,7 +22,7 @@ class CreateArticlesTable extends Migration
             $table->string('summary', 1024)->default('')->comment('摘要');
             $table->text('content_md')->comment('内容');
             $table->text('content_html')->comment('内容');
-            $table->tinyInteger('status')->unsigned()->default(1)->comment('状态(1已发布，2草稿)');
+            $table->tinyInteger('publish_status')->unsigned()->default(1)->comment('状态(1已发布，2草稿)');
             $table->tinyInteger('recommend')->unsigned()->default(1)->comment('是否推荐（1不推荐，2推荐）');
             $table->integer('page_views')->unsigned()->default(0)->comment('浏览量');
             $table->integer('content_length')->unsigned()->default(0)->comment('字数');

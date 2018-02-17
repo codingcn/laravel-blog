@@ -5,13 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Article;
 use App\Models\ArticleCategory;
 use App\Models\Tag;
+use App\Repositories\ArticleRepository;
 use Carbon\Carbon;
-use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends CommonController
 {
+    protected $article_repository;
+
+    public function __construct(ArticleRepository $article_repository)
+    {
+        $this->article_repository = $article_repository;
+    }
+
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -45,7 +52,7 @@ class ArticleController extends CommonController
             'content_md' => 'required|string|min:5',
             'content_html' => 'required|string|min:5',
             'recommend' => 'required|int',
-            'status' => 'required|int',
+            'publish_status' => 'required|int',
         ]);
 
         if ($validator->fails()) {
@@ -59,13 +66,13 @@ class ArticleController extends CommonController
             'content_md' => trim($request->input('content_md')),
             'content_html' => trim($request->input('content_html')),
             'recommend' => $request->input('recommend'),
-            'status' => $request->input('status'),
+            'publish_status' => $request->input('publish_status'),
         ];
         if (!empty($request->input('cover'))) {
             $data['cover'] = preg_replace("/storage(\/.+)/m", '${1}', $request->get('cover'));
         }
 
-        if ($data['status'] == 2) {
+        if ($data['publish_status'] == 2) {
             $data['published_at'] = Carbon::now();
         }
         $data['content_length'] = mb_strlen($data['content_html']);
@@ -130,7 +137,7 @@ class ArticleController extends CommonController
     public function uploadBase64(Request $request)
     {
         $base64_img = trim($request->input('image'));
-        $upload_path = storage_path().'/article/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
+        $upload_path = storage_path() . '/article/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
         if (!is_dir('.' . $upload_path)) {
             mkdir('.' . $upload_path, 0777, true);
         }
@@ -184,12 +191,12 @@ class ArticleController extends CommonController
             'summary' => 'required|string|min:3',
             'content_md' => 'required|string|min:5',
             'content_html' => 'required|string|min:5',
-            'status' => 'required|int',
+            'publish_status' => 'required|int',
         ]);
         $article->title = $request->input('title');
         $article->summary = $request->input('summary');
         //正则去除url地址前缀入库
-        if (!empty($request->input('cover'))){
+        if (!empty($request->input('cover'))) {
             $article->cover = preg_replace('/^http.*storage\/uploads\/(.*)/m', '${1}', $request->input('cover'));
         }
         $article->content_md = preg_replace('/^!\[.*\]\(http.*\/storage(\/.*)\)/m', '![](${1})', $request->get('content_md'));
@@ -197,7 +204,7 @@ class ArticleController extends CommonController
         $article->content_length = mb_strlen($article->content_html);
         $article->recommend = $request->get('recommend');
         $article->category_id = $request->input('category_id', 0);
-        $article->status = $request->get('status');
+        $article->publish_status = $request->get('publish_status');
         //添加标签
         $tags_arr = $request->input('tags');
 
@@ -208,17 +215,21 @@ class ArticleController extends CommonController
             $tag_ids = array_column($tag, 'id');
             $article->tags()->sync($tag_ids);
         }
-        if ($request->get('status') == 2) {
+        if ($request->get('publish_status') == 2) {
             $article->published_at = Carbon::now();
         }
         $article->save();
         return $this->responseJson('OK');
     }
 
+    /**
+     * 删除文章
+     * @param Article $article
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy(Article $article)
     {
-        //权限
-        $article->delete();
-        return redirect(url('/admin/article'));
+        $this->article_repository->destroy($article);
+        return $this->responseJson('OK');
     }
 }

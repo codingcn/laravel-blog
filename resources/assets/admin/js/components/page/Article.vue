@@ -78,7 +78,7 @@
                     <el-switch on-text="on" off-text="off" v-model="form.recommend"></el-switch>
                 </el-form-item>
                 <el-form-item label="立即发布">
-                    <el-switch on-text="on" off-text="off" v-model="form.status"></el-switch>
+                    <el-switch on-text="on" off-text="off" v-model="form.publish_status"></el-switch>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit">提交</el-button>
@@ -113,7 +113,7 @@
                     title: '',
                     summary: '',
                     recommend: '',
-                    status: '',
+                    publish_status: '',
                     content_md: '',
                     category_id: '',
                     category_options: [],
@@ -174,7 +174,7 @@
                     let data = response.data.data
                     this.form = data
                     this.form.recommend = data.recommend === 2 ? true : false
-                    this.form.status = data.status === 2 ? true : false
+                    this.form.publish_status = data.publish_status === 2 ? true : false
                     this.form.cover = data.cover
                     this.form.category_options = data.categories
 //                    this.form.tags = data.tags
@@ -234,7 +234,7 @@
 //                let data = this.form
                 let data = {
                     recommend: this.form.recommend ? 2 : 1,
-                    status: this.form.status ? 2 : 1,
+                    publish_status: this.form.publish_status ? 2 : 1,
                     cover: this.form.cover,
                     content_html: this.form.content_html,
                     category_id: this.form.category_id,

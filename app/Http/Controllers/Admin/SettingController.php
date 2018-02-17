@@ -42,7 +42,7 @@ class SettingController extends CommonController
                 'key' => $k,
             ]);
             if ($setting->key == 'site_logo') {
-                $setting->value = preg_replace("/storage(\/.+)/m", '${1}', $v);
+                $setting->value = preg_replace("/^http.*storage\/uploads\/(.*)/m", '${1}', $v);
             } else {
                 $setting->value = $v;
             }

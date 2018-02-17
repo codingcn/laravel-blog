@@ -4,7 +4,7 @@
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
                 <el-breadcrumb-item>文章管理</el-breadcrumb-item>
-                <el-breadcrumb-item>文章列表</el-breadcrumb-item>
+                <el-breadcrumb-item>分类列表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div>
@@ -199,7 +199,24 @@
                 this.editForm = row;
             },
             handleDelete(index, row) {
-
+                this.$axios({
+                    url: this.$difines.root_url + '/api/admin/article-categories/'+row.id,
+                    method: 'DELETE',
+                }).then(response => {
+                    if (response.data.err_no !== 0) {
+                        this.$notify.error({
+                            title: '错误',
+                            message: response.data.err_msg
+                        });
+                    } else {
+                        this.$notify.success({
+                            title: '成功',
+                            message: '分类删除成功'
+                        });
+                        this.getCategories();
+                    }
+                }).catch(response => {
+                });
             }
         }
     }

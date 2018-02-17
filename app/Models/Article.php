@@ -47,7 +47,7 @@ class Article extends Model
 
     public static function recommends()
     {
-        return static::where(['recommend' => 2, 'status' => 2])
+        return static::where(['recommend' => 2, 'publish_status' => 2])
             ->take(5)
             // ->orderBy(\DB::raw('RAND()'))
             ->orderByRaw('RAND()')

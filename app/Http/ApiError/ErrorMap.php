@@ -32,7 +32,7 @@ trait ErrorMap
         ],
         'UPLOAD_FAIL' => [
             'err_no' => 20006,
-            'err_msg' => '删除失败',
+            'err_msg' => '上传失败',
         ],
 
 

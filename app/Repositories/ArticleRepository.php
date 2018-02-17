@@ -19,7 +19,7 @@ class ArticleRepository
      */
     public function indexArticles()
     {
-        return Article::where('status','2')
+        return Article::where('publish_status','2')
             ->withCount('comments')
             ->with('tags')
             ->with('articleCategory')
@@ -51,7 +51,7 @@ class ArticleRepository
 
     public function archives()
     {
-        return Article::where('status', '=', '2')
+        return Article::where('publish_status', '=', '2')
             ->orderBy('created_at', 'desc')
             ->filter(request()->only(['year', 'month']))
             ->latest()
@@ -64,5 +64,25 @@ class ArticleRepository
             ->orWhere('summary', 'like', "%{$keywords}%")
             ->orWhere('content_html', 'like', "%{$keywords}%")
             ->paginate(10);
+    }
+
+    /**
+     * 删除文章
+     * @param Article $article
+     * @throws \Exception
+     */
+    public function destroy(Article $article)
+    {
+        $article_tags = \DB::table('article_tag')->where('article_id', $article->id)->get(['tag_id']);
+        if (count($article_tags) > 0) {
+            foreach ($article_tags ?? [] as $article_tag) {
+                $count = \DB::table('article_tag')->where('tag_id', $article_tag->tag_id)->count();
+                if ($count <= 1) {
+                    Tag::destroy($article_tag->tag_id);
+                }
+            }
+        }
+        $article->tags()->detach();
+        $article->delete();
     }
 }
