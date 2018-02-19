@@ -86,3 +86,11 @@
     border-color: #1ab394;
     color: #FFFFFF;
 }
+.oauth i{
+    font-size: 1.2rem;
+    padding-right: 0.5rem;
+}
+.oauth a{
+    font-size: 1rem;
+    color: #1d2124;
+}

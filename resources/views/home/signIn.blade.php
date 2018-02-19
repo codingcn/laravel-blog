@@ -44,8 +44,8 @@
                         </button>
                     </div>
                     <hr>
-                    <div>
-                        <a href="{{'/oauth/github/authorize'}}"> 使用Github登录</a>
+                    <div class="oauth">
+                        <a href="{{'/oauth/github/authorize'}}"> <i class="fa fa-github"></i>使用Github登录</a>
                     </div>
 
                 </form>

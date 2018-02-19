@@ -2,7 +2,7 @@
     <ul class="links">
         <div class="title">
             <h3>邻居</h3>
-            <a href="">更多>></a>
+            {{--<a href="">更多>></a>--}}
         </div>
         <li class="content">
             @foreach($links as $link)
