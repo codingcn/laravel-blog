@@ -24,7 +24,7 @@
                         <input class="form-control" name="user" required="" placeholder="11 位手机号 或 Email" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <label class="control-label">密码</label><span class="pull-right"><a href="/user/forgot">忘记密码</a></span>
+                        <label class="control-label">密码</label><span class="pull-right"><a href="#">忘记密码</a></span>
                         <input class="form-control" name="password" required="" placeholder="密码" type="password" autocomplete="off">
                     </div>
                     @if (count($errors) > 0)
