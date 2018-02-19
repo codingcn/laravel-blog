@@ -1,6 +1,6 @@
 @extends('home.layouts.app')
 @section('app-css')
-    <link rel="stylesheet" href="{{ URL::asset('static/lib/github-markdown/ocean.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('static/lib/github-markdown/github-markdown.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/article.css') }}">
 @endsection
 

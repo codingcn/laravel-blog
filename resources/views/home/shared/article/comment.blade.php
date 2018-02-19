@@ -36,14 +36,13 @@
                         <div class="comment-info flex-1">
                             <!-- 空的话自然是显示赞 -->
                             <div class="comment-like">
-                                <like comment_id="{{$comment->id}}" user_id="{{Auth::id()}}"
+                                <like comment_id="{{$comment->id}}" user_id="{{Auth::guard('web')->id()}}"
                                       like_count="{{$comment->likes_count}}"></like>
                             </div>
 
                             <div class="comment-title author">{{$comment->user->username}}</div>
                             <div class="comment-time">{{$comment->created_at->diffForHumans()}}</div>
                             <div class="comment-desc con">{{$comment->content}}</div>
-
                             <input name="cid" value="ED327E6D-98AF-0333-D283-9B3068861C9F" type="hidden">
                         </div>
                     </div>
@@ -52,21 +51,3 @@
         </div>
     @endif
 </section>
-{{--<script>--}}
-{{--//点赞--}}
-{{--$.ajax({--}}
-{{--type: "POST",--}}
-{{--url: "{{ url('/comment/like/') }}",--}}
-{{--cache: false,--}}
-{{--success: function (data) {--}}
-{{--$("#like").html(data);--}}
-{{--if (D === 'like') {--}}
-{{--$(this).addClass("heartAnimation").attr("rel", "unlike"); //applying animation class--}}
-{{--}--}}
-{{--else {--}}
-{{--$(this).removeClass("heartAnimation").attr("rel", "like");--}}
-{{--$(this).css("background-position", "left");--}}
-{{--}--}}
-{{--}--}}
-{{--});--}}
-{{--</script>--}}

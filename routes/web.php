@@ -64,8 +64,7 @@ Route::view('/about', 'home.about');
 Route::view('/admin', 'admin.layout');
 Route::view('/admin/{query}', 'admin.layout')->where('query', '.*');
 
+Route::get('/oauth/github/authorize', 'Home\OauthController@authorize');
+Route::get('/oauth/github/callback', 'Home\OauthController@getAccessToken');
 
 Route::post('/service/sendsms', 'Service\ValidateController@sendSMS');
-
-
-
