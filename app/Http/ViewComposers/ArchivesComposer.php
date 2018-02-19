@@ -1,6 +1,6 @@
 <?php
 /**
- * File: archviesComposer.php
+ * File: ArchivesComposer.php
  * Description: 无
  * User: Alan
  * Datetime: 2017/8/13 17:53

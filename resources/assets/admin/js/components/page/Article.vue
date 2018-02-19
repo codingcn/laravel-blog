@@ -13,7 +13,6 @@
                 <el-form-item label="标题">
                     <el-input v-model="form.title"></el-input>
                 </el-form-item>
-
                 <el-form-item label="摘要" prop="desc">
                     <el-input type="textarea" v-model="form.summary"></el-input>
                 </el-form-item>
@@ -121,9 +120,9 @@
                     tags_options: [],
                     cover: ''
                 },
-                upload_action_cover: this.$difines.root_url + '/api/admin/article/upload-cover',
+                upload_action_cover: this.$difines.root_url + '/api/admin/articles/upload-cover',
                 file_list: [],
-                upload_action_editor: this.$difines.root_url + '/api/admin/article/upload-editor',   // 图片上传服务器地址
+                upload_action_editor: this.$difines.root_url + '/api/admin/articles/upload-editor',   // 图片上传服务器地址
                 dialogImageUrl: '',
                 dialogVisible: false,
                 headers: {
@@ -150,7 +149,6 @@
                 } else {
                     this.form.tags_options = [];
                 }
-                console.log(this.form.tags_options)
             },
             getArticleCategories() {
                 this.loading = true
@@ -201,7 +199,7 @@
             },
             handleRemove(file, file_list) {
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin/article/upload-cover-del',
+                    url: this.$difines.root_url + '/api/admin/articles/upload-cover-del',
                     method: 'post',
                     data: {
                         cover_path: this.form.cover
@@ -223,7 +221,7 @@
                 });
             },
             handlePictureCardPreview(file) {
-                console.log(file);
+                // console.log(file);
             },
             handleUploadSuccess(response, file, fileList) {
                 this.file_list.splice(0)
@@ -272,7 +270,6 @@
                         method: 'POST',
                         data: qs.stringify(data)
                     }).then(response => {
-                        console.log(response.data)
                         if (response.data.err_no === 0) {
                             this.$notify.success({
                                 title: '成功',

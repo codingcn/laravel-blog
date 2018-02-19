@@ -20,3 +20,8 @@ mix.js('resources/assets/home/js/app.js', 'public/static/home/js')
     .options({
         processCssUrls: false //为了能在二级目录使用laravel
     });
+mix.webpackConfig({
+    output: {
+        publicPath: "/",
+    }
+});

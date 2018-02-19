@@ -44,11 +44,11 @@ Route::get('/tags/{tag}', 'Home\TagController@index');
 Route::get('/categories/{category}', 'Home\ArticleCategoryController@show');
 
 //前台文章
-Route::group(['prefix' => 'articles', 'namespace' => 'Home'], function () {
+Route::group(['namespace' => 'Home'], function () {
     //归档,置于文章详情之前，否者路由冲突
-    Route::get('/archives', 'ArticleController@archives');
+    Route::get('/article/archives', 'ArticleController@archives');
     //文章详情
-    Route::get('/{article}', 'ArticleController@show');
+    Route::get('/articles/{article}', 'ArticleController@show');
 });
 Route::group(['prefix' => 'comment', 'namespace' => 'Home'], function () {
     //评论列表
@@ -63,7 +63,6 @@ Route::view('/about', 'home.about');
 
 Route::view('/admin', 'admin.layout');
 Route::view('/admin/{query}', 'admin.layout')->where('query', '.*');
-
 
 
 Route::post('/service/sendsms', 'Service\ValidateController@sendSMS');

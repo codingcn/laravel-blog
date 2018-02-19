@@ -38,13 +38,18 @@ class Article extends Model
      */
     public static function archives()
     {
-        return static::selectRaw('YEAR(created_at) AS year,MONTH(created_at) AS month,COUNT(*) published')
+        return static::selectRaw('YEAR(published_at) AS year,MONTH(published_at) AS month,COUNT(*) published')
+            ->where('publish_status', '2')
             ->groupBy('year', 'month')
             ->orderByRaw('MIN(created_at) desc')
             ->get()
             ->toArray();
     }
 
+    /**
+     * 推荐
+     * @return mixed
+     */
     public static function recommends()
     {
         return static::where(['recommend' => 2, 'publish_status' => 2])
@@ -63,12 +68,10 @@ class Article extends Model
     public function scopeFilter($query, $filters)
     {
         if ($year = !empty($filters['year']) ? $filters['year'] : false) {
-            $query->whereYear('created_at', $year);
+            $query->whereYear('published_at', $year);
         }
         if ($month = !empty($filters['month']) ? $filters['month'] : false) {
-            $query->whereMonth('created_at', $month);
+            $query->whereMonth('published_at', $month);
         }
     }
-
-
 }

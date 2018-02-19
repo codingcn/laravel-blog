@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\Models\Article;
+use Illuminate\Support\Facades\DB;
 
 class ArticleRepository
 {
@@ -19,7 +20,7 @@ class ArticleRepository
      */
     public function indexArticles()
     {
-        return Article::where('publish_status','2')
+        return Article::where('publish_status', '2')
             ->withCount('comments')
             ->with('tags')
             ->with('articleCategory')
@@ -51,11 +52,23 @@ class ArticleRepository
 
     public function archives()
     {
-        return Article::where('publish_status', '=', '2')
-            ->orderBy('created_at', 'desc')
-            ->filter(request()->only(['year', 'month']))
-            ->latest()
-            ->paginate(10);
+        if (request('year')&&request('month')){
+            return Article::where('publish_status', '=', '2')
+                ->select(['*'])
+                ->orderBy('published_at', 'desc')
+                ->filter(request()->only(['year', 'month']))
+                ->latest()
+                ->paginate(10);
+        }else{
+            return Article::where('publish_status', '=', '2')
+                ->select(['*', DB::raw("DATE_FORMAT( published_at,'%Y-%m') as published_date")])
+                ->orderBy('published_at', 'desc')
+                ->latest()
+                ->get()
+                ->groupBy('published_date')
+                ->paginate(10);
+        }
+
     }
 
     public function search($keywords = '')

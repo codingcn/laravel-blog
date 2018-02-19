@@ -25,8 +25,8 @@ class ArticleController extends CommonController
     public function index()
     {
         $data = Article::orderBy('created_at', 'desc')
-            ->with('user')
             ->with('tags')
+            ->with('articleCategory')
             ->paginate(10);
         return $this->responseJson('OK', $data);
     }
@@ -226,6 +226,7 @@ class ArticleController extends CommonController
      * 删除文章
      * @param Article $article
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function destroy(Article $article)
     {

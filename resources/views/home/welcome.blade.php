@@ -97,8 +97,7 @@
     <div class="link">
         <a href="{{ url('/index') }}">Blog</a>
         <a href="{{ url('/about') }}" target="_blank">About</a>
-        <a href="{{ url('/guestbook') }}" target="_blank">Guestbook</a>
-        <a href="{{ url('/link') }}" target="_blank">Links</a>
+        <a href="{{ url('/links') }}" target="_blank">Links</a>
         <a href="https://github.com/codingcn" target="_blank">Gayhub</a>
     </div>
 </div>

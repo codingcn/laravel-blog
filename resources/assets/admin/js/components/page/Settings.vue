@@ -29,7 +29,7 @@
                             v-bind:action=" upload_action_logo"
                     >
                         <i class="el-icon-plus"></i>
-                        <el-dialog v-model="dialogVisible" size="tiny">
+                        <el-dialog v-model="dialogVisible">
                             <img width="100%" :src="dialogImageUrl" alt="">
                         </el-dialog>
                     </el-upload>

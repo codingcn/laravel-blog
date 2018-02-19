@@ -1,6 +1,6 @@
 <?php
 /**
- * File: archviesComposer.php
+ * File: LinkComposer.php
  * Description: 无
  * User: Alan
  * Datetime: 2017/8/13 17:53
@@ -23,7 +23,6 @@ class LinkComposer
     public function compose(View $view)
     {
         $view->with('links',Link::orderBy('serial_number','ASC')->get(['name','uri']));
-
     }
 
 }

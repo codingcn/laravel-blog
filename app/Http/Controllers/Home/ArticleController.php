@@ -39,7 +39,6 @@ class ArticleController extends CommonController
     {
         $article = $this->articleRepository->archives();
         $data = [
-            'date_title' => $request->input('year') . '-' . $request->input('month'),
             'articles' => $article,
             'seo' => [
                 'title' => '归档_' . getSetting('site_title'),

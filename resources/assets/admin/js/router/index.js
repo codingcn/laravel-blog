@@ -2,25 +2,24 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 Vue.use(Router);
-import SignIn from '../components/page/SignIn.vue';
-import Home from '../components/common/Home.vue';
-import Users from '../components/page/Users.vue';
-import Index from '../components/page/Index.vue';
-import Categories from '../components/page/Categories.vue';
-import Articles from '../components/page/Articles.vue';
-import Article from '../components/page/Article.vue';
-import Links from '../components/page/Links.vue';
-import Settings from '../components/page/Settings.vue';
+
+const SignIn = () => import('../components/page/SignIn.vue');
+const Home = () => import('../components/common/Home.vue');
+const Users = () => import('../components/page/Users.vue');
+const Index = () => import('../components/page/Index.vue');
+const Categories = () => import('../components/page/Categories.vue');
+const Articles = () => import('../components/page/Articles.vue');
+const Article = () => import('../components/page/Article.vue');
+const Links = () => import('../components/page/Links.vue');
+const Settings = () => import('../components/page/Settings.vue');
 
 
 let router = new Router({
     mode: 'history',
     base: '/admin/',
-    // mode: 'hash',
     routes: [
         {
             path: '/sign-in',
-            // component: resolve => {require(['../components/page/SignIn.vue'], resolve)},
             component: SignIn,
             meta: {
                 forVisitors: true

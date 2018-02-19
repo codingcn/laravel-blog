@@ -20,7 +20,7 @@
                 <el-table-column type="expand">
                     <template slot-scope="props">
                         <el-form label-position="left" inline class="demo-table-expand">
-                            <el-form-item label="分类">
+                            <el-form-item label="分类ID">
                                 <span>{{ props.row.category_id }}</span>
                             </el-form-item>
                             <el-form-item label="文章ID">
@@ -34,13 +34,13 @@
                                 </el-tag>
                             </el-form-item>
                             <el-form-item label="是否推荐">
-                                <span>{{ props.row.recommend }}</span>
+                                <span>{{ props.row.recommend===2?'是':'否' }}</span>
+                            </el-form-item>
+                            <el-form-item label="发布状态">
+                                <span>{{ props.row.publish_status===2?'已发布':'草稿' }}</span>
                             </el-form-item>
                             <el-form-item label="创建时间">
                                 <span>{{ props.row.created_at }}</span>
-                            </el-form-item>
-                            <el-form-item label="发布时间">
-                                <span>{{ props.row.published_at }}</span>
                             </el-form-item>
                             <el-form-item label="描述">
                                 <span>{{ props.row.summary }}</span>
@@ -54,24 +54,24 @@
                         prop="id">
                 </el-table-column>
                 <el-table-column
+                        label="分类"
+                        width="180"
+                        prop="article_category.name">
+                </el-table-column>
+                <el-table-column
                         label="标题"
                         width="150"
                         prop="title">
                 </el-table-column>
                 <el-table-column
-                        label="作者"
-                        width="180"
-                        prop="user.username">
-                </el-table-column>
-                <el-table-column
-                        label="状态"
-                        width="150"
-                        prop="publish_status">
-                </el-table-column>
-                <el-table-column
                         label="更新时间"
                         width="180"
                         prop="updated_at">
+                </el-table-column>
+                <el-table-column
+                        label="发布时间"
+                        width="180"
+                        prop="published_at">
                 </el-table-column>
                 <el-table-column
                         width="250"
@@ -128,10 +128,6 @@
                     this.tableData = response.data.data.data
                     this.page.pageSize = response.data.data.per_page
                     this.page.total = response.data.data.total
-                    this.tableData.recommend = response.data.data.data.recommend === 2 ? '是' : '否'
-                    this.tableData.publish_status = response.data.data.data.publish_status === 2 ? '是' : '否'
-//                    this.tableData.cover_path = data.cover
-//                    console.log(this.tableData)
                     this.loading = false
                 }).catch(response => {
                 });
