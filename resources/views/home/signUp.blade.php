@@ -20,8 +20,8 @@
                 <form action="{{url('/sign-up')}}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="username" class="control-label">名字</label>
-                        <input type="text" class="form-control" name="username" required="" placeholder="真实姓名或常用昵称"
+                        <label for="username" class="control-label">用户名</label>
+                        <input type="text" class="form-control" name="username" required="" placeholder="英文字母下划线_组成"
                                autocomplete="off">
                     </div>
                     <div class="form-group">
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="sign-up-mail">
-                            <input class="form-control" name="email" placeholder="hello@199461.com"
+                            <input class="form-control" name="email" placeholder="您的邮箱地址"
                                    autocomplete="off" type="text">
                         </div>
                         <div class="sign-up-phone" style="display: none">
@@ -47,7 +47,7 @@
                                 <input type="text"
                                        name="vcode"
                                        class="form-control"
-                                       placeholder="短信验证码" autocomplete="off">
+                                       placeholder="验证码" autocomplete="off">
                                 <span class="input-group-btn">
                                     <button id="vcode" class="send-validate-code btn btn-default"
                                             type="submit">获取验证码</button></span>
@@ -75,6 +75,9 @@
                             <button class="btn btn-sub pull-right">
                                 注册
                             </button>
+                        </div>
+                        <div class="oauth">
+                            <a href="{{'/oauth/github/authorize'}}"> <i class="fa fa-github"></i>使用Github账号登录</a>
                         </div>
                     </div>
                 </form>

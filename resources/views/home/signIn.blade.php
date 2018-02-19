@@ -45,9 +45,8 @@
                     </div>
                     <hr>
                     <div class="oauth">
-                        <a href="{{'/oauth/github/authorize'}}"> <i class="fa fa-github"></i>使用Github登录</a>
+                        <a href="{{'/oauth/github/authorize'}}"> <i class="fa fa-github"></i>使用Github账号登录</a>
                     </div>
-
                 </form>
             </div>
         </div>
