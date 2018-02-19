@@ -65,7 +65,7 @@ class UserController extends CommonController
 
     public function signOut()
     {
-        \Auth::guard('api')->logout();
+        \Auth::guard('web')->logout();
         return back();
     }
 }

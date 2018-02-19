@@ -4171,3 +4171,5 @@ Did you mean one of these?
 #26 F:\\www\\blog\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #27 {main}
 "} 
+[2018-02-20 01:22:59] local.ERROR: Debugbar exception: Trying to get property 'cookies' of non-object  
+[2018-02-20 01:22:59] local.ERROR: Debugbar exception: Trying to get property 'cookies' of non-object  

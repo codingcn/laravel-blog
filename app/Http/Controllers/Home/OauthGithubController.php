@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\OauthGithubUser;
+use App\Models\User;
 use GuzzleHttp\Client;
 
-class OauthController
+class OauthGithubController
 {
     /**
      * 唤起登录
@@ -46,9 +47,9 @@ class OauthController
                     'Accept' => 'application/json'
                 ]
             ]);
-            $user_data = json_decode((string)$response->getBody(), true);
-            if (!empty($user_data['login'])) {
-                $this->findOrCreateUser($user_data);
+            $oauth_user_data = json_decode((string)$response->getBody(), true);
+            if (!empty($oauth_user_data['login'])) {
+                $this->findOrCreateUser($oauth_user_data);
             } else {
                 return redirect(url('/oauth/github/authorize'));
             }
@@ -57,12 +58,33 @@ class OauthController
         }
     }
 
-    public function findOrCreateUser($user_data)
+    public function findOrCreateUser($oauth_user_data)
     {
-        $oauth_github_user = OauthGithubUser::updateOrCreate(
-            ['login' => $user_data['login']],
-            $user_data
-        );
-        dd($oauth_github_user);
+        $user_data = [
+            'username' => $oauth_user_data['login'],
+            'email' => $oauth_user_data['email'],
+            'avatar' => $oauth_user_data['avatar_url'],
+            'password' => '',
+        ];
+        try {
+            \DB::beginTransaction();
+            $oauth_github_user = OauthGithubUser::where('login', $oauth_user_data['login'])->first(['user_id']);
+            if ($oauth_github_user) {
+                OauthGithubUser::where('login', $oauth_user_data['login'])->update($oauth_user_data);
+                $user = User::where('id', $oauth_github_user->user_id)->update($user_data);
+                \Auth::guard('web')->loginUsingId($oauth_github_user->user_id);
+            } else {
+                $user = User::create($user_data);
+                $oauth_user_data['user_id']=$user->id;
+                OauthGithubUser::create($oauth_user_data);
+                \Auth::guard('web')->loginUsingId($user->id);
+            }
+
+            \DB::commit();
+            return redirect(url('/'));
+        } catch (\Exception $e) {
+            var_dump($e);
+            \DB::rollBack();
+        }
     }
 }

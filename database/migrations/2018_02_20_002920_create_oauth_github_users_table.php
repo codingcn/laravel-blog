@@ -33,12 +33,12 @@ class CreateOauthGithubUsersTable extends Migration
             $table->string('type', 32)->default('')->comment('');
             $table->string('site_admin', 256)->default('')->comment('站点管理员');
             $table->string('name', 64)->default('')->comment('用户名');
-            $table->string('company', 64)->default('')->comment('公司');
-            $table->string('blog', 64)->default('')->comment('博客地址');
-            $table->string('location', 64)->default('')->comment('所在地');
+            $table->string('company', 64)->nullable()->comment('公司');
+            $table->string('blog', 64)->nullable()->comment('博客地址');
+            $table->string('location', 64)->nullable()->comment('所在地');
             $table->string('email', 64)->default('')->comment('邮箱');
-            $table->string('hireable', 64)->default('')->comment('');
-            $table->string('bio', 64)->default('')->comment('简介');
+            $table->string('hireable', 64)->nullable()->comment('');
+            $table->string('bio', 256)->nullable()->comment('简介');
             $table->integer('public_repos')->default(0)->comment('公开仓库数量');
             $table->integer('public_gists')->default(0)->comment('');
             $table->integer('followers')->default(0)->comment('');
