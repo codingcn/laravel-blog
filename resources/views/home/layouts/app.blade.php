@@ -82,8 +82,8 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
                         </li>
                         <li class="member-btn">
                             @if(\Auth::check())
-                                <img src="{{asset('storage/' . \Auth::user()->avatar)}}" alt="">
-                                <a href="{{ url('/') }}">{{\Auth::user()->username}}</a>
+                                <img src="{{\Auth::guard('web')->user()->avatar}}" alt="{{\Auth::guard('web')->user()->username}}">
+                                <a href="{{ url('/') }}">{{\Auth::guard('web')->user()->username}}</a>
                                 |
                                 <a href="{{ url('/sign-out') }}">注销</a>
                             @else

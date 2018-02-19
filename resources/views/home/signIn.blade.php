@@ -43,6 +43,10 @@
                         <button type="submit" class="btn btn-sub pull-right" onclick="">登录
                         </button>
                     </div>
+                    <hr>
+                    <div>
+                        <a href="{{'/oauth/github/authorize'}}"> 使用Github登录</a>
+                    </div>
 
                 </form>
             </div>

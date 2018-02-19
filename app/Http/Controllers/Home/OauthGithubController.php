@@ -24,7 +24,11 @@ class OauthGithubController
         return redirect($url . $param);
     }
 
-    public function getAccessToken()
+    /**
+     * 登录回调
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function callback()
     {
         $http = new Client();
         $url = 'https://github.com/login/oauth/access_token?' . http_build_query([
@@ -49,7 +53,11 @@ class OauthGithubController
             ]);
             $oauth_user_data = json_decode((string)$response->getBody(), true);
             if (!empty($oauth_user_data['login'])) {
-                $this->findOrCreateUser($oauth_user_data);
+                if ($this->findOrCreateUser($oauth_user_data)) {
+                    return redirect(url('/'));
+                } else {
+                    return redirect(url('/oauth/github/authorize'));
+                }
             } else {
                 return redirect(url('/oauth/github/authorize'));
             }
@@ -71,20 +79,20 @@ class OauthGithubController
             $oauth_github_user = OauthGithubUser::where('login', $oauth_user_data['login'])->first(['user_id']);
             if ($oauth_github_user) {
                 OauthGithubUser::where('login', $oauth_user_data['login'])->update($oauth_user_data);
-                $user = User::where('id', $oauth_github_user->user_id)->update($user_data);
+                User::where('id', $oauth_github_user->user_id)->update($user_data);
                 \Auth::guard('web')->loginUsingId($oauth_github_user->user_id);
             } else {
                 $user = User::create($user_data);
-                $oauth_user_data['user_id']=$user->id;
+                $oauth_user_data['user_id'] = $user->id;
                 OauthGithubUser::create($oauth_user_data);
                 \Auth::guard('web')->loginUsingId($user->id);
             }
-
             \DB::commit();
-            return redirect(url('/'));
+            return true;
         } catch (\Exception $e) {
             var_dump($e);
             \DB::rollBack();
+            return false;
         }
     }
 }
