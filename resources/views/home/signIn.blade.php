@@ -6,7 +6,7 @@
 @section('page')
     <div class="col-12 col-md-12 col-lg-12 main">
         <div class="logo">
-            <a href="{{ url('/index') }}">边城</a>
+            <a href="{{ url('/index') }}">{{getSetting('site_title')}}</a>
         </div>
         <div class="sign">
             <h4 class="title">
@@ -45,7 +45,7 @@
                     </div>
                     <hr>
                     <div class="oauth">
-                        <a href="{{'/oauth/github/authorize'}}"> <i class="fa fa-github"></i>使用Github账号登录</a>
+                        <a href="{{'/oauth/github/authorize'}}"> <i class="fab fa-github"></i>使用Github账号登录</a>
                     </div>
                 </form>
             </div>
@@ -74,8 +74,6 @@
                 }
             });
         })
-
-
     </script>
 @endsection
 

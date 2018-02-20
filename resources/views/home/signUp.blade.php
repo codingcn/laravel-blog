@@ -77,7 +77,7 @@
                             </button>
                         </div>
                         <div class="oauth">
-                            <a href="{{'/oauth/github/authorize'}}"> <i class="fa fa-github"></i>使用Github账号登录</a>
+                            <a href="{{'/oauth/github/authorize'}}"> <i class="fab fa-github"></i>使用Github账号登录</a>
                         </div>
                     </div>
                 </form>

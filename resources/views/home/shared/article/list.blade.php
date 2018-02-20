@@ -27,7 +27,7 @@
                         </span>
                         @if(count($article->tags))
                             <span class="tags">
-                                <i class="fa fa-tags" aria-hidden="true"></i>
+                                <i class="fas fa-tags" aria-hidden="true"></i>
                                 @foreach($article->tags as $tag)
                                     <a href="{{url('/tag/'.$tag->name)}}">{{ $tag->name }}</a>
                                 @endforeach
@@ -60,7 +60,7 @@
                         </span>
                         @if(count($article->tags))
                             <span class="tags">
-                                <i class="fa fa-tags" aria-hidden="true"></i>
+                                <i class="fas fa-tags" aria-hidden="true"></i>
                                 @foreach($article->tags as $tag)
                                     <a href="{{url('/tag/'.$tag->name)}}">{{ $tag->name }}</a>
                                 @endforeach

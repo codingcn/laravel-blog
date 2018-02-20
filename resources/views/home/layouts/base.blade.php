@@ -7,9 +7,8 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=0,shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ URL::asset('static/lib/font-awesome/css/all.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/app.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('static/lib/font-awesome/css/font-awesome.css') }}">
     @section('app_css')
     @show
     <title>@yield('title')</title>

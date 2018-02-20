@@ -24,7 +24,7 @@ Route::get('/index', 'Home\IndexController@index');
 Route::get('/welcome', 'Home\IndexController@welcome');
 
 //文章搜索
-Route::get('/articles/search', 'Home\ArticleController@search');
+Route::get('/article/search', 'Home\ArticleController@search');
 
 //用户登录
 Route::view('/sign-in', 'home.signIn');

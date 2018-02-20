@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>控制面板</title>
+    <link rel="stylesheet" href="{{ URL::asset('static/lib/font-awesome/css/all.css') }}">
     <!-- Styles -->
     <style>
         *{
@@ -21,7 +22,6 @@
             font-family: "Helvetica Neue", Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
         }
     </style>
-    <link rel="stylesheet" href="{{ URL::asset('static/lib/font-awesome/css/font-awesome.css') }}">
 </head>
 <body>
 <div id='app'>

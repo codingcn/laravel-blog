@@ -18,7 +18,7 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
 
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/app.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/loading.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('static/lib/font-awesome/css/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('static/lib/font-awesome/css/all.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('static/lib/mCustomScrollbar/css/jquery.mCustomScrollbar.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/layout.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/index.css') }}">
@@ -76,7 +76,7 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
                         <li class="search-box">
                             <form action="{{url('/article/search')}}" method="get">
                                 <input name="keywords" class="search-input" type="text" placeholder="搜索内容...">
-                                <button class="search-btn" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+                                <button class="search-btn" type="submit"><i class="fas fa-search"></i>
                                 </button>
                             </form>
                         </li>
@@ -97,11 +97,11 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
                     </ul>
                 </div>
                 <div class="menu-bar float-right d-xl-none d-lg-none">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
+                    <i class="fas fa-bars"></i>
                 </div>
                 <div class="menu-touch">
                     <div class="menu-close">
-                        <i class="fa fa-times" aria-hidden="true"></i>close
+                        <i class="fas fa-times"></i>close
                     </div>
                     <ul>
                         <li class="member-btn">
@@ -112,7 +112,7 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
                         <li class="search-box">
                             <form action="{{url('/article/search')}}">
                                 <input name="keywords" class="search-input" type="text" placeholder="搜索内容...">
-                                <button class="search-btn" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+                                <button class="search-btn" type="submit"><i class="fas fa-search"></i>
                                 </button>
                             </form>
                         </li>

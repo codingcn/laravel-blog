@@ -7,7 +7,7 @@
     <title>边城-面朝大海，春暖花开</title>
     <link rel="shortcut icon" href="{{ URL::asset('/favicon.ico') }}" />
     <link rel="bookmark" href="{{ URL::asset('/favicon.ico') }}" type="image/x-icon"/>
-    <link rel="stylesheet" href="{{ URL::asset('static/lib/font-awesome/css/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('static/lib/font-awesome/css/all.css') }}">
     <style type="text/css">
         html,
         body {
@@ -88,7 +88,7 @@
         Alan
     </div>
     <div class="address">
-        <i class="fa fa-map-marker" aria-hidden="true"></i> Yunnan,Kunming,China
+        <i class="fas fa-map-marker-alt"></i> Yunnan,Kunming,China
     </div>
     <div class="about">
         The more you have learned,the more senseless you will feel.
