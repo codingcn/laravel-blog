@@ -17,6 +17,7 @@ class AdminUserTableSeeder extends Seeder
             'phone' => 13529595970,
             'email' => '20874823@qq.com',
             'password' => bcrypt('123456'),
+            'avatar' => url('/static/home/img/avatar.jpg'),
         ]);
     }
 }

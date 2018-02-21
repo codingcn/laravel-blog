@@ -30,9 +30,9 @@ if (!function_exists('getSetting')) {
      * @param string $key
      * @return mixed
      */
-    function getSetting($key='')
+    function getSetting($key = '')
     {
-        return \App\Models\Setting::where('key',$key)
+        return \App\Models\Setting::where('key', $key)
             ->value('value');
     }
 }

@@ -81,8 +81,16 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
                             </form>
                         </li>
                         <li class="member-btn">
-                            @if(\Auth::check())
-                                <img src="{{\Auth::guard('web')->user()->avatar}}" alt="{{\Auth::guard('web')->user()->username}}">
+                            @if(\Auth::guard('web')->check())
+                                <?php
+                                $user = \Auth::guard('web')->user();
+                                if (!empty($user->avatar)) {
+                                    $avatar = $user->avatar;
+                                } else {
+                                    $avatar = url('/static/home/img/avatar/' . substr($user->id, -1) . '.jpg');
+                                }
+                                ?>
+                                <img src="{{$avatar}}" alt="{{$user->username}}">
                                 <a href="{{ url('/') }}">{{\Auth::guard('web')->user()->username}}</a>
                                 |
                                 <a href="{{ url('/sign-out') }}">注销</a>

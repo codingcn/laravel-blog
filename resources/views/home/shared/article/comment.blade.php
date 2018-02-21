@@ -30,7 +30,14 @@
                     <div class="flex-block">
                         <div class="comment-avatar-container ">
                             <div class="comment-avatar">
-                                <img src="https://avatars2.githubusercontent.com/u/16743078?v=4&s=460" alt="">
+                                <?php
+                                if (!empty($comment->user->avatar)) {
+                                    $avatar = $comment->user->avatar;
+                                } else {
+                                    $avatar = url('/static/home/img/avatar/' . substr($comment->user->id, -1) . '.jpg');
+                                }
+                                ?>
+                                <img src="{{$avatar}}" alt="{{$comment->user->username}}">
                             </div>
                         </div>
                         <div class="comment-info flex-1">

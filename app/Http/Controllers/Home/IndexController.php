@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Cache;
 class IndexController extends CommonController
 {
     private $articleRepository;
+
     public function __construct(ArticleRepository $articleRepository)
     {
         $this->articleRepository = $articleRepository;
@@ -27,7 +28,7 @@ class IndexController extends CommonController
     {
         if ($request->session()->has('hello')) {
             $data = [
-                'seo' => $this->getSeoInfo(getSetting('site_title'),'边城','面朝大海，春暖花开'),
+                'seo' => $this->getSeoInfo(getSetting('site_title'), '边城', '面朝大海，春暖花开'),
                 'articles' => $this->articleRepository->indexArticles(),
             ];
             return view('home.index', $data);
@@ -42,4 +43,8 @@ class IndexController extends CommonController
         return view('home/welcome');
     }
 
+    public function test()
+    {
+        exit(getAvatar(random_int(100,456),80));
+    }
 }

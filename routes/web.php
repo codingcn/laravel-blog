@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/event_source', 'Home\IndexController@eventSource');
-// Route::get('/test', 'Home\IndexController@test');
+ Route::get('/test', 'Home\IndexController@test');
 
 /**
  * 前台路由
