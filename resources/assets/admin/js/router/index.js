@@ -12,6 +12,7 @@ const Articles = () => import('../components/page/Articles.vue');
 const Article = () => import('../components/page/Article.vue');
 const Links = () => import('../components/page/Links.vue');
 const Settings = () => import('../components/page/Settings.vue');
+const AdminUser = () => import('../components/page/AdminUser.vue');
 
 
 let router = new Router({
@@ -61,13 +62,18 @@ let router = new Router({
                 {
                     name: 'links',
                     path: '/links',
-                    component: Links     // 文章新建
+                    component: Links
                 }
                 ,
                 {
                     name: 'settings',
                     path: '/settings',
-                    component: Settings     // 文章新建
+                    component: Settings
+                },
+                {
+                    name: 'admin-user',
+                    path: '/admin-user',
+                    component: AdminUser
                 }
             ]
         }
@@ -90,23 +96,23 @@ router.beforeEach(
         } else {
             next()
         }
-        //     if (!localStorage.getItem('access_token') && localStorage.getItem('refresh_token')) {
-        //         console.log(1)
-        //         const data = {
-        //             refresh_token: localStorage.getItem('refresh_token'),
-        //             scope: '*'
-        //         };
-        //         axios.post('http://localhost/blog/public/api/oauth/refresh-token', data)
-        //             .then(response => {
-        //                 // 刚开始踩坑了，js的时间戳微妙为单位，而且木有时区，和PHP不一样
-        //                 let js_time = Math.round(new Date().getTime() / 1000 - 28800)
-        //                 Vue.auth.setToken(response.data.access_token, response.data.refresh_token, response.data.expires_in + js_time);
-        //                 next()
-        //             })
-        //             .catch(response => {
-        //                 next({path: '/login'})
-        //             });
-        //     }
+        if (!localStorage.getItem('access_token') && localStorage.getItem('refresh_token')) {
+            console.log(1)
+            const data = {
+                refresh_token: localStorage.getItem('refresh_token'),
+                scope: '*'
+            };
+            axios.post('http://localhost/blog/public/api/oauth/refresh-token', data)
+                .then(response => {
+                    // 刚开始踩坑了，js的时间戳微妙为单位，而且木有时区，和PHP不一样
+                    let js_time = Math.round(new Date().getTime() / 1000 - 28800)
+                    Vue.auth.setToken(response.data.access_token, response.data.refresh_token, response.data.expires_in + js_time);
+                    next()
+                })
+                .catch(response => {
+                    next({path: '/login'})
+                });
+        }
     }
 )
 export default router

@@ -79,13 +79,13 @@
             getAdmin() {
                 const self = this;
                 this.$axios({
-                    url: this.$difines.root_url + '/api/admin-user',
-                    method: 'post',
+                    url: this.$difines.root_url + '/api/admin/admin-user',
+                    method: 'GET',
                     headers: {
                         'Authorization': 'Bearer ' + this.$auth.getToken(),
                     }
                 }).then(response => {
-                    localStorage.setItem('admin', JSON.stringify(response.data))
+                    localStorage.setItem('admin_user', JSON.stringify(response.data.data))
                     this.$notify({
                         title: '成功',
                         message: '登陆成功',

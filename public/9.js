@@ -1,6 +1,58 @@
 webpackJsonp([9],{
 
-/***/ 267:
+/***/ 212:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(254)
+}
+var normalizeComponent = __webpack_require__(76)
+/* script */
+var __vue_script__ = __webpack_require__(256)
+/* template */
+var __vue_template__ = __webpack_require__(257)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\admin\\js\\components\\page\\Articles.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2a1c6ab6", Component.options)
+  } else {
+    hotAPI.reload("data-v-2a1c6ab6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 217:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -19,7 +71,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(275)
+var listToStyles = __webpack_require__(218)
 
 /*
 type StyleObject = {
@@ -47,13 +99,17 @@ var singletonElement = null
 var singletonCounter = 0
 var isProduction = false
 var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
 
 // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
 // tags it will allow on a page
 var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
 
-module.exports = function (parentId, list, _isProduction) {
+module.exports = function (parentId, list, _isProduction, _options) {
   isProduction = _isProduction
+
+  options = _options || {}
 
   var styles = listToStyles(parentId, list)
   addStylesToDom(styles)
@@ -118,7 +174,7 @@ function createStyleElement () {
 
 function addStyle (obj /* StyleObjectPart */) {
   var update, remove
-  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
 
   if (styleElement) {
     if (isProduction) {
@@ -200,6 +256,9 @@ function applyToTag (styleElement, obj) {
   if (media) {
     styleElement.setAttribute('media', media)
   }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
 
   if (sourceMap) {
     // https://developer.chrome.com/devtools/docs/javascript-debugging
@@ -222,7 +281,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 275:
+/***/ 218:
 /***/ (function(module, exports) {
 
 /**
@@ -256,75 +315,23 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 489:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(490)
-}
-var normalizeComponent = __webpack_require__(82)
-/* script */
-var __vue_script__ = __webpack_require__(492)
-/* template */
-var __vue_template__ = __webpack_require__(493)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\admin\\js\\components\\page\\Links.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2ea715e0", Component.options)
-  } else {
-    hotAPI.reload("data-v-2ea715e0", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 490:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(491);
+var content = __webpack_require__(255);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(267)("03a0814e", content, false);
+var update = __webpack_require__(217)("538da298", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.0@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2ea715e0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.0@vue-loader/lib/selector.js?type=styles&index=0!./Links.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.0@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2ea715e0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.0@vue-loader/lib/selector.js?type=styles&index=0!./Links.vue");
+   module.hot.accept("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a1c6ab6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Articles.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a1c6ab6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Articles.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -335,22 +342,22 @@ if(false) {
 
 /***/ }),
 
-/***/ 491:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)(false);
+exports = module.exports = __webpack_require__(98)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n.demo-table-expand {\n    font-size: 0;\n}\n.demo-table-expand label {\n    width: 90px;\n    color: #99a9bf;\n}\n.demo-table-expand .el-form-item {\n    margin-right: 0;\n    margin-bottom: 0;\n    width: 50%;\n}\n", ""]);
+exports.push([module.i, "\n.el-tag {\n    margin-right: 0.8rem;\n}\n.demo-table-expand {\n    font-size: 0;\n}\n.demo-table-expand label {\n    width: 90px;\n    color: #99a9bf;\n}\n.demo-table-expand .el-form-item {\n    margin-right: 0;\n    margin-bottom: 0;\n    width: 50%;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 492:
+/***/ 256:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -460,54 +467,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    beforeMount: function beforeMount() {
-        this.getLinks();
+    mounted: function mounted() {
+        this.getArticles();
     },
     data: function data() {
         return {
             loading: false,
             tableData: [],
-            page: {},
-            dialogEditFormVisible: false,
-            dialogCreateFormVisible: false,
-            editForm: {
-                id: 0,
-                name: '',
-                uri: '',
-                description: '',
-                serial_number: 0
-            },
-            createForm: {
-                name: '',
-                uri: '',
-                description: '',
-                serial_number: 0
-            },
-            formLabelWidth: '120px'
+            page: {}
         };
     },
 
     methods: {
-        getLinks: function getLinks() {
+        currentChange: function currentChange(p) {
             var _this = this;
 
             this.loading = true;
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/links',
-                method: 'get'
+                url: this.$difines.root_url + '/api/admin/articles?page=' + p,
+                method: 'get',
+                headers: {
+                    'Authorization': 'Bearer ' + this.$auth.getToken()
+                }
             }).then(function (response) {
                 _this.tableData = response.data.data.data;
                 _this.page.pageSize = response.data.data.per_page;
@@ -515,105 +498,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.loading = false;
             }).catch(function (response) {});
         },
-        currentChange: function currentChange(p) {
+        getArticles: function getArticles() {
             var _this2 = this;
 
             this.loading = true;
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/links?page=' + p,
-                method: 'get'
+                url: this.$difines.root_url + '/api/admin/articles',
+                method: 'get',
+                headers: {
+                    'Authorization': 'Bearer ' + this.$auth.getToken()
+                }
             }).then(function (response) {
                 _this2.tableData = response.data.data.data;
                 _this2.page.pageSize = response.data.data.per_page;
                 _this2.page.total = response.data.data.total;
                 _this2.loading = false;
-            }).catch(function (response) {});
+            }).catch(function (response) {
+                console.log(response);
+                _this2.loading = false;
+            });
         },
-        updateLink: function updateLink() {
+        handleEdit: function handleEdit(index, row) {
+            this.$router.push({ name: 'articles/edit', params: { id: row.id } });
+        },
+        handleDelete: function handleDelete(index, row) {
             var _this3 = this;
 
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/links/' + this.editForm.id,
-                method: 'PUT',
-                data: {
-                    name: this.editForm.name,
-                    uri: this.editForm.uri,
-                    description: this.editForm.description,
-                    serial_number: this.editForm.serial_number
+                url: this.$difines.root_url + '/api/admin/articles/' + row.id,
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + this.$auth.getToken()
                 }
             }).then(function (response) {
-                if (response.data.err_no !== 0) {
-                    _this3.$notify.error({
-                        title: '错误',
-                        message: '友链修改失败'
-                    });
-                } else {
+                if (response.data.err_no == 0) {
                     _this3.$notify.success({
                         title: '成功',
-                        message: '友链修改成功'
+                        message: '文章删除成功'
                     });
-                }
-            }).catch(function (response) {});
-        },
-        storeLink: function storeLink() {
-            var _this4 = this;
-
-            this.$axios({
-                url: this.$difines.root_url + '/api/admin/links',
-                method: 'POST',
-                data: {
-                    name: this.createForm.name,
-                    uri: this.createForm.uri,
-                    description: this.createForm.description,
-                    serial_number: this.createForm.serial_number
-                }
-            }).then(function (response) {
-                if (response.data.err_no !== 0) {
-                    _this4.$notify.error({
-                        title: '错误',
-                        message: '友链添加失败'
-                    });
-                    _this4.getLinks();
+                    _this3.getArticles();
                 } else {
-                    _this4.$notify.success({
-                        title: '成功',
-                        message: '友链添加成功'
-                    });
-                    _this4.getLinks();
-                }
-            }).catch(function (response) {});
-        },
-        handleEdit: function handleEdit(index, row) {
-            this.editForm = row;
-        },
-        handleDelete: function handleDelete(index, row) {
-            var _this5 = this;
-
-            this.$axios({
-                url: this.$difines.root_url + '/api/admin/links/' + row.id,
-                method: 'DELETE'
-            }).then(function (response) {
-                if (response.data.err_no !== 0) {
-                    _this5.$notify.error({
+                    _this3.$notify.error({
                         title: '错误',
-                        message: '删除失败'
+                        message: '文章删除失败'
                     });
-                    _this5.getLinks();
-                } else {
-                    _this5.$notify.success({
-                        title: '成功',
-                        message: '删除成功'
-                    });
-                    _this5.getLinks();
+                    _this3.getArticles();
                 }
-            }).catch(function (response) {});
+            }).catch(function (response) {
+                _this3.$notify.error({
+                    title: '错误',
+                    message: '文章删除失败'
+                });
+                _this3.getArticles();
+            });
+        },
+        handlePreview: function handlePreview(index, row) {
+            window.open("/articles/" + row.id);
         }
     }
 });
 
 /***/ }),
 
-/***/ 493:
+/***/ 257:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -633,9 +580,9 @@ var render = function() {
               _vm._v("首页")
             ]),
             _vm._v(" "),
-            _c("el-breadcrumb-item", [_vm._v("友链管理")]),
+            _c("el-breadcrumb-item", [_vm._v("文章管理")]),
             _vm._v(" "),
-            _c("el-breadcrumb-item", [_vm._v("友链列表")])
+            _c("el-breadcrumb-item", [_vm._v("文章列表")])
           ],
           1
         )
@@ -645,22 +592,30 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
+      {
+        directives: [
+          {
+            name: "loading",
+            rawName: "v-loading",
+            value: _vm.loading,
+            expression: "loading"
+          }
+        ]
+      },
       [
         _c(
           "div",
           { staticStyle: { float: "right", "margin-bottom": "2rem" } },
           [
             _c(
-              "el-button",
-              {
-                attrs: { type: "primary", icon: "plus" },
-                on: {
-                  click: function($event) {
-                    _vm.dialogCreateFormVisible = true
-                  }
-                }
-              },
-              [_vm._v("添加友链")]
+              "router-link",
+              { attrs: { to: "/articles/create" } },
+              [
+                _c("el-button", { attrs: { type: "primary", icon: "plus" } }, [
+                  _vm._v("添加文章")
+                ])
+              ],
+              1
             )
           ],
           1
@@ -668,43 +623,109 @@ var render = function() {
         _vm._v(" "),
         _c(
           "el-table",
-          {
-            directives: [
-              {
-                name: "loading",
-                rawName: "v-loading",
-                value: _vm.loading,
-                expression: "loading"
-              }
-            ],
-            staticStyle: { width: "100%" },
-            attrs: { data: _vm.tableData }
-          },
+          { staticStyle: { width: "100%" }, attrs: { data: _vm.tableData } },
           [
-            _c("el-table-column", { attrs: { width: "60" } }),
-            _vm._v(" "),
             _c("el-table-column", {
-              attrs: { prop: "id", label: "ID", width: "60" }
+              attrs: { type: "expand" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(props) {
+                    return [
+                      _c(
+                        "el-form",
+                        {
+                          staticClass: "demo-table-expand",
+                          attrs: { "label-position": "left", inline: "" }
+                        },
+                        [
+                          _c("el-form-item", { attrs: { label: "分类ID" } }, [
+                            _c("span", [_vm._v(_vm._s(props.row.category_id))])
+                          ]),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "文章ID" } }, [
+                            _c("span", [_vm._v(_vm._s(props.row.id))])
+                          ]),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "点击量" } }, [
+                            _c("span", [_vm._v(_vm._s(props.row.page_views))])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "el-form-item",
+                            { attrs: { label: "标签" } },
+                            _vm._l(props.row.tags, function(item) {
+                              return _c(
+                                "el-tag",
+                                { key: item.id, attrs: { type: "primary" } },
+                                [
+                                  _vm._v(
+                                    _vm._s(item.name) +
+                                      "\n                            "
+                                  )
+                                ]
+                              )
+                            })
+                          ),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "是否推荐" } }, [
+                            _c("span", [
+                              _vm._v(
+                                _vm._s(props.row.recommend === 2 ? "是" : "否")
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "发布状态" } }, [
+                            _c("span", [
+                              _vm._v(
+                                _vm._s(
+                                  props.row.publish_status === 2
+                                    ? "已发布"
+                                    : "草稿"
+                                )
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "创建时间" } }, [
+                            _c("span", [_vm._v(_vm._s(props.row.created_at))])
+                          ]),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "描述" } }, [
+                            _c("span", [_vm._v(_vm._s(props.row.summary))])
+                          ])
+                        ],
+                        1
+                      )
+                    ]
+                  }
+                }
+              ])
             }),
             _vm._v(" "),
             _c("el-table-column", {
-              attrs: { prop: "name", label: "站点名", width: "100" }
+              attrs: { label: "文章 ID", width: "150", prop: "id" }
             }),
             _vm._v(" "),
             _c("el-table-column", {
-              attrs: { prop: "uri", label: "站点链接", width: "180" }
+              attrs: {
+                label: "分类",
+                width: "180",
+                prop: "article_category.name"
+              }
             }),
             _vm._v(" "),
             _c("el-table-column", {
-              attrs: { prop: "description", label: "站点描述", width: "180" }
+              attrs: { label: "标题", width: "150", prop: "title" }
             }),
             _vm._v(" "),
             _c("el-table-column", {
-              attrs: { prop: "serial_number", label: "排序", width: "60" }
+              attrs: { label: "更新时间", width: "180", prop: "updated_at" }
             }),
             _vm._v(" "),
             _c("el-table-column", {
-              attrs: { prop: "updated_at", label: "更新时间", width: "200" }
+              attrs: { label: "发布时间", width: "180", prop: "published_at" }
             }),
             _vm._v(" "),
             _c("el-table-column", {
@@ -721,15 +742,10 @@ var render = function() {
                           on: {
                             click: function($event) {
                               _vm.handleEdit(scope.$index, scope.row)
-                              _vm.dialogEditFormVisible = true
                             }
                           }
                         },
-                        [
-                          _vm._v(
-                            "\n                        编 辑\n                    "
-                          )
-                        ]
+                        [_vm._v("编辑\n                    ")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -742,7 +758,20 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("删 除\n                    ")]
+                        [_vm._v("删除\n                    ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { size: "small" },
+                          on: {
+                            click: function($event) {
+                              _vm.handlePreview(scope.$index, scope.row)
+                            }
+                          }
+                        },
+                        [_vm._v("预览\n                    ")]
                       )
                     ]
                   }
@@ -760,301 +789,7 @@ var render = function() {
             total: _vm.page.total
           },
           on: { "current-change": _vm.currentChange }
-        }),
-        _vm._v(" "),
-        _c(
-          "el-dialog",
-          {
-            attrs: { title: "编辑友链", visible: _vm.dialogEditFormVisible },
-            on: {
-              "update:visible": function($event) {
-                _vm.dialogEditFormVisible = $event
-              }
-            }
-          },
-          [
-            _c(
-              "el-form",
-              { attrs: { model: _vm.editForm } },
-              [
-                _c(
-                  "el-form-item",
-                  {
-                    attrs: {
-                      label: "站点名称",
-                      "label-width": _vm.formLabelWidth
-                    }
-                  },
-                  [
-                    _c("el-input", {
-                      attrs: { "auto-complete": "off" },
-                      model: {
-                        value: _vm.editForm.name,
-                        callback: function($$v) {
-                          _vm.$set(_vm.editForm, "name", $$v)
-                        },
-                        expression: "editForm.name"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  {
-                    attrs: {
-                      label: "站点链接",
-                      "label-width": _vm.formLabelWidth
-                    }
-                  },
-                  [
-                    _c("el-input", {
-                      attrs: { "auto-complete": "off" },
-                      model: {
-                        value: _vm.editForm.uri,
-                        callback: function($$v) {
-                          _vm.$set(_vm.editForm, "uri", $$v)
-                        },
-                        expression: "editForm.uri"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  {
-                    attrs: {
-                      label: "站点描述",
-                      "label-width": _vm.formLabelWidth
-                    }
-                  },
-                  [
-                    _c("el-input", {
-                      attrs: { "auto-complete": "off" },
-                      model: {
-                        value: _vm.editForm.description,
-                        callback: function($$v) {
-                          _vm.$set(_vm.editForm, "description", $$v)
-                        },
-                        expression: "editForm.description"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  {
-                    attrs: { label: "排序", "label-width": _vm.formLabelWidth }
-                  },
-                  [
-                    _c("el-input", {
-                      attrs: { "auto-complete": "off" },
-                      model: {
-                        value: _vm.editForm.serial_number,
-                        callback: function($$v) {
-                          _vm.$set(_vm.editForm, "serial_number", $$v)
-                        },
-                        expression: "editForm.serial_number"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "dialog-footer",
-                attrs: { slot: "footer" },
-                slot: "footer"
-              },
-              [
-                _c(
-                  "el-button",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.dialogEditFormVisible = false
-                      }
-                    }
-                  },
-                  [_vm._v("取 消")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-button",
-                  {
-                    attrs: { type: "primary" },
-                    on: {
-                      click: function($event) {
-                        _vm.updateLink()
-                        _vm.dialogEditFormVisible = false
-                      }
-                    }
-                  },
-                  [_vm._v("确 定")]
-                )
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "el-dialog",
-          {
-            attrs: { title: "编辑友链", visible: _vm.dialogCreateFormVisible },
-            on: {
-              "update:visible": function($event) {
-                _vm.dialogCreateFormVisible = $event
-              }
-            }
-          },
-          [
-            _c(
-              "el-form",
-              { attrs: { model: _vm.createForm } },
-              [
-                _c(
-                  "el-form-item",
-                  {
-                    attrs: {
-                      label: "站点名称",
-                      "label-width": _vm.formLabelWidth
-                    }
-                  },
-                  [
-                    _c("el-input", {
-                      attrs: { "auto-complete": "off" },
-                      model: {
-                        value: _vm.createForm.name,
-                        callback: function($$v) {
-                          _vm.$set(_vm.createForm, "name", $$v)
-                        },
-                        expression: "createForm.name"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  {
-                    attrs: {
-                      label: "站点链接",
-                      "label-width": _vm.formLabelWidth
-                    }
-                  },
-                  [
-                    _c("el-input", {
-                      attrs: { "auto-complete": "off" },
-                      model: {
-                        value: _vm.createForm.uri,
-                        callback: function($$v) {
-                          _vm.$set(_vm.createForm, "uri", $$v)
-                        },
-                        expression: "createForm.uri"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  {
-                    attrs: {
-                      label: "站点描述",
-                      "label-width": _vm.formLabelWidth
-                    }
-                  },
-                  [
-                    _c("el-input", {
-                      attrs: { "auto-complete": "off" },
-                      model: {
-                        value: _vm.createForm.description,
-                        callback: function($$v) {
-                          _vm.$set(_vm.createForm, "description", $$v)
-                        },
-                        expression: "createForm.description"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  {
-                    attrs: { label: "排序", "label-width": _vm.formLabelWidth }
-                  },
-                  [
-                    _c("el-input", {
-                      attrs: { "auto-complete": "off" },
-                      model: {
-                        value: _vm.createForm.serial_number,
-                        callback: function($$v) {
-                          _vm.$set(_vm.createForm, "serial_number", $$v)
-                        },
-                        expression: "createForm.serial_number"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "dialog-footer",
-                attrs: { slot: "footer" },
-                slot: "footer"
-              },
-              [
-                _c(
-                  "el-button",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.dialogCreateFormVisible = false
-                      }
-                    }
-                  },
-                  [_vm._v("取 消")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-button",
-                  {
-                    attrs: { type: "primary" },
-                    on: {
-                      click: function($event) {
-                        _vm.storeLink()
-                        _vm.dialogCreateFormVisible = false
-                      }
-                    }
-                  },
-                  [_vm._v("确 定")]
-                )
-              ],
-              1
-            )
-          ],
-          1
-        )
+        })
       ],
       1
     )
@@ -1066,13 +801,13 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-2ea715e0", module.exports)
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-2a1c6ab6", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 82:
+/***/ 76:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */

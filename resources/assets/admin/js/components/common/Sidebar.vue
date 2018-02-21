@@ -40,12 +40,12 @@
                 isCollapse: false,
                 items: [
                     {
-                        icon: 'fa fa-tachometer',
+                        icon: 'fas fa-tachometer-alt',
                         index: '/',
                         title: '控制面板'
                     },
                     {
-                        icon: 'fa fa-users',
+                        icon: 'fas fa-users',
                         index: 'member',
                         title: '用户管理',
                         subs: [
@@ -71,7 +71,7 @@
                         ]
                     },
                     {
-                        icon: 'fa fa-link',
+                        icon: 'fas fa-link',
                         index: 'link',
                         title: '运营管理',
                         subs: [
@@ -82,7 +82,7 @@
                         ]
                     },
                     {
-                        icon: 'fa fa-cogs',
+                        icon: 'fas fa-cogs',
                         index: '/settings',
                         title: '站点设置'
                     }

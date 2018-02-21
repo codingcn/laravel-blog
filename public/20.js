@@ -1,18 +1,18 @@
-webpackJsonp([4],{
+webpackJsonp([20],{
 
-/***/ 209:
+/***/ 212:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(242)
+  __webpack_require__(253)
 }
 var normalizeComponent = __webpack_require__(76)
 /* script */
-var __vue_script__ = __webpack_require__(244)
+var __vue_script__ = __webpack_require__(255)
 /* template */
-var __vue_template__ = __webpack_require__(245)
+var __vue_template__ = __webpack_require__(256)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\admin\\js\\components\\page\\Users.vue"
+Component.options.__file = "resources\\assets\\admin\\js\\components\\page\\Articles.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -38,9 +38,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5db9f3df", Component.options)
+    hotAPI.createRecord("data-v-2a1c6ab6", Component.options)
   } else {
-    hotAPI.reload("data-v-5db9f3df", Component.options)
+    hotAPI.reload("data-v-2a1c6ab6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 217:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -71,7 +71,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(218)
+var listToStyles = __webpack_require__(217)
 
 /*
 type StyleObject = {
@@ -281,7 +281,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 218:
+/***/ 217:
 /***/ (function(module, exports) {
 
 /**
@@ -315,23 +315,23 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 242:
+/***/ 253:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(243);
+var content = __webpack_require__(254);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(217)("30b9529a", content, false, {});
+var update = __webpack_require__(216)("538da298", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5db9f3df\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Users.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5db9f3df\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Users.vue");
+   module.hot.accept("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a1c6ab6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Articles.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a1c6ab6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Articles.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -342,7 +342,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 243:
+/***/ 254:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(98)(false);
@@ -357,7 +357,7 @@ exports.push([module.i, "\n.el-tag {\n    margin-right: 0.8rem;\n}\n.demo-table-
 
 /***/ }),
 
-/***/ 244:
+/***/ 255:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -438,32 +438,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    beforeMount: function beforeMount() {
-        this.getUsers();
+    mounted: function mounted() {
+        this.getArticles();
     },
     data: function data() {
         return {
             loading: false,
             tableData: [],
-            page: {},
-            searchForm: {
-                keywords: ''
-            }
+            page: {}
         };
     },
 
     methods: {
-        onSubmit: function onSubmit() {
+        currentChange: function currentChange(p) {
             var _this = this;
 
+            this.loading = true;
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/users/search',
-                params: {
-                    keywords: this.searchForm.keywords
-                },
-                method: 'get'
+                url: this.$difines.root_url + '/api/admin/articles?page=' + p,
+                method: 'get',
+                headers: {
+                    'Authorization': 'Bearer ' + this.$auth.getToken()
+                }
             }).then(function (response) {
                 _this.tableData = response.data.data.data;
                 _this.page.pageSize = response.data.data.per_page;
@@ -471,50 +498,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.loading = false;
             }).catch(function (response) {});
         },
-        currentChange: function currentChange(p) {
+        getArticles: function getArticles() {
             var _this2 = this;
 
             this.loading = true;
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/users?page=' + p,
-                method: 'get'
+                url: this.$difines.root_url + '/api/admin/articles',
+                method: 'get',
+                headers: {
+                    'Authorization': 'Bearer ' + this.$auth.getToken()
+                }
             }).then(function (response) {
                 _this2.tableData = response.data.data.data;
                 _this2.page.pageSize = response.data.data.per_page;
                 _this2.page.total = response.data.data.total;
                 _this2.loading = false;
-            }).catch(function (response) {});
-        },
-        getUsers: function getUsers() {
-            var _this3 = this;
-
-            this.loading = true;
-            this.$axios({
-                url: this.$difines.root_url + '/api/admin/users',
-                method: 'get'
-            }).then(function (response) {
-                // 提示: 如果这个位置console.log()那么就会出错。。
-                _this3.tableData = response.data.data.data;
-                _this3.page.pageSize = response.data.data.per_page;
-                _this3.page.total = response.data.data.total;
-                //                    console.log(this.response.data.data)
-                //                    this.tableData.recommend = data.recommend === 2 ? '是' : '否'
-                //                    this.tableData.status = data.status === 2 ?'是' : '否'
-                //                    this.tableData.cover_path = data.cover
-                //                    console.log(this.tableData)
-                _this3.loading = false;
-            }).catch(function (response) {});
+            }).catch(function (response) {
+                console.log(response);
+                _this2.loading = false;
+            });
         },
         handleEdit: function handleEdit(index, row) {
-            this.$router.push({ name: 'user', params: { id: row.id } });
+            this.$router.push({ name: 'articles/edit', params: { id: row.id } });
         },
-        handleDelete: function handleDelete(index, row) {}
+        handleDelete: function handleDelete(index, row) {
+            var _this3 = this;
+
+            this.$axios({
+                url: this.$difines.root_url + '/api/admin/articles/' + row.id,
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + this.$auth.getToken()
+                }
+            }).then(function (response) {
+                if (response.data.err_no == 0) {
+                    _this3.$notify.success({
+                        title: '成功',
+                        message: '文章删除成功'
+                    });
+                    _this3.getArticles();
+                } else {
+                    _this3.$notify.error({
+                        title: '错误',
+                        message: '文章删除失败'
+                    });
+                    _this3.getArticles();
+                }
+            }).catch(function (response) {
+                _this3.$notify.error({
+                    title: '错误',
+                    message: '文章删除失败'
+                });
+                _this3.getArticles();
+            });
+        },
+        handlePreview: function handlePreview(index, row) {
+            window.open("/articles/" + row.id);
+        }
     }
 });
 
 /***/ }),
 
-/***/ 245:
+/***/ 256:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -534,9 +580,9 @@ var render = function() {
               _vm._v("首页")
             ]),
             _vm._v(" "),
-            _c("el-breadcrumb-item", [_vm._v("用户管理")]),
+            _c("el-breadcrumb-item", [_vm._v("文章管理")]),
             _vm._v(" "),
-            _c("el-breadcrumb-item", [_vm._v("用户列表")])
+            _c("el-breadcrumb-item", [_vm._v("文章列表")])
           ],
           1
         )
@@ -546,40 +592,28 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
+      {
+        directives: [
+          {
+            name: "loading",
+            rawName: "v-loading",
+            value: _vm.loading,
+            expression: "loading"
+          }
+        ]
+      },
       [
         _c(
-          "el-form",
-          {
-            staticClass: "demo-form-inline",
-            attrs: { inline: true, model: _vm.searchForm }
-          },
+          "div",
+          { staticStyle: { float: "right", "margin-bottom": "2rem" } },
           [
             _c(
-              "el-form-item",
-              { attrs: { label: "" } },
+              "router-link",
+              { attrs: { to: "/articles/create" } },
               [
-                _c("el-input", {
-                  attrs: { placeholder: "请输入用户名/手机号/邮箱..." },
-                  model: {
-                    value: _vm.searchForm.keywords,
-                    callback: function($$v) {
-                      _vm.$set(_vm.searchForm, "keywords", $$v)
-                    },
-                    expression: "searchForm.keywords"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "el-form-item",
-              [
-                _c(
-                  "el-button",
-                  { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
-                  [_vm._v("查询")]
-                )
+                _c("el-button", { attrs: { type: "primary", icon: "plus" } }, [
+                  _vm._v("添加文章")
+                ])
               ],
               1
             )
@@ -587,47 +621,115 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "15px" } }),
-        _vm._v(" "),
         _c(
           "el-table",
-          {
-            directives: [
-              {
-                name: "loading",
-                rawName: "v-loading",
-                value: _vm.loading,
-                expression: "loading"
-              }
-            ],
-            staticStyle: { width: "100%" },
-            attrs: { data: _vm.tableData }
-          },
+          { staticStyle: { width: "100%" }, attrs: { data: _vm.tableData } },
           [
-            _c("el-table-column", { attrs: { width: "60" } }),
-            _vm._v(" "),
             _c("el-table-column", {
-              attrs: { prop: "id", label: "ID", width: "180" }
+              attrs: { type: "expand" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(props) {
+                    return [
+                      _c(
+                        "el-form",
+                        {
+                          staticClass: "demo-table-expand",
+                          attrs: { "label-position": "left", inline: "" }
+                        },
+                        [
+                          _c("el-form-item", { attrs: { label: "分类ID" } }, [
+                            _c("span", [_vm._v(_vm._s(props.row.category_id))])
+                          ]),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "文章ID" } }, [
+                            _c("span", [_vm._v(_vm._s(props.row.id))])
+                          ]),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "点击量" } }, [
+                            _c("span", [_vm._v(_vm._s(props.row.page_views))])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "el-form-item",
+                            { attrs: { label: "标签" } },
+                            _vm._l(props.row.tags, function(item) {
+                              return _c(
+                                "el-tag",
+                                { key: item.id, attrs: { type: "primary" } },
+                                [
+                                  _vm._v(
+                                    _vm._s(item.name) +
+                                      "\n                            "
+                                  )
+                                ]
+                              )
+                            })
+                          ),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "是否推荐" } }, [
+                            _c("span", [
+                              _vm._v(
+                                _vm._s(props.row.recommend === 2 ? "是" : "否")
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "发布状态" } }, [
+                            _c("span", [
+                              _vm._v(
+                                _vm._s(
+                                  props.row.publish_status === 2
+                                    ? "已发布"
+                                    : "草稿"
+                                )
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "创建时间" } }, [
+                            _c("span", [_vm._v(_vm._s(props.row.created_at))])
+                          ]),
+                          _vm._v(" "),
+                          _c("el-form-item", { attrs: { label: "描述" } }, [
+                            _c("span", [_vm._v(_vm._s(props.row.summary))])
+                          ])
+                        ],
+                        1
+                      )
+                    ]
+                  }
+                }
+              ])
             }),
             _vm._v(" "),
             _c("el-table-column", {
-              attrs: { prop: "username", label: "用户名", width: "180" }
+              attrs: { label: "文章 ID", width: "150", prop: "id" }
             }),
             _vm._v(" "),
             _c("el-table-column", {
-              attrs: { prop: "email", label: "邮箱", width: "180" }
+              attrs: {
+                label: "分类",
+                width: "180",
+                prop: "article_category.name"
+              }
             }),
             _vm._v(" "),
             _c("el-table-column", {
-              attrs: { prop: "phone", label: "手机号", width: "180" }
+              attrs: { label: "标题", width: "150", prop: "title" }
             }),
             _vm._v(" "),
             _c("el-table-column", {
-              attrs: { prop: "created_at", label: "注册时间", width: "180" }
+              attrs: { label: "更新时间", width: "180", prop: "updated_at" }
             }),
             _vm._v(" "),
             _c("el-table-column", {
-              attrs: { label: "操作" },
+              attrs: { label: "发布时间", width: "180", prop: "published_at" }
+            }),
+            _vm._v(" "),
+            _c("el-table-column", {
+              attrs: { width: "250", label: "操作" },
               scopedSlots: _vm._u([
                 {
                   key: "default",
@@ -636,7 +738,7 @@ var render = function() {
                       _c(
                         "el-button",
                         {
-                          attrs: { size: "mini" },
+                          attrs: { size: "small" },
                           on: {
                             click: function($event) {
                               _vm.handleEdit(scope.$index, scope.row)
@@ -649,7 +751,7 @@ var render = function() {
                       _c(
                         "el-button",
                         {
-                          attrs: { size: "mini", type: "danger" },
+                          attrs: { size: "small", type: "danger" },
                           on: {
                             click: function($event) {
                               _vm.handleDelete(scope.$index, scope.row)
@@ -657,6 +759,19 @@ var render = function() {
                           }
                         },
                         [_vm._v("删除\n                    ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { size: "small" },
+                          on: {
+                            click: function($event) {
+                              _vm.handlePreview(scope.$index, scope.row)
+                            }
+                          }
+                        },
+                        [_vm._v("预览\n                    ")]
                       )
                     ]
                   }
@@ -686,7 +801,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-5db9f3df", module.exports)
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-2a1c6ab6", module.exports)
   }
 }
 

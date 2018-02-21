@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AdminTableSeeder extends Seeder
+class AdminUserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +11,8 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('settings')->truncate();
-        \App\Models\Admin::create([
+        \DB::table('admin_users')->truncate();
+        \App\Models\AdminUser::create([
             'username' => 'admin',
             'phone' => 13529595970,
             'email' => '20874823@qq.com',

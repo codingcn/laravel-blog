@@ -1,18 +1,18 @@
-webpackJsonp([3],{
+webpackJsonp([13],{
 
-/***/ 216:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(459)
+  __webpack_require__(454)
 }
 var normalizeComponent = __webpack_require__(76)
 /* script */
-var __vue_script__ = __webpack_require__(461)
+var __vue_script__ = __webpack_require__(456)
 /* template */
-var __vue_template__ = __webpack_require__(462)
+var __vue_template__ = __webpack_require__(457)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\admin\\js\\components\\page\\AdminUser.vue"
+Component.options.__file = "resources\\assets\\admin\\js\\components\\page\\Settings.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -38,9 +38,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-757fa911", Component.options)
+    hotAPI.createRecord("data-v-606af19c", Component.options)
   } else {
-    hotAPI.reload("data-v-757fa911", Component.options)
+    hotAPI.reload("data-v-606af19c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 217:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -71,7 +71,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(218)
+var listToStyles = __webpack_require__(217)
 
 /*
 type StyleObject = {
@@ -281,7 +281,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 218:
+/***/ 217:
 /***/ (function(module, exports) {
 
 /**
@@ -315,7 +315,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 219:
+/***/ 218:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -525,7 +525,7 @@ exports.isBuffer = function isBuffer(obj) {
 
 /***/ }),
 
-/***/ 220:
+/***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -551,15 +551,15 @@ module.exports = {
 
 /***/ }),
 
-/***/ 221:
+/***/ 220:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var stringify = __webpack_require__(222);
-var parse = __webpack_require__(223);
-var formats = __webpack_require__(220);
+var stringify = __webpack_require__(221);
+var parse = __webpack_require__(222);
+var formats = __webpack_require__(219);
 
 module.exports = {
     formats: formats,
@@ -570,14 +570,14 @@ module.exports = {
 
 /***/ }),
 
-/***/ 222:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(219);
-var formats = __webpack_require__(220);
+var utils = __webpack_require__(218);
+var formats = __webpack_require__(219);
 
 var arrayPrefixGenerators = {
     brackets: function brackets(prefix) { // eslint-disable-line func-name-matching
@@ -788,13 +788,13 @@ module.exports = function (object, opts) {
 
 /***/ }),
 
-/***/ 223:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(219);
+var utils = __webpack_require__(218);
 
 var has = Object.prototype.hasOwnProperty;
 
@@ -970,23 +970,23 @@ module.exports = function (str, opts) {
 
 /***/ }),
 
-/***/ 459:
+/***/ 454:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(460);
+var content = __webpack_require__(455);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(217)("accf85b2", content, false, {});
+var update = __webpack_require__(216)("79f018d2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-757fa911\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./AdminUser.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-757fa911\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./AdminUser.vue");
+   module.hot.accept("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-606af19c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Settings.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-606af19c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Settings.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -997,7 +997,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 460:
+/***/ 455:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(98)(false);
@@ -1012,12 +1012,12 @@ exports.push([module.i, "\n.el-upload-dragger {\n    width: auto;\n    height: a
 
 /***/ }),
 
-/***/ 461:
+/***/ 456:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_qs__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_qs__ = __webpack_require__(220);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_qs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_qs__);
 //
 //
@@ -1065,28 +1065,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     beforeMount: function beforeMount() {
-        this.getAdminUser();
+        this.getSettings();
     },
 
     data: function data() {
         return {
             loading: false,
             form: {},
-            upload_action_avatar: this.$difines.root_url + '/api/admin/admin-user/upload-avatar',
+            upload_action_logo: this.$difines.root_url + '/api/admin/settings/upload-logo',
             file_list: [],
             dialogImageUrl: '',
             dialogVisible: false,
@@ -1096,30 +1086,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     methods: {
-        getAdminUser: function getAdminUser() {
+        getSettings: function getSettings() {
             var _this = this;
 
             this.loading = true;
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/admin-user',
-                method: 'GET',
-                headers: {
-                    'Authorization': 'Bearer ' + this.$auth.getToken()
-                }
+                url: this.$difines.root_url + '/api/admin/settings',
+                method: 'GET'
             }).then(function (response) {
                 var data = response.data.data;
                 _this.form = data;
-                localStorage.setItem('admin_user', JSON.stringify(data));
-                if (data.avatar === '') {
+                if (data.site_logo === '') {
                     _this.file_list.splice(0);
                 } else {
                     _this.file_list.push({
-                        name: 'avatar',
-                        url: data.avatar
+                        name: 'LOGO',
+                        url: data.site_logo
                     });
                 }
                 _this.loading = false;
-            }).catch(function (response) {});
+            }).catch(function (response) {
+                // console.log(response)
+                _this.loading = false;
+            });
         },
         handleChange: function handleChange(file, file_list) {
             this.file_list.splice(0);
@@ -1129,10 +1118,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/settings/upload-avatar-delete',
+                url: this.$difines.root_url + '/api/admin/settings/upload-logo-delete',
                 method: 'POST',
                 data: {
-                    avatar: file.url
+                    site_logo: file.url
                 }
             }).then(function (response) {
                 if (response.data.err_no !== 0) {
@@ -1145,7 +1134,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         title: '成功',
                         message: '移除文件成功'
                     });
-                    _this2.form.avatar = '';
+                    _this2.form.site_logo = '';
                 }
             }).catch(function (response) {});
         },
@@ -1155,32 +1144,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         handleUploadSuccess: function handleUploadSuccess(response, file, fileList) {
             this.file_list.splice(0);
             this.file_list.push(file);
-            this.form.avatar = response.data.avatar;
+            this.form.site_logo = response.data.site_logo;
         },
         onSubmit: function onSubmit() {
             var _this3 = this;
 
             console.log(this.form);
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/admin-user',
+                url: this.$difines.root_url + '/api/admin/settings',
                 method: 'PUT',
                 data: __WEBPACK_IMPORTED_MODULE_0_qs___default.a.stringify(this.form)
             }).then(function (response) {
                 if (response.data.err_no === 0) {
-                    if (response.data.data.change_password === 'yes') {
-                        _this3.$notify.success({
-                            title: '成功',
-                            message: '修改成功，请重新登录'
-                        });
-                        _this3.$auth.destoryToken();
-                        localStorage.removeItem('admin_user');
-                        _this3.$router.push('/sign-in');
-                    } else {
-                        _this3.$notify.success({
-                            title: '成功',
-                            message: '修改成功'
-                        });
-                    }
+                    _this3.$notify.success({
+                        title: '成功',
+                        message: response.data.err_msg
+                    });
+                    _this3.$router.push({ path: '/settings' });
                 } else {
                     _this3.$notify.error({
                         title: '失败',
@@ -1194,7 +1174,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 462:
+/***/ 457:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1229,8 +1209,8 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-breadcrumb-item",
-                { attrs: { to: { path: "/admin-user" } } },
-                [_vm._v("管理员信息修改")]
+                { attrs: { to: { path: "/settings" } } },
+                [_vm._v("系统设置")]
               )
             ],
             1
@@ -1249,15 +1229,15 @@ var render = function() {
             [
               _c(
                 "el-form-item",
-                { attrs: { label: "用户名" } },
+                { attrs: { label: "站点名称" } },
                 [
                   _c("el-input", {
                     model: {
-                      value: _vm.form.username,
+                      value: _vm.form.site_title,
                       callback: function($$v) {
-                        _vm.$set(_vm.form, "username", $$v)
+                        _vm.$set(_vm.form, "site_title", $$v)
                       },
-                      expression: "form.username"
+                      expression: "form.site_title"
                     }
                   })
                 ],
@@ -1266,15 +1246,15 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "旧密码" } },
+                { attrs: { label: "IPC备案号" } },
                 [
                   _c("el-input", {
                     model: {
-                      value: _vm.form.old_password,
+                      value: _vm.form.site_icp,
                       callback: function($$v) {
-                        _vm.$set(_vm.form, "old_password", $$v)
+                        _vm.$set(_vm.form, "site_icp", $$v)
                       },
-                      expression: "form.old_password"
+                      expression: "form.site_icp"
                     }
                   })
                 ],
@@ -1283,58 +1263,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "新密码" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.form.new_password,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "new_password", $$v)
-                      },
-                      expression: "form.new_password"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "邮箱" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.form.email,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "email", $$v)
-                      },
-                      expression: "form.email"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "手机号" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.form.phone,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "phone", $$v)
-                      },
-                      expression: "form.phone"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "头像" } },
+                { attrs: { label: "网站LOGO" } },
                 [
                   _c(
                     "el-upload",
@@ -1342,7 +1271,7 @@ var render = function() {
                       staticClass: "upload-cover",
                       attrs: {
                         "list-type": "picture-card",
-                        name: "avatar",
+                        name: "site_logo",
                         multiple: false,
                         "on-preview": _vm.handlePictureCardPreview,
                         "on-change": _vm.handleChange,
@@ -1350,7 +1279,7 @@ var render = function() {
                         "file-list": _vm.file_list,
                         "on-success": _vm.handleUploadSuccess,
                         headers: _vm.headers,
-                        action: _vm.upload_action_avatar
+                        action: _vm.upload_action_logo
                       }
                     },
                     [
@@ -1412,7 +1341,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-757fa911", module.exports)
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-606af19c", module.exports)
   }
 }
 

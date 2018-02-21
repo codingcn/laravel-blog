@@ -1,24 +1,24 @@
-webpackJsonp([4],{
+webpackJsonp([16],{
 
-/***/ 209:
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(242)
+  __webpack_require__(223)
 }
 var normalizeComponent = __webpack_require__(76)
 /* script */
-var __vue_script__ = __webpack_require__(244)
+var __vue_script__ = __webpack_require__(225)
 /* template */
-var __vue_template__ = __webpack_require__(245)
+var __vue_template__ = __webpack_require__(226)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-5e285dfb"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -29,7 +29,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\admin\\js\\components\\page\\Users.vue"
+Component.options.__file = "resources\\assets\\admin\\js\\components\\page\\SignIn.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -38,9 +38,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5db9f3df", Component.options)
+    hotAPI.createRecord("data-v-5e285dfb", Component.options)
   } else {
-    hotAPI.reload("data-v-5db9f3df", Component.options)
+    hotAPI.reload("data-v-5e285dfb", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 217:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -71,7 +71,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(218)
+var listToStyles = __webpack_require__(217)
 
 /*
 type StyleObject = {
@@ -281,7 +281,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 218:
+/***/ 217:
 /***/ (function(module, exports) {
 
 /**
@@ -315,23 +315,23 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 242:
+/***/ 223:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(243);
+var content = __webpack_require__(224);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(217)("30b9529a", content, false, {});
+var update = __webpack_require__(216)("1c1f203a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5db9f3df\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Users.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5db9f3df\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Users.vue");
+   module.hot.accept("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5e285dfb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./SignIn.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5e285dfb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./SignIn.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -342,7 +342,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 243:
+/***/ 224:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(98)(false);
@@ -350,14 +350,14 @@ exports = module.exports = __webpack_require__(98)(false);
 
 
 // module
-exports.push([module.i, "\n.el-tag {\n    margin-right: 0.8rem;\n}\n.demo-table-expand {\n    font-size: 0;\n}\n.demo-table-expand label {\n    width: 90px;\n    color: #99a9bf;\n}\n.demo-table-expand .el-form-item {\n    margin-right: 0;\n    margin-bottom: 0;\n    width: 50%;\n}\n", ""]);
+exports.push([module.i, "\n.login-wrap[data-v-5e285dfb] {\n    background-color: #324157;\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n.ms-title[data-v-5e285dfb] {\n    position: absolute;\n    top: 50%;\n    width: 100%;\n    margin-top: -230px;\n    text-align: center;\n    font-size: 30px;\n    color: #fff;\n}\n.ms-login[data-v-5e285dfb] {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    width: 300px;\n    height: 160px;\n    margin: -150px 0 0 -190px;\n    padding: 40px;\n    border-radius: 5px;\n    background: #fff;\n}\n.login-btn[data-v-5e285dfb] {\n    text-align: center;\n}\n.login-btn button[data-v-5e285dfb] {\n    width: 100%;\n    height: 36px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 244:
+/***/ 225:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -383,189 +383,124 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    beforeMount: function beforeMount() {
-        this.getUsers();
-    },
     data: function data() {
         return {
             loading: false,
-            tableData: [],
-            page: {},
-            searchForm: {
-                keywords: ''
+            ruleForm: {
+                username: '',
+                password: ''
+            },
+            rules: {
+                username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+                password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
             }
         };
     },
-
     methods: {
-        onSubmit: function onSubmit() {
+        submitForm: function submitForm(formName) {
             var _this = this;
 
-            this.$axios({
-                url: this.$difines.root_url + '/api/admin/users/search',
-                params: {
-                    keywords: this.searchForm.keywords
-                },
-                method: 'get'
-            }).then(function (response) {
-                _this.tableData = response.data.data.data;
-                _this.page.pageSize = response.data.data.per_page;
-                _this.page.total = response.data.data.total;
-                _this.loading = false;
-            }).catch(function (response) {});
+            var self = this;
+            self.$refs[formName].validate(function (valid) {
+                if (valid) {
+                    _this.loading = true;
+                    var data = {
+                        username: self.ruleForm.username,
+                        password: self.ruleForm.password,
+                        grant_type: 'password',
+                        scopes: []
+                    };
+
+                    _this.$axios({
+                        url: _this.$difines.root_url + '/api/oauth/token',
+                        method: 'post',
+                        data: data
+                    }).then(function (response) {
+                        // 刚开始踩坑了，js的时间戳微妙为单位，而且木有时区，和PHP不一样
+                        var js_time = Math.round(new Date().getTime() / 1000 - 28800);
+                        _this.$auth.setToken(response.data.access_token, response.data.refresh_token, response.data.expires_in + js_time);
+                        _this.getAdmin();
+                    }).catch(function (err) {
+                        _this.loading = false;
+                        if (err.status !== 401) {
+                            _this.$notify.error({
+                                title: '错误',
+                                message: '服务器开小差了'
+                            });
+                        }
+                    });
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
+            });
         },
-        currentChange: function currentChange(p) {
+        getAdmin: function getAdmin() {
             var _this2 = this;
 
-            this.loading = true;
+            var self = this;
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/users?page=' + p,
-                method: 'get'
+                url: this.$difines.root_url + '/api/admin-user',
+                method: 'post',
+                headers: {
+                    'Authorization': 'Bearer ' + this.$auth.getToken()
+                }
             }).then(function (response) {
-                _this2.tableData = response.data.data.data;
-                _this2.page.pageSize = response.data.data.per_page;
-                _this2.page.total = response.data.data.total;
-                _this2.loading = false;
+                localStorage.setItem('admin', JSON.stringify(response.data));
+                _this2.$notify({
+                    title: '成功',
+                    message: '登陆成功',
+                    type: 'success',
+                    offset: 60
+                });
+                self.$router.push('/');
             }).catch(function (response) {});
-        },
-        getUsers: function getUsers() {
-            var _this3 = this;
-
-            this.loading = true;
-            this.$axios({
-                url: this.$difines.root_url + '/api/admin/users',
-                method: 'get'
-            }).then(function (response) {
-                // 提示: 如果这个位置console.log()那么就会出错。。
-                _this3.tableData = response.data.data.data;
-                _this3.page.pageSize = response.data.data.per_page;
-                _this3.page.total = response.data.data.total;
-                //                    console.log(this.response.data.data)
-                //                    this.tableData.recommend = data.recommend === 2 ? '是' : '否'
-                //                    this.tableData.status = data.status === 2 ?'是' : '否'
-                //                    this.tableData.cover_path = data.cover
-                //                    console.log(this.tableData)
-                _this3.loading = false;
-            }).catch(function (response) {});
-        },
-        handleEdit: function handleEdit(index, row) {
-            this.$router.push({ name: 'user', params: { id: row.id } });
-        },
-        handleDelete: function handleDelete(index, row) {}
+        }
     }
 });
 
 /***/ }),
 
-/***/ 245:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "main" }, [
-    _c(
-      "div",
-      { staticClass: "crumbs" },
-      [
-        _c(
-          "el-breadcrumb",
-          { attrs: { separator: "/" } },
-          [
-            _c("el-breadcrumb-item", { attrs: { to: { path: "/" } } }, [
-              _vm._v("首页")
-            ]),
-            _vm._v(" "),
-            _c("el-breadcrumb-item", [_vm._v("用户管理")]),
-            _vm._v(" "),
-            _c("el-breadcrumb-item", [_vm._v("用户列表")])
-          ],
-          1
-        )
-      ],
-      1
-    ),
+  return _c("div", { staticClass: "login-wrap" }, [
+    _c("div", { staticClass: "ms-title" }, [_vm._v("后台管理系统")]),
     _vm._v(" "),
     _c(
       "div",
+      { staticClass: "ms-login" },
       [
         _c(
           "el-form",
           {
-            staticClass: "demo-form-inline",
-            attrs: { inline: true, model: _vm.searchForm }
+            ref: "ruleForm",
+            staticClass: "demo-ruleForm",
+            attrs: {
+              model: _vm.ruleForm,
+              rules: _vm.rules,
+              "label-width": "0px"
+            }
           },
           [
             _c(
               "el-form-item",
-              { attrs: { label: "" } },
+              { attrs: { prop: "username" } },
               [
                 _c("el-input", {
-                  attrs: { placeholder: "请输入用户名/手机号/邮箱..." },
+                  attrs: { placeholder: "username" },
                   model: {
-                    value: _vm.searchForm.keywords,
+                    value: _vm.ruleForm.username,
                     callback: function($$v) {
-                      _vm.$set(_vm.searchForm, "keywords", $$v)
+                      _vm.$set(_vm.ruleForm, "username", $$v)
                     },
-                    expression: "searchForm.keywords"
+                    expression: "ruleForm.username"
                   }
                 })
               ],
@@ -574,107 +509,67 @@ var render = function() {
             _vm._v(" "),
             _c(
               "el-form-item",
+              { attrs: { prop: "password" } },
+              [
+                _c("el-input", {
+                  attrs: { type: "password", placeholder: "password" },
+                  nativeOn: {
+                    keyup: function($event) {
+                      if (
+                        !("button" in $event) &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key)
+                      ) {
+                        return null
+                      }
+                      _vm.submitForm("ruleForm")
+                    }
+                  },
+                  model: {
+                    value: _vm.ruleForm.password,
+                    callback: function($$v) {
+                      _vm.$set(_vm.ruleForm, "password", $$v)
+                    },
+                    expression: "ruleForm.password"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "login-btn" },
               [
                 _c(
                   "el-button",
-                  { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
-                  [_vm._v("查询")]
+                  {
+                    attrs: { type: "primary", loading: _vm.loading },
+                    on: {
+                      click: function($event) {
+                        _vm.submitForm("ruleForm")
+                      }
+                    }
+                  },
+                  [_vm._v("登录")]
                 )
               ],
               1
+            ),
+            _vm._v(" "),
+            _c(
+              "p",
+              {
+                staticStyle: {
+                  "font-size": "12px",
+                  "line-height": "30px",
+                  color: "#999"
+                }
+              },
+              [_vm._v("Tips : 用户名和密码随便填。")]
             )
           ],
           1
-        ),
-        _vm._v(" "),
-        _c("div", { staticStyle: { "margin-top": "15px" } }),
-        _vm._v(" "),
-        _c(
-          "el-table",
-          {
-            directives: [
-              {
-                name: "loading",
-                rawName: "v-loading",
-                value: _vm.loading,
-                expression: "loading"
-              }
-            ],
-            staticStyle: { width: "100%" },
-            attrs: { data: _vm.tableData }
-          },
-          [
-            _c("el-table-column", { attrs: { width: "60" } }),
-            _vm._v(" "),
-            _c("el-table-column", {
-              attrs: { prop: "id", label: "ID", width: "180" }
-            }),
-            _vm._v(" "),
-            _c("el-table-column", {
-              attrs: { prop: "username", label: "用户名", width: "180" }
-            }),
-            _vm._v(" "),
-            _c("el-table-column", {
-              attrs: { prop: "email", label: "邮箱", width: "180" }
-            }),
-            _vm._v(" "),
-            _c("el-table-column", {
-              attrs: { prop: "phone", label: "手机号", width: "180" }
-            }),
-            _vm._v(" "),
-            _c("el-table-column", {
-              attrs: { prop: "created_at", label: "注册时间", width: "180" }
-            }),
-            _vm._v(" "),
-            _c("el-table-column", {
-              attrs: { label: "操作" },
-              scopedSlots: _vm._u([
-                {
-                  key: "default",
-                  fn: function(scope) {
-                    return [
-                      _c(
-                        "el-button",
-                        {
-                          attrs: { size: "mini" },
-                          on: {
-                            click: function($event) {
-                              _vm.handleEdit(scope.$index, scope.row)
-                            }
-                          }
-                        },
-                        [_vm._v("编辑\n                    ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-button",
-                        {
-                          attrs: { size: "mini", type: "danger" },
-                          on: {
-                            click: function($event) {
-                              _vm.handleDelete(scope.$index, scope.row)
-                            }
-                          }
-                        },
-                        [_vm._v("删除\n                    ")]
-                      )
-                    ]
-                  }
-                }
-              ])
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("el-pagination", {
-          attrs: {
-            layout: "prev, pager, next",
-            "page-size": _vm.page.pageSize,
-            total: _vm.page.total
-          },
-          on: { "current-change": _vm.currentChange }
-        })
+        )
       ],
       1
     )
@@ -686,7 +581,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-5db9f3df", module.exports)
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-5e285dfb", module.exports)
   }
 }
 

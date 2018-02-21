@@ -1,17 +1,22 @@
 <template>
     <div class="header">
         <el-menu
-                :default-active="activeIndex2"
                 class="el-menu-demo"
                 mode="horizontal"
                 @select="handleSelect"
                 background-color="#545c64"
                 text-color="#fff"
-                active-text-color="#42b983">
-            <el-menu-item index="1" class="logo"><router-link :to="{path:'/admin'}">Dash Board</router-link></el-menu-item>
-            <el-menu-item index="3"><a href="/" target="_blank">网站首页</a></el-menu-item>
-            <el-menu-item index="3"><router-link :to="{path:'/'}">用户管理</router-link></el-menu-item>
-            <el-menu-item index="4"><router-link :to="{path:'/articles'}">文章管理</router-link></el-menu-item>
+                active-text-color="#62be93">
+            <el-menu-item index="logo" class="logo">
+                <router-link :to="{path:'/admin'}">Dash Board</router-link>
+            </el-menu-item>
+            <el-menu-item index="2"><a href="/" target="_blank">网站首页</a></el-menu-item>
+            <el-menu-item index="3">
+                <router-link :to="{path:'/'}">用户管理</router-link>
+            </el-menu-item>
+            <el-menu-item index="4">
+                <router-link :to="{path:'/articles'}">文章管理</router-link>
+            </el-menu-item>
             <el-submenu index="20" class="user-info">
                 <template slot="title">
                     <span class="el-dropdown-link" trigger="click">
@@ -19,7 +24,7 @@
                         {{admin.username}}
                     </span>
                 </template>
-                <el-menu-item index="2-1"><router-link :to="{path:'/profile'}">修改信息</router-link></el-menu-item>
+                <el-menu-item index="admin_user">修改信息</el-menu-item>
                 <el-menu-item index="sign_out" command="sign_out">退出</el-menu-item>
             </el-submenu>
         </el-menu>
@@ -30,34 +35,37 @@
         created() {
             let self = this;
             self.$nextTick(() => {
-                let admin = JSON.parse(localStorage.getItem('admin'))
-                self.admin = admin
+                self.admin = JSON.parse(localStorage.getItem('admin_user'))
             })
         },
         data() {
             return {
-                avatar: '',
                 admin: {
                     username: '',
                     avatar: ''
-                },
-                logo:this.$difines.root_url+'/static/home/img/logo.png',
-                activeIndex: '1',
-                activeIndex2: '1'
+                }
             }
         },
         methods: {
             handleSelect(key, keyPath) {
                 if (key === 'sign_out') {
-                    this.$auth.destoryToken()
-                    localStorage.removeItem('admin')
-                    this.$notify({
-                        title: '成功',
-                        message: '注销成功',
-                        type: 'success'
-                    });
-                    this.$router.push('/sign-in');
+                    this.signOut();
+                } else if (key === 'admin_user') {
+                    this.updateAdminUser();
                 }
+            },
+            updateAdminUser() {
+                this.$router.push('/admin-user');
+            },
+            signOut() {
+                this.$auth.destoryToken()
+                localStorage.removeItem('admin_user')
+                this.$notify({
+                    title: '成功',
+                    message: '注销成功',
+                    type: 'success'
+                });
+                this.$router.push('/sign-in');
             }
         }
     }
@@ -66,11 +74,13 @@
     .header .logo {
         float: left;
         width: 200px;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
         text-align: center;
-        font-weight: bold;
+        font-weight: bolder;
         font-size: 1.3rem;
     }
-    .header a{
+
+    .header a {
         text-decoration: none;
     }
 

@@ -1,1 +1,1070 @@
-webpackJsonp([8],{174:function(e,t,a){var n="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!n)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var r=a(175),i={},o=n&&(document.head||document.getElementsByTagName("head")[0]),s=null,l=0,d=!1,c=function(){},u="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());function p(e){for(var t=0;t<e.length;t++){var a=e[t],n=i[a.id];if(n){n.refs++;for(var r=0;r<n.parts.length;r++)n.parts[r](a.parts[r]);for(;r<a.parts.length;r++)n.parts.push(h(a.parts[r]));n.parts.length>a.parts.length&&(n.parts.length=a.parts.length)}else{var o=[];for(r=0;r<a.parts.length;r++)o.push(h(a.parts[r]));i[a.id]={id:a.id,refs:1,parts:o}}}}function f(){var e=document.createElement("style");return e.type="text/css",o.appendChild(e),e}function h(e){var t,a,n=document.querySelector('style[data-vue-ssr-id~="'+e.id+'"]');if(n){if(d)return c;n.parentNode.removeChild(n)}if(u){var r=l++;n=s||(s=f()),t=g.bind(null,n,r,!1),a=g.bind(null,n,r,!0)}else n=f(),t=function(e,t){var a=t.css,n=t.media,r=t.sourceMap;n&&e.setAttribute("media",n);r&&(a+="\n/*# sourceURL="+r.sources[0]+" */",a+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");if(e.styleSheet)e.styleSheet.cssText=a;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(a))}}.bind(null,n),a=function(){n.parentNode.removeChild(n)};return t(e),function(n){if(n){if(n.css===e.css&&n.media===e.media&&n.sourceMap===e.sourceMap)return;t(e=n)}else a()}}e.exports=function(e,t,a){d=a;var n=r(e,t);return p(n),function(t){for(var a=[],o=0;o<n.length;o++){var s=n[o];(l=i[s.id]).refs--,a.push(l)}t?p(n=r(e,t)):n=[];for(o=0;o<a.length;o++){var l;if(0===(l=a[o]).refs){for(var d=0;d<l.parts.length;d++)l.parts[d]();delete i[l.id]}}}};var m,v=(m=[],function(e,t){return m[e]=t,m.filter(Boolean).join("\n")});function g(e,t,a,n){var r=a?"":n.css;if(e.styleSheet)e.styleSheet.cssText=v(t,r);else{var i=document.createTextNode(r),o=e.childNodes;o[t]&&e.removeChild(o[t]),o.length?e.insertBefore(i,o[t]):e.appendChild(i)}}},175:function(e,t){e.exports=function(e,t){for(var a=[],n={},r=0;r<t.length;r++){var i=t[r],o=i[0],s={id:e+":"+r,css:i[1],media:i[2],sourceMap:i[3]};n[o]?n[o].parts.push(s):a.push(n[o]={id:o,parts:[s]})}return a}},211:function(e,t,a){var n=a(212);"string"==typeof n&&(n=[[e.i,n,""]]),n.locals&&(e.exports=n.locals);a(174)("fbc99e38",n,!0)},212:function(e,t,a){(e.exports=a(95)(!1)).push([e.i,".el-tag{margin-right:.8rem}.demo-table-expand{font-size:0}.demo-table-expand label{width:90px;color:#99a9bf}.demo-table-expand .el-form-item{margin-right:0;margin-bottom:0;width:50%}",""])},213:function(e,t,a){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={mounted:function(){this.getArticles()},data:function(){return{loading:!1,tableData:[],page:{}}},methods:{currentChange:function(e){var t=this;this.loading=!0,this.$axios({url:this.$difines.root_url+"/api/admin/articles?page="+e,method:"get",headers:{Authorization:"Bearer "+this.$auth.getToken()}}).then(function(e){t.tableData=e.data.data.data,t.page.pageSize=e.data.data.per_page,t.page.total=e.data.data.total,t.loading=!1}).catch(function(e){})},getArticles:function(){var e=this;this.loading=!0,this.$axios({url:this.$difines.root_url+"/api/admin/articles",method:"get",headers:{Authorization:"Bearer "+this.$auth.getToken()}}).then(function(t){e.tableData=t.data.data.data,e.page.pageSize=t.data.data.per_page,e.page.total=t.data.data.total,e.loading=!1}).catch(function(t){console.log(t),e.loading=!1})},handleEdit:function(e,t){this.$router.push({name:"articles/edit",params:{id:t.id}})},handleDelete:function(e,t){var a=this;this.$axios({url:this.$difines.root_url+"/api/admin/articles/"+t.id,method:"DELETE",headers:{Authorization:"Bearer "+this.$auth.getToken()}}).then(function(e){0==e.data.err_no?(a.$notify.success({title:"成功",message:"文章删除成功"}),a.getArticles()):(a.$notify.error({title:"错误",message:"文章删除失败"}),a.getArticles())}).catch(function(e){a.$notify.error({title:"错误",message:"文章删除失败"}),a.getArticles()})},handlePreview:function(e,t){window.open("/articles/"+t.id)}}}},214:function(e,t){e.exports={render:function(){var e=this,t=e.$createElement,a=e._self._c||t;return a("section",{staticClass:"main"},[a("div",{staticClass:"crumbs"},[a("el-breadcrumb",{attrs:{separator:"/"}},[a("el-breadcrumb-item",{attrs:{to:{path:"/"}}},[e._v("首页")]),e._v(" "),a("el-breadcrumb-item",[e._v("文章管理")]),e._v(" "),a("el-breadcrumb-item",[e._v("文章列表")])],1)],1),e._v(" "),a("div",{directives:[{name:"loading",rawName:"v-loading",value:e.loading,expression:"loading"}]},[a("div",{staticStyle:{float:"right","margin-bottom":"2rem"}},[a("router-link",{attrs:{to:"/articles/create"}},[a("el-button",{attrs:{type:"primary",icon:"plus"}},[e._v("添加文章")])],1)],1),e._v(" "),a("el-table",{staticStyle:{width:"100%"},attrs:{data:e.tableData}},[a("el-table-column",{attrs:{type:"expand"},scopedSlots:e._u([{key:"default",fn:function(t){return[a("el-form",{staticClass:"demo-table-expand",attrs:{"label-position":"left",inline:""}},[a("el-form-item",{attrs:{label:"分类ID"}},[a("span",[e._v(e._s(t.row.category_id))])]),e._v(" "),a("el-form-item",{attrs:{label:"文章ID"}},[a("span",[e._v(e._s(t.row.id))])]),e._v(" "),a("el-form-item",{attrs:{label:"点击量"}},[a("span",[e._v(e._s(t.row.page_views))])]),e._v(" "),a("el-form-item",{attrs:{label:"标签"}},e._l(t.row.tags,function(t){return a("el-tag",{key:t.id,attrs:{type:"primary"}},[e._v(e._s(t.name)+"\n                            ")])})),e._v(" "),a("el-form-item",{attrs:{label:"是否推荐"}},[a("span",[e._v(e._s(2===t.row.recommend?"是":"否"))])]),e._v(" "),a("el-form-item",{attrs:{label:"发布状态"}},[a("span",[e._v(e._s(2===t.row.publish_status?"已发布":"草稿"))])]),e._v(" "),a("el-form-item",{attrs:{label:"创建时间"}},[a("span",[e._v(e._s(t.row.created_at))])]),e._v(" "),a("el-form-item",{attrs:{label:"描述"}},[a("span",[e._v(e._s(t.row.summary))])])],1)]}}])}),e._v(" "),a("el-table-column",{attrs:{label:"文章 ID",width:"150",prop:"id"}}),e._v(" "),a("el-table-column",{attrs:{label:"分类",width:"180",prop:"article_category.name"}}),e._v(" "),a("el-table-column",{attrs:{label:"标题",width:"150",prop:"title"}}),e._v(" "),a("el-table-column",{attrs:{label:"更新时间",width:"180",prop:"updated_at"}}),e._v(" "),a("el-table-column",{attrs:{label:"发布时间",width:"180",prop:"published_at"}}),e._v(" "),a("el-table-column",{attrs:{width:"250",label:"操作"},scopedSlots:e._u([{key:"default",fn:function(t){return[a("el-button",{attrs:{size:"small"},on:{click:function(a){e.handleEdit(t.$index,t.row)}}},[e._v("编辑\n                    ")]),e._v(" "),a("el-button",{attrs:{size:"small",type:"danger"},on:{click:function(a){e.handleDelete(t.$index,t.row)}}},[e._v("删除\n                    ")]),e._v(" "),a("el-button",{attrs:{size:"small"},on:{click:function(a){e.handlePreview(t.$index,t.row)}}},[e._v("预览\n                    ")])]}}])})],1),e._v(" "),a("el-pagination",{attrs:{layout:"prev, pager, next","page-size":e.page.pageSize,total:e.page.total},on:{"current-change":e.currentChange}})],1)])},staticRenderFns:[]}},421:function(e,t,a){var n=a(74)(a(213),a(214),!1,function(e){a(211)},null,null);e.exports=n.exports},74:function(e,t){e.exports=function(e,t,a,n,r,i){var o,s=e=e||{},l=typeof e.default;"object"!==l&&"function"!==l||(o=e,s=e.default);var d,c="function"==typeof s?s.options:s;if(t&&(c.render=t.render,c.staticRenderFns=t.staticRenderFns,c._compiled=!0),a&&(c.functional=!0),r&&(c._scopeId=r),i?(d=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),n&&n.call(this,e),e&&e._registeredComponents&&e._registeredComponents.add(i)},c._ssrRegister=d):n&&(d=n),d){var u=c.functional,p=u?c.render:c.beforeCreate;u?(c._injectStyles=d,c.render=function(e,t){return d.call(t),p(e,t)}):c.beforeCreate=p?[].concat(p,d):[d]}return{esModule:o,exports:s,options:c}}}});
+webpackJsonp([8],{
+
+/***/ 211:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(250)
+}
+var normalizeComponent = __webpack_require__(76)
+/* script */
+var __vue_script__ = __webpack_require__(252)
+/* template */
+var __vue_template__ = __webpack_require__(253)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\admin\\js\\components\\page\\Categories.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-61d37a56", Component.options)
+  } else {
+    hotAPI.reload("data-v-61d37a56", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 217:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(218)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction, _options) {
+  isProduction = _isProduction
+
+  options = _options || {}
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+
+/***/ 218:
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
+
+/***/ 250:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(251);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(217)("0a8d922d", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61d37a56\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Categories.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/_css-loader@0.28.9@css-loader/index.js!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61d37a56\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./Categories.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 251:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(98)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.demo-table-expand {\n    font-size: 0;\n}\n.demo-table-expand label {\n    width: 90px;\n    color: #99a9bf;\n}\n.demo-table-expand .el-form-item {\n    margin-right: 0;\n    margin-bottom: 0;\n    width: 50%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 252:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    beforeMount: function beforeMount() {
+        this.getCategories();
+    },
+    data: function data() {
+        return {
+            loading: false,
+            tableData: [],
+            page: {},
+            dialogEditFormVisible: false,
+            dialogCreateFormVisible: false,
+            editForm: {
+                id: 0,
+                name: '',
+                serial_number: 0
+            },
+            createForm: {
+                name: '',
+                serial_number: 0
+            },
+            formLabelWidth: '120px'
+        };
+    },
+
+    methods: {
+        currentChange: function currentChange(p) {
+            var _this = this;
+
+            this.loading = true;
+            this.$axios({
+                url: this.$difines.root_url + '/api/admin/article-categories?page=' + p,
+                method: 'get'
+            }).then(function (response) {
+                _this.tableData = response.data.data.data;
+                _this.page.pageSize = response.data.data.per_page;
+                _this.page.total = response.data.data.total;
+                _this.loading = false;
+            }).catch(function (response) {});
+        },
+        getCategories: function getCategories() {
+            var _this2 = this;
+
+            this.loading = true;
+            this.$axios({
+                url: this.$difines.root_url + '/api/admin/article-categories',
+                method: 'get'
+            }).then(function (response) {
+                // 提示: 如果这个位置console.log()那么就会出错。。
+                _this2.tableData = response.data.data.data;
+                _this2.page.pageSize = response.data.data.per_page;
+                _this2.page.total = response.data.data.total;
+                _this2.loading = false;
+            }).catch(function (response) {
+                _this2.loading = false;
+            });
+        },
+        updateCategory: function updateCategory() {
+            var _this3 = this;
+
+            this.$axios({
+                url: this.$difines.root_url + '/api/admin/article-categories/' + this.editForm.id,
+                method: 'PUT',
+                data: {
+                    name: this.editForm.name,
+                    serial_number: this.editForm.serial_number
+                }
+            }).then(function (response) {
+                if (response.data.err_no !== 0) {
+                    _this3.$notify.error({
+                        title: '错误',
+                        message: '分类修改失败'
+                    });
+                } else {
+                    _this3.$notify.success({
+                        title: '成功',
+                        message: '分类修改成功'
+                    });
+                    _this3.getCategories();
+                }
+            }).catch(function (response) {});
+        },
+        storeCategory: function storeCategory() {
+            var _this4 = this;
+
+            this.$axios({
+                url: this.$difines.root_url + '/api/admin/article-categories',
+                method: 'POST',
+                data: {
+                    name: this.createForm.name,
+                    serial_number: this.createForm.serial_number
+                }
+            }).then(function (response) {
+                if (response.data.err_no !== 0) {
+                    _this4.$notify.error({
+                        title: '错误',
+                        message: '分类添加失败'
+                    });
+                } else {
+                    _this4.$notify.success({
+                        title: '成功',
+                        message: '分类添加成功'
+                    });
+                    _this4.getCategories();
+                }
+            }).catch(function (response) {});
+        },
+        handleEdit: function handleEdit(index, row) {
+            this.editForm = row;
+        },
+        handleDelete: function handleDelete(index, row) {
+            var _this5 = this;
+
+            this.$axios({
+                url: this.$difines.root_url + '/api/admin/article-categories/' + row.id,
+                method: 'DELETE'
+            }).then(function (response) {
+                if (response.data.err_no !== 0) {
+                    _this5.$notify.error({
+                        title: '错误',
+                        message: response.data.err_msg
+                    });
+                } else {
+                    _this5.$notify.success({
+                        title: '成功',
+                        message: '分类删除成功'
+                    });
+                    _this5.getCategories();
+                }
+            }).catch(function (response) {});
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 253:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "main" }, [
+    _c(
+      "div",
+      { staticClass: "crumbs" },
+      [
+        _c(
+          "el-breadcrumb",
+          { attrs: { separator: "/" } },
+          [
+            _c("el-breadcrumb-item", { attrs: { to: { path: "/" } } }, [
+              _vm._v("首页")
+            ]),
+            _vm._v(" "),
+            _c("el-breadcrumb-item", [_vm._v("文章管理")]),
+            _vm._v(" "),
+            _c("el-breadcrumb-item", [_vm._v("分类列表")])
+          ],
+          1
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      [
+        _c(
+          "div",
+          { staticStyle: { float: "right", "margin-bottom": "2rem" } },
+          [
+            _c(
+              "el-button",
+              {
+                attrs: { type: "primary", icon: "plus" },
+                on: {
+                  click: function($event) {
+                    _vm.dialogCreateFormVisible = true
+                  }
+                }
+              },
+              [_vm._v("添加分类")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "el-table",
+          {
+            directives: [
+              {
+                name: "loading",
+                rawName: "v-loading",
+                value: _vm.loading,
+                expression: "loading"
+              }
+            ],
+            staticStyle: { width: "100%" },
+            attrs: { data: _vm.tableData }
+          },
+          [
+            _c("el-table-column", { attrs: { width: "60" } }),
+            _vm._v(" "),
+            _c("el-table-column", {
+              attrs: { prop: "id", label: "分类ID", width: "180" }
+            }),
+            _vm._v(" "),
+            _c("el-table-column", {
+              attrs: { prop: "name", label: "分类名", width: "180" }
+            }),
+            _vm._v(" "),
+            _c("el-table-column", {
+              attrs: { prop: "serial_number", label: "排序", width: "180" }
+            }),
+            _vm._v(" "),
+            _c("el-table-column", {
+              attrs: { prop: "updated_at", label: "更新时间", width: "200" }
+            }),
+            _vm._v(" "),
+            _c("el-table-column", {
+              attrs: { width: "250", label: "操作" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(scope) {
+                    return [
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { size: "small" },
+                          on: {
+                            click: function($event) {
+                              _vm.handleEdit(scope.$index, scope.row)
+                              _vm.dialogEditFormVisible = true
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        编 辑\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { size: "small", type: "danger" },
+                          on: {
+                            click: function($event) {
+                              _vm.handleDelete(scope.$index, scope.row)
+                            }
+                          }
+                        },
+                        [_vm._v("删 除\n                    ")]
+                      )
+                    ]
+                  }
+                }
+              ])
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("el-pagination", {
+          attrs: {
+            layout: "prev, pager, next",
+            "page-size": _vm.page.pageSize,
+            total: _vm.page.total
+          },
+          on: { "current-change": _vm.currentChange }
+        }),
+        _vm._v(" "),
+        _c(
+          "el-dialog",
+          {
+            attrs: { title: "修改分类", visible: _vm.dialogEditFormVisible },
+            on: {
+              "update:visible": function($event) {
+                _vm.dialogEditFormVisible = $event
+              }
+            }
+          },
+          [
+            _c(
+              "el-form",
+              { attrs: { model: _vm.editForm } },
+              [
+                _c(
+                  "el-form-item",
+                  {
+                    attrs: {
+                      label: "分类名称",
+                      "label-width": _vm.formLabelWidth
+                    }
+                  },
+                  [
+                    _c("el-input", {
+                      attrs: { "auto-complete": "off" },
+                      model: {
+                        value: _vm.editForm.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.editForm, "name", $$v)
+                        },
+                        expression: "editForm.name"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  {
+                    attrs: {
+                      label: "分类序号",
+                      "label-width": _vm.formLabelWidth
+                    }
+                  },
+                  [
+                    _c("el-input", {
+                      attrs: { "auto-complete": "off" },
+                      model: {
+                        value: _vm.editForm.serial_number,
+                        callback: function($$v) {
+                          _vm.$set(_vm.editForm, "serial_number", $$v)
+                        },
+                        expression: "editForm.serial_number"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dialog-footer",
+                attrs: { slot: "footer" },
+                slot: "footer"
+              },
+              [
+                _c(
+                  "el-button",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.dialogEditFormVisible = false
+                      }
+                    }
+                  },
+                  [_vm._v("取 消")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-button",
+                  {
+                    attrs: { type: "primary" },
+                    on: {
+                      click: function($event) {
+                        _vm.updateCategory()
+                        _vm.dialogEditFormVisible = false
+                      }
+                    }
+                  },
+                  [_vm._v("确 定")]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "el-dialog",
+          {
+            attrs: { title: "新增分类", visible: _vm.dialogCreateFormVisible },
+            on: {
+              "update:visible": function($event) {
+                _vm.dialogCreateFormVisible = $event
+              }
+            }
+          },
+          [
+            _c(
+              "el-form",
+              { attrs: { model: _vm.createForm } },
+              [
+                _c(
+                  "el-form-item",
+                  {
+                    attrs: {
+                      label: "分类名称",
+                      "label-width": _vm.formLabelWidth
+                    }
+                  },
+                  [
+                    _c("el-input", {
+                      attrs: { "auto-complete": "off" },
+                      model: {
+                        value: _vm.createForm.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.createForm, "name", $$v)
+                        },
+                        expression: "createForm.name"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  {
+                    attrs: {
+                      label: "分类序号",
+                      "label-width": _vm.formLabelWidth
+                    }
+                  },
+                  [
+                    _c("el-input", {
+                      attrs: { "auto-complete": "off" },
+                      model: {
+                        value: _vm.createForm.serial_number,
+                        callback: function($$v) {
+                          _vm.$set(_vm.createForm, "serial_number", $$v)
+                        },
+                        expression: "createForm.serial_number"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dialog-footer",
+                attrs: { slot: "footer" },
+                slot: "footer"
+              },
+              [
+                _c(
+                  "el-button",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.dialogCreateFormVisible = false
+                      }
+                    }
+                  },
+                  [_vm._v("取 消")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-button",
+                  {
+                    attrs: { type: "primary" },
+                    on: {
+                      click: function($event) {
+                        _vm.storeCategory()
+                        _vm.dialogCreateFormVisible = false
+                      }
+                    }
+                  },
+                  [_vm._v("确 定")]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-61d37a56", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 76:
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ })
+
+});

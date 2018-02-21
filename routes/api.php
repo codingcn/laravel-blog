@@ -33,19 +33,19 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function () {
 
     Route::get('/admin/article/categories', 'ArticleController@categories');
     Route::get('/admin/article/tag/search', 'ArticleController@searchTag');
-
-
+    Route::resource('/admin/links', 'LinkController', ['index', 'update', 'destroy']);
     // editor.md图片上传
     Route::post('/admin/articles/upload/image', 'ArticleController@imageUpload');
-});
-Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function () {
-    Route::resource('/admin/links', 'LinkController', ['index', 'update', 'destroy']);
+
+    Route::get('/admin/admin-user', 'AdminUserController@show');
+    Route::put('/admin/admin-user', 'AdminUserController@update');
+    Route::post('/admin/admin-user/upload-avatar', 'AdminUserController@avatarUpload');
+    Route::post('/admin/admin-user/upload-avatar-delete', 'AdminUserController@avatarDestroy');
 });
 
 Route::post('/oauth/token', 'Admin\AuthController@token');
 Route::post('/oauth/refresh-token', 'Admin\AuthController@refreshToken');
 
-Route::middleware('auth:api')->post('/admin-user', 'Admin\AuthController@adminUser');
 Route::post('hello', function (Request $request) {
     return json_encode(['liked' => true]);
 })->middleware('api');

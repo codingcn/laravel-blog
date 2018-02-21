@@ -11,11 +11,11 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Models\Admin;
+use App\Models\AdminUser;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
-class AuthController
+class AuthController extends CommonController
 {
     use  AuthenticatesUsers;
 
@@ -61,11 +61,4 @@ class AuthController
         $response = \Route::dispatch($proxy);
         return $response;
     }
-
-    public function adminUser()
-    {
-        $user = \Auth::guard('api')->user();
-        return json_encode($user);
-    }
-
 }
