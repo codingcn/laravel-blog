@@ -27,7 +27,7 @@ class CreateOauthGithubUsersTable extends Migration
             $table->string('starred_url', 256)->default('')->comment('');
             $table->string('subscriptions_url', 256)->default('')->comment('');
             $table->string('organizations_url', 256)->default('')->comment('');
-            $table->string('repos_url', 256)->default('')->comment('');
+            $table->string('repos_url', 256)->default('')->comment('仓库地址');
             $table->string('events_url', 256)->default('')->comment('');
             $table->string('received_events_url', 256)->default('')->comment('');
             $table->string('type', 32)->default('')->comment('');

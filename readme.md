@@ -8,6 +8,8 @@
 ```
 git clone https://github.com/codingcn/blog.git
 cd blog
+cp .env.example .env
+
 npm install
 npm run prod
 composer install
