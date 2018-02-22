@@ -45129,8 +45129,7 @@ var app = new Vue({
 /* harmony default export */ __webpack_exports__["a"] = ({
     install: function install(Vue, options) {
         Vue.prototype.$difines = {
-            root_url: location.protocol + '//' + location.host,
-            sex: 'woman'
+            root_url: location.protocol + '//' + location.host
         };
     }
 });

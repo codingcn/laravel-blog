@@ -27,13 +27,12 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
         var _hmt = _hmt || [];
         (function () {
             var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?54dd0f38ecd5ae6cd5d59a7efc428e3d";
+            hm.src = "https://hm.baidu.com/hm.js?8b621fa6b5c2343a2e74bc9b66ae558e";
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(hm, s);
         })();
     </script>
 </head>
-
 <body>
 <!--进度加载块start-->
 <div id="loading" class="loading">
@@ -182,13 +181,13 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
                 //一个对象数组，用于初始化标签。
                 entries: word_array,
                 //标签云的宽度。
-                width: '100%',
+                width: Math.abs($('.aside').width()),
                 //标签云的高度。
-                height: '60%',
+                height: Math.abs($('.aside').width() * 0.6),
                 //标签云的半径。
                 radius: '100%',
                 //标签云的最小半径。
-                radiusMin: '55',
+                radiusMin: '60',
                 //是否使用背景色。
                 bgDraw: true,
                 //背景颜色。
@@ -202,7 +201,7 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
                 //how the content is presented。
                 fov: 800,
                 //标签云动画的速度。
-                speed: 0.5,
+                speed: 0.8,
                 //标签云的字体。
                 fontFamily: 'Oswald, Arial, sans-serif',
                 //标签云的字体大小。

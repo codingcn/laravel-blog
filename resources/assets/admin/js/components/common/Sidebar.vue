@@ -1,9 +1,9 @@
 <template>
     <div class="sidebar">
-        <el-menu :default-active="onRoutes" unique-opened router class="el-menu-vertical" @open="handleOpen"
+        <el-menu unique-opened router class="el-menu-vertical" @open="handleOpen"
                  @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#42b983"
                  :collapse="isCollapse">
-            <el-menu-item  v-on:click="isCollapseClick" index="">
+            <el-menu-item v-on:click="isCollapseClick">
                 <span slot="title">收展</span>
                 <i class="fa fa-ellipsis-h"></i>
             </el-menu-item>
@@ -41,7 +41,7 @@
                 items: [
                     {
                         icon: 'fas fa-tachometer-alt',
-                        index: '/',
+                        index: '',
                         title: '控制面板'
                     },
                     {
@@ -90,9 +90,6 @@
             }
         },
         computed: {
-            onRoutes() {
-                return this.$route.path.replace('/', '');
-            }
         },
         methods: {
             handleOpen(key, keyPath) {
@@ -115,6 +112,7 @@
         width: 200px;
         min-height: 400px;
     }
+
     .sidebar {
         display: block;
         position: absolute;
@@ -128,6 +126,7 @@
     .sidebar > ul {
         height: 100%;
     }
+
     .sidebar i[class^="fa"] {
         margin-right: 5px;
         width: 24px;

@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 
-site_uri='http://localhost/blog/public/';
+site_uri = location.protocol + '//' + location.host;
 window.Vue = require('vue');
 
 /**
@@ -15,13 +15,9 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 Vue.component(
-  'app',
-  require('./components/home/App.vue')
-);
-Vue.component(
-  'like',
-  require('./components/home/Like.vue')
+    'like',
+    require('./components/Like.vue')
 );
 const app = new Vue({
-  el: '#app'
+    el: '#app'
 });

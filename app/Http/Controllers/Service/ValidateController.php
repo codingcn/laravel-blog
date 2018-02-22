@@ -1,14 +1,18 @@
 <?php
+
 namespace App\Http\Controllers\Service;
 
+use App\Http\ApiError\ErrorInfo;
 use Illuminate\Support\Facades\Cache;
 
 
 class ValidateController
 {
+    use ErrorInfo;
+
     public function sendSMS()
     {
-        $phone = '13529595970';
+        $phone = request('phone');
         $cache_key = 'sign_up_' . $phone;
         $cache_phone = Cache::get($cache_key);
         if ($cache_phone == null) {
@@ -35,13 +39,11 @@ class ValidateController
                 $cache_key = 'sign_up_' . $phone;
                 $cache_value = $code;
                 Cache::put($cache_key, $cache_value, '15');
-                return '发送成功';
-            } else {
-                //写入日志
-                return $arr_resp['sub_msg'];
             }
+            return $this->responseJson('OK', [$cache_phone], '发送成功');
         } else {
             //验证码还未过期
+            return '发送成功';
         }
     }
 }

@@ -613,7 +613,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("el-menu-item", { attrs: { index: "2" } }, [
+          _c("el-menu-item", { attrs: { index: "home" } }, [
             _c("a", { attrs: { href: "/", target: "_blank" } }, [
               _vm._v("网站首页")
             ])
@@ -621,7 +621,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "el-menu-item",
-            { attrs: { index: "3" } },
+            { attrs: { index: "users" } },
             [
               _c("router-link", { attrs: { to: { path: "/" } } }, [
                 _vm._v("用户管理")
@@ -632,7 +632,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "el-menu-item",
-            { attrs: { index: "4" } },
+            { attrs: { index: "articles" } },
             [
               _c("router-link", { attrs: { to: { path: "/articles" } } }, [
                 _vm._v("文章管理")
@@ -838,7 +838,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             isCollapse: false,
             items: [{
                 icon: 'fas fa-tachometer-alt',
-                index: '/',
+                index: '',
                 title: '控制面板'
             }, {
                 icon: 'fas fa-users',
@@ -875,11 +875,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    computed: {
-        onRoutes: function onRoutes() {
-            return this.$route.path.replace('/', '');
-        }
-    },
+    computed: {},
     methods: {
         handleOpen: function handleOpen(key, keyPath) {
             //                console.log(key, keyPath);
@@ -913,7 +909,6 @@ var render = function() {
         {
           staticClass: "el-menu-vertical",
           attrs: {
-            "default-active": _vm.onRoutes,
             "unique-opened": "",
             router: "",
             "background-color": "#545c64",
@@ -924,17 +919,13 @@ var render = function() {
           on: { open: _vm.handleOpen, close: _vm.handleClose }
         },
         [
-          _c(
-            "el-menu-item",
-            { attrs: { index: "" }, on: { click: _vm.isCollapseClick } },
-            [
-              _c("span", { attrs: { slot: "title" }, slot: "title" }, [
-                _vm._v("收展")
-              ]),
-              _vm._v(" "),
-              _c("i", { staticClass: "fa fa-ellipsis-h" })
-            ]
-          ),
+          _c("el-menu-item", { on: { click: _vm.isCollapseClick } }, [
+            _c("span", { attrs: { slot: "title" }, slot: "title" }, [
+              _vm._v("收展")
+            ]),
+            _vm._v(" "),
+            _c("i", { staticClass: "fa fa-ellipsis-h" })
+          ]),
           _vm._v(" "),
           _vm._l(_vm.items, function(item) {
             return [

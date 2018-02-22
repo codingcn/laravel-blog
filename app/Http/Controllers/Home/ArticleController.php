@@ -17,6 +17,11 @@ class ArticleController extends CommonController
         $this->articleRepository = $articleRepository;
     }
 
+    /**
+     * 文章详情
+     * @param Article $article
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     */
     public function show(Article $article)
     {
         if ($article->publish_status == 1) {
@@ -24,9 +29,10 @@ class ArticleController extends CommonController
         }
         $this->articleRepository->addPageViews($article);
         $article = $this->articleRepository->showArticle($article);
-        $seoTitle = $article->title . '_' . getSetting('site_title');
+//        dd($article);
+        $seoTitle = $article['title'] . '_' . getSetting('site_title');
         $seoKeywords = '面朝大海，春暖花开';
-        $seoDescription = $article->summary;
+        $seoDescription = $article['summary'];
         $seo = $this->getSeoInfo($seoTitle, $seoKeywords, $seoDescription);
         $data = [
             'article' => $article,
@@ -35,7 +41,11 @@ class ArticleController extends CommonController
         return view('home.article', $data);
     }
 
-    public function archives(Request $request)
+    /**
+     * 归档
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function archives()
     {
         $article = $this->articleRepository->archives();
         $data = [

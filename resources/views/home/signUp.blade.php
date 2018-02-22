@@ -139,7 +139,7 @@
                 cache: false,
                 success: function (data) {
                     if (data == null) {
-
+                        console.log(data);
                     }
                 }
             });

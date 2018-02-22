@@ -9,7 +9,7 @@ class UserController extends CommonController
 {
     public function index()
     {
-        $res = User::select(['id', 'username', 'email', 'phone', 'created_at'])->paginate(1);
+        $res = User::select(['id', 'username', 'email', 'phone', 'created_at'])->paginate(10);
         return $this->responseJson('OK', $res);
     }
 
@@ -21,7 +21,7 @@ class UserController extends CommonController
                 ->where('username', 'like', "%{$keywords}%")
                 ->orWhere('phone', 'like', "%{$keywords}%")
                 ->orWhere('email', 'like', "%{$keywords}%")
-                ->paginate(1);
+                ->paginate(10);
             return $this->responseJson('OK', $res);
         }
     }

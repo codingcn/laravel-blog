@@ -10,11 +10,11 @@
             <el-menu-item index="logo" class="logo">
                 <router-link :to="{path:'/admin'}">Dash Board</router-link>
             </el-menu-item>
-            <el-menu-item index="2"><a href="/" target="_blank">网站首页</a></el-menu-item>
-            <el-menu-item index="3">
+            <el-menu-item index="home"><a href="/" target="_blank">网站首页</a></el-menu-item>
+            <el-menu-item index="users">
                 <router-link :to="{path:'/'}">用户管理</router-link>
             </el-menu-item>
-            <el-menu-item index="4">
+            <el-menu-item index="articles">
                 <router-link :to="{path:'/articles'}">文章管理</router-link>
             </el-menu-item>
             <el-submenu index="20" class="user-info">

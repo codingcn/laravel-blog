@@ -425,19 +425,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     beforeMount: function beforeMount() {
@@ -624,44 +611,6 @@ var render = function() {
             _vm._v(" "),
             _c("el-table-column", {
               attrs: { prop: "created_at", label: "注册时间", width: "180" }
-            }),
-            _vm._v(" "),
-            _c("el-table-column", {
-              attrs: { label: "操作" },
-              scopedSlots: _vm._u([
-                {
-                  key: "default",
-                  fn: function(scope) {
-                    return [
-                      _c(
-                        "el-button",
-                        {
-                          attrs: { size: "mini" },
-                          on: {
-                            click: function($event) {
-                              _vm.handleEdit(scope.$index, scope.row)
-                            }
-                          }
-                        },
-                        [_vm._v("编辑\n                    ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-button",
-                        {
-                          attrs: { size: "mini", type: "danger" },
-                          on: {
-                            click: function($event) {
-                              _vm.handleDelete(scope.$index, scope.row)
-                            }
-                          }
-                        },
-                        [_vm._v("删除\n                    ")]
-                      )
-                    ]
-                  }
-                }
-              ])
             })
           ],
           1

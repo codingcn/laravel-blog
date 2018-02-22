@@ -42,24 +42,37 @@ class ArticleRepository
     public function showArticle(Article $article)
     {
         //取得当前文章的总评论数
-        $article = $article->withCount('comments')
-            ->find($article->id)
-            ->load('comments', 'tags', 'user');
-        $article->comments = $article->comments()->withCount('likes')->get();
-        $article->content_html = preg_replace("/<img\s+src=['\"](.+)['\"]\s(.*('|\"))>/", '<img src="' . asset('storage') . '${1}" ${2}>', $article->content_html);
+        $article = $article->select(['id', 'user_id', 'category_id', 'title', 'summary', 'content_html', 'publish_status', 'page_views', 'content_length', 'content_length','published_at'])
+            ->withCount('comments')
+            ->with([
+                'comments' => function ($query) {
+                    $query->with([
+                        'user' => function ($query) {
+                            $query->select(['id', 'username', 'avatar']);
+                        }
+                    ])->withCount('likes')->get();
+                },
+                'tags' => function ($query) {
+                    $query->select(['id', 'name']);
+                },
+                'user' => function ($query) {
+                    $query->select(['id', 'username', 'avatar']);
+                }
+            ])->first()->toArray();
+        $article['content_html'] = preg_replace("/<img\s+src=['\"](.+)['\"]\s(.*('|\"))>/", '<img src="' . asset('storage') . '${1}" ${2}>', $article['content_html']);
         return $article;
     }
 
     public function archives()
     {
-        if (request('year')&&request('month')){
+        if (request('year') && request('month')) {
             return Article::where('publish_status', '=', '2')
                 ->select(['*'])
                 ->orderBy('published_at', 'desc')
                 ->filter(request()->only(['year', 'month']))
                 ->latest()
                 ->paginate(10);
-        }else{
+        } else {
             return Article::where('publish_status', '=', '2')
                 ->select(['*', DB::raw("DATE_FORMAT( published_at,'%Y-%m') as published_date")])
                 ->orderBy('published_at', 'desc')

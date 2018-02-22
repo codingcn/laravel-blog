@@ -11,8 +11,6 @@
 |
 */
 
- Route::get('/test', 'Home\IndexController@test');
-
 /**
  * 前台路由
  */
@@ -59,12 +57,13 @@ Route::group(['prefix' => 'comment', 'namespace' => 'Home'], function () {
 });
 Route::view('/about', 'home.about');
 
-
-Route::view('/admin', 'admin.layout');
-Route::view('/admin/{query}', 'admin.layout')->where('query', '.*');
-
+// Github登录
 Route::get('/oauth/github/authorize', 'Home\OauthGithubController@authorize');
 Route::get('/oauth/github/callback', 'Home\OauthGithubController@callback');
 
 
 Route::post('/service/sendsms', 'Service\ValidateController@sendSMS');
+
+// 后台模板渲染
+Route::view('/admin', 'admin.layout');
+Route::view('/admin/{query}', 'admin.layout')->where('query', '.*');
