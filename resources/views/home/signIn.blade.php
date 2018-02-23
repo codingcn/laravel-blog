@@ -9,33 +9,27 @@
             <a href="{{ url('/index') }}">{{getSetting('site_title')}}</a>
         </div>
         <div class="sign">
-            <h4 class="title">
-                <div class="normal-title">
-                    <a id="sign-in-btn" class="active" href="{{ url('/sign-in') }}">登录</a>
-                    <b>·</b>
-                    <a id="sign-up-btn" href="{{ url('/sign-up') }}">注册</a>
-                </div>
-            </h4>
+            <div class="title">
+                <a id="sign-in-btn" class="active" href="{{ url('/sign-in') }}">登录</a>
+                <b>·</b>
+                <a id="sign-up-btn" href="{{ url('/sign-up') }}">注册</a>
+            </div>
             <div class="sign-up">
                 <form action="{{ url('/sign-in') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="user" class="control-label">手机号 或 Email</label>
-                        <input class="form-control" name="user" required="" placeholder="11 位手机号 或 Email" autocomplete="off">
+                        <label for="user" class="control-label">用户名 或 Email</label>
+                        <input class="form-control" name="user" required="" placeholder="用户名 或 Email"
+                               autocomplete="off">
+                        <span class="text-danger small">{{$errors->first('user')}}</span>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">密码</label><span class="pull-right"><a href="#">忘记密码</a></span>
-                        <input class="form-control" name="password" required="" placeholder="密码" type="password" autocomplete="off">
+                        <label class="control-label">密码</label><span class="pull-right"><a href="{{url('/password/reset/email/send')}}">忘记密码</a></span>
+                        <input class="form-control" name="password" required="" placeholder="密码" type="password"
+                               autocomplete="off">
+                        <span class="text-danger small">{{$errors->first('password')}}</span>
+                        <span class="text-danger small">{{$errors->first('result')}}</span>
                     </div>
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     <div class="form-group clearfix">
                         <div class="checkbox pull-left">
                             <label><input name="is_remember" value="1" checked="" type="checkbox"> 记住登录状态</label>
@@ -53,27 +47,5 @@
     </div>
 @endsection
 @section('app_js')
-    <script>
-        $(function () {
-            if ($("input[name=sign_on_type]:checked").val() == 'phone') {
-                $(".sign-on-mail").hide();
-                $(".sign-on-phone").show();
-            }
-            if ($("input[name=sign_on_type]:checked").val() == 'mail') {
-                $(".sign-on-phone").hide();
-                $(".sign-on-mail").show();
-            }
-            $("input[name=sign_on_type]").change(function () {
-                if ($(this).val() == 'phone') {
-                    $(".sign-on-mail").hide();
-                    $(".sign-on-phone").show();
-                }
-                if ($(this).val() == 'mail') {
-                    $(".sign-on-phone").hide();
-                    $(".sign-on-mail").show();
-                }
-            });
-        })
-    </script>
 @endsection
 

@@ -40,7 +40,7 @@ class IndexController extends CommonController
     public function welcome(Request $request)
     {
         session(['hello' => 'worlds']);
-        return view('home/welcome');
+        return view('home.welcome');
     }
 
     public function test()

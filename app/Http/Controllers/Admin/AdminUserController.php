@@ -17,7 +17,7 @@ class AdminUserController extends CommonController
 {
     public function show()
     {
-        $user = \Auth::guard('api')->user();
+        $user = \Auth::guard('admin_passport')->user();
         if (preg_match('/^http/', $user->avatar) == false) {
             $user->avatar = \Storage::url($user->avatar);
         }
@@ -35,7 +35,7 @@ class AdminUserController extends CommonController
                 'avatar'
             ]
         );
-        $admin_user = \Auth::guard('api')->user();
+        $admin_user = \Auth::guard('admin_passport')->user();
         $admin_user->username = $data['username'];
         $admin_user->phone = $data['phone'];
         $admin_user->email = $data['email'];

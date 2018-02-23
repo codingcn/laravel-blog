@@ -15,10 +15,19 @@
  * 前台路由
  */
 
-Route::get('/', 'Home\IndexController@index');
+Route::view('/t', 'emails.verify');
 Route::get('/', 'Home\IndexController@index');
 Route::get('/index', 'Home\IndexController@index');
 Route::get('/welcome', 'Home\IndexController@welcome');
+
+
+Route::get('/email/verify/{token}', 'Home\UserController@emailVerify');
+
+// 重置密码邮件发送
+Route::view('/password/reset/email/send', 'home.auth.password.email');
+Route::post('/password/reset/email/send', 'Home\UserController@sendPasswordResetEmail');
+Route::view('/password/reset/{token}', 'home.auth.password.reset');
+Route::post('/password/reset', 'Home\UserController@passwordReset');
 
 //文章搜索
 Route::get('/article/search', 'Home\ArticleController@search');
@@ -52,17 +61,13 @@ Route::group(['prefix' => 'comment', 'namespace' => 'Home'], function () {
     Route::get('/', 'CommentController@list');
     //创建评论
     Route::post('/store/{article}', 'CommentController@store');
-    Route::post('/like/{comment}', 'CommentController@like');
-    Route::post('/dislike/{comment}', 'CommentController@dislike');
+    Route::put('{comment}/like', 'CommentController@like');
 });
 Route::view('/about', 'home.about');
 
 // Github登录
 Route::get('/oauth/github/authorize', 'Home\OauthGithubController@authorize');
 Route::get('/oauth/github/callback', 'Home\OauthGithubController@callback');
-
-
-Route::post('/service/sendsms', 'Service\ValidateController@sendSMS');
 
 // 后台模板渲染
 Route::view('/admin', 'admin.layout');

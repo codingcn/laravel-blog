@@ -25,7 +25,7 @@ class Comment extends Model
      */
     public function like($user_id)
     {
-        return $this->hasOne(Like::class)->where('user_id', $user_id);
+        return $this->hasOne(CommentLike::class)->where('user_id', $user_id);
     }
 
     /**
@@ -34,6 +34,6 @@ class Comment extends Model
      */
     public function likes()
     {
-        return $this->hasMany(Like::class);
+        return $this->hasMany(CommentLike::class);
     }
 }

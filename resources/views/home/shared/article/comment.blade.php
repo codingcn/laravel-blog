@@ -1,6 +1,6 @@
 <section class="comment">
     <h2>评论（{{$article['comments_count']}}）</h2>
-    @if(\Auth::guard('web')->check())
+    @if(\Auth::guard('home_session')->check())
         <div class="comment-form">
             <form action="{{ url('comment/store/'.$article['id']) }}" method="POST">
                 {{ csrf_field() }}
@@ -44,7 +44,6 @@
                             <!-- 空的话自然是显示赞 -->
                             <div class="comment-like">
                                 <like comment_id="{{$comment['id']}}"
-                                      user_id="{{Auth::guard('web')->id()}}"
                                       like_count="{{$comment['likes_count']}}"
                                 >
                                 </like>

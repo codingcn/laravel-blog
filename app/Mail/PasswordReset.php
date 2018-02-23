@@ -2,26 +2,21 @@
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Welcome extends Mailable
+class PasswordReset extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    public $password_reset;
 
-    /**
-     * Welcome constructor.
-     * @param User $user
-     */
-    public function __construct(User $user)
+    public function __construct(\App\Models\PasswordReset $password_reset)
     {
-        $this->user=$user;
-        $this->subject('欢迎加入边城！');
+        $this->password_reset = $password_reset;
+        $this->subject('【' . getSetting('site_title') . '】账号密码重置申请！');
     }
 
     /**
@@ -31,6 +26,6 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.welcome');
+        return $this->view('emails.passwordReset');
     }
 }

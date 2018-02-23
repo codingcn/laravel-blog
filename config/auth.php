@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'home_session',
         'passwords' => 'users',
     ],
 
@@ -36,14 +36,18 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'home_session' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
 
-        'api' => [
+        'admin_passport' => [
             'driver' => 'passport',
             'provider' => 'admin_users',
+        ],
+        'home_token' => [
+            'driver' => 'token',
+            'provider' => 'users',
         ]
     ],
 

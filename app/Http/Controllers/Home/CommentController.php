@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Models\Article;
 use App\Models\Comment;
-use App\Models\Like;
+use App\Models\CommentLike;
 use Illuminate\Http\Request;
 
 
@@ -26,31 +26,12 @@ class CommentController extends CommonController
 
     public function like(Comment $comment)
     {
-        if (\Auth::check()) {
-            $param = [
-                'user_id' => \Auth::id(),
-                'comment_id' => $comment->id
-            ];
-            Like::firstOrCreate($param);
-            return json_encode([
-                'code'=>'0',
-                'result'=>[
-                    'msg'=>'赞+1'
-                ]
-            ]);
-        }else{
-            return json_encode([
-                'code'=>'0',
-                'result'=>[
-                    'msg'=>'请先登录'
-                ]
-            ]);
+        return $this->responseJson('OK', [\request()->user()], '赞+1');
+        if (\Auth::guard('home_session')->check()) {
+//            \Auth::guard('home_session')->user()->likeCommentFor($comment);
+            return $this->responseJson('OK', [\Auth::guard('home_session')], '赞+1');
+        } else {
+            return $this->responseJson('OK', [], '请先登录');
         }
-    }
-
-    public function dislike(Comment $comment)
-    {
-        $comment->like(\Auth::id())->delete();
-        return back();
     }
 }

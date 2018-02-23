@@ -80,9 +80,9 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
                             </form>
                         </li>
                         <li class="member-btn">
-                            @if(\Auth::guard('web')->check())
+                            @if(\Auth::guard('home_session')->check())
                                 <?php
-                                $user = \Auth::guard('web')->user();
+                                $user = \Auth::guard('home_session')->user();
                                 if (!empty($user->avatar)) {
                                     $avatar = $user->avatar;
                                 } else {
@@ -90,7 +90,7 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
                                 }
                                 ?>
                                 <img src="{{$avatar}}" alt="{{$user->username}}">
-                                <a href="{{ url('/') }}">{{\Auth::guard('web')->user()->username}}</a>
+                                <a href="{{ url('/') }}">{{\Auth::guard('home_session')->user()->username}}</a>
                                 |
                                 <a href="{{ url('/sign-out') }}">注销</a>
                             @else

@@ -66,6 +66,11 @@ class OauthGithubController
         }
     }
 
+    /**
+     * 创建用户
+     * @param $oauth_user_data
+     * @return bool
+     */
     public function findOrCreateUser($oauth_user_data)
     {
         $user_data = [
@@ -73,6 +78,7 @@ class OauthGithubController
             'email' => $oauth_user_data['email'],
             'avatar' => $oauth_user_data['avatar_url'],
             'password' => '',
+            'api_token' => str_random(64),
         ];
         try {
             \DB::beginTransaction();
@@ -80,17 +86,18 @@ class OauthGithubController
             if ($oauth_github_user) {
                 OauthGithubUser::where('login', $oauth_user_data['login'])->update($oauth_user_data);
                 User::where('id', $oauth_github_user->user_id)->update($user_data);
-                \Auth::guard('web')->loginUsingId($oauth_github_user->user_id);
+                \Auth::guard('home_session')->loginUsingId($oauth_github_user->user_id);
             } else {
                 $user = User::create($user_data);
                 $oauth_user_data['user_id'] = $user->id;
+                $oauth_user_data['email_verify_status'] = 2;
                 OauthGithubUser::create($oauth_user_data);
-                \Auth::guard('web')->loginUsingId($user->id);
+                \Auth::guard('home_session')->loginUsingId($user->id);
             }
             \DB::commit();
             return true;
         } catch (\Exception $e) {
-            var_dump($e);
+            \Log::info('Github Oauth error ' . $e);
             \DB::rollBack();
             return false;
         }

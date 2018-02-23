@@ -17,13 +17,20 @@ class User extends Authentication
 
     public function articles()
     {
-        $this->hasMany(Article::class);
+        return $this->hasMany(Article::class);
     }
 
     public function comments()
     {
-        $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class);
     }
 
-
+    public function commentLikes()
+    {
+        return $this->belongsToMany(CommentLike::class, 'comment_likes')->withTimestamps();
+    }
+    public function likeCommentFor(Comment $comment)
+    {
+        return $this->commentLikes()->toggle($comment);
+    }
 }

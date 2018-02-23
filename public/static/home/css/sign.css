@@ -17,7 +17,8 @@
 }
 
 .sign {
-    width: 400px;
+    width: 40%;
+    min-width: 400px;
     margin: 0 auto;
     padding: 30px 50px 30px;
     background-color: #fff;
@@ -27,6 +28,7 @@
 }
 
 .sign .title {
+    font-size: 1.4rem;
     margin: 0 auto 20px;
     padding-bottom: 20px;
     font-weight: 300;
@@ -86,11 +88,13 @@
     border-color: #1ab394;
     color: #FFFFFF;
 }
-.oauth i{
+
+.oauth i {
     font-size: 1.2rem;
     padding-right: 0.5rem;
 }
-.oauth a{
+
+.oauth a {
     font-size: 1rem;
     color: #1d2124;
 }

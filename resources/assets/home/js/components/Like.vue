@@ -9,18 +9,22 @@
 
 <script>
     export default {
-        props: ['comment_id', 'user_id', 'like_count'],
+        props: ['comment_id', 'like_count'],
         mounted() {
-            console.log(this.comment_id, this.user_id, this.like_count)
-            if (this.user_id !== '') {
-                axios.post(site_uri + '/api/hello', {
-                    'comment_id': this.comment_id,
-                    'user_id': this.user_id
-                }).then(response => {
-                    // console.log(response.data)
-                    this.liked = response.data.liked
-                })
-            }
+            // if (this.current_user_id === this.comment_user_id) {
+            //     this.liked = true
+            // }else{
+            //     this.liked = false
+            // }
+            // if (this.user_id !== '') {
+            //     axios.post(site_uri + '/api/hello', {
+            //         'comment_id': this.comment_id,
+            //         'user_id': this.user_id
+            //     }).then(response => {
+            //         // console.log(response.data)
+            //         this.liked = response.data.liked
+            //     })
+            // }
         },
         data: function data() {
             return {
@@ -36,12 +40,9 @@
         methods: {
             like: function like() {
                 if (this.user_id === '') {
-                    alert('请先登陆！');
+                    location.href = site_uri + "/sign-in"
                 } else {
-                    axios.post(site_uri + '/api/hello', {
-                        'comment_id': this.comment_id,
-                        'user_id': this.user_id
-                    }).then(response => {
+                    axios.put(site_uri + '/comment/' + this.comment_id + '/like').then(response => {
                         this.liked = response.data.liked;
                     });
                 }

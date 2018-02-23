@@ -10,24 +10,24 @@
 |
 */
 // 用户管理
-Route::group(['middleware' => 'auth:api', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
+Route::group(['middleware' => 'auth:admin_passport', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/users', 'UserController@index');
     Route::get('/users/search', 'UserController@search');
 });
 // 系统设置
-Route::group(['middleware' => ['auth:api', 'can:setting'], 'prefix' => 'admin/settings', 'namespace' => 'Admin'], function () {
+Route::group(['middleware' => ['auth:admin_passport', 'can:setting'], 'prefix' => 'admin/settings', 'namespace' => 'Admin'], function () {
     Route::get('/', 'SettingController@index');
     Route::put('/', 'SettingController@update');
     Route::post('/upload-logo', 'SettingController@logoUpload');
     Route::post('/upload-logo-delete', 'SettingController@logoDestroy');
 });
 // 文章管理
-Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function () {
+Route::group(['middleware' => 'auth:admin_passport', 'namespace' => 'Admin'], function () {
     Route::post('/admin/articles/upload-editor', 'ArticleController@uploadBase64');
     Route::post('/admin/articles/upload-cover', 'ArticleController@uploadCover');
     Route::post('/admin/articles/upload-cover-del', 'ArticleController@uploadCoverDel');
     // 文章分类
-    Route::resource('/admin/article-categories', 'ArticleCategoryController', ['index',  'update', 'store','destroy']);
+    Route::resource('/admin/article-categories', 'ArticleCategoryController', ['index', 'update', 'store', 'destroy']);
     // 文章
     Route::resource('/admin/articles', 'ArticleController', ['index', 'update', 'store', 'show', 'destroy']);
 
@@ -46,6 +46,6 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function () {
 Route::post('/oauth/token', 'Admin\AuthController@token');
 Route::post('/oauth/refresh-token', 'Admin\AuthController@refreshToken');
 
-Route::post('hello', function (Request $request) {
-    return json_encode(['liked' => true]);
-})->middleware('api');
+Route::post('/comment/{comment}/like', function (Request $request) {
+    return json_encode(['liked' => $request]);
+})->middleware('home_token');

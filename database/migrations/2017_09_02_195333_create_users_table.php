@@ -19,7 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('email', 64)->default('');
             $table->string('avatar', 255)->default('');
             $table->string('phone', 32)->default('');
-            $table->string('password', 64)->comment('密码');
+            $table->string('password', 64)->default('')->comment('密码');
+            $table->string('api_token', 64)->default('')->comment('API认证');
+            $table->tinyInteger('email_verify_status')->default(1)->comment('1未验证，2以验证');
             $table->tinyInteger('gender')->unsigned()->default(3)->comment('1男，2女，3未知');
             $table->tinyInteger('status')->unsigned()->default(1)->comment('1启用，2禁用');
             $table->rememberToken();
