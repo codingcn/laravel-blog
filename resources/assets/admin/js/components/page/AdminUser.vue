@@ -147,7 +147,7 @@
                                 title: '成功',
                                 message: '修改成功，请重新登录'
                             });
-                            this.$auth.destoryToken()
+                            this.$auth.destroyToken()
                             localStorage.removeItem('admin_user')
                             this.$router.push('/sign-in');
                         }else{

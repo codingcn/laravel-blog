@@ -555,7 +555,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         handleSelect: function handleSelect(key, keyPath) {
             if (key === 'sign_out') {
-                this.$auth.destoryToken();
+                this.$auth.destroyToken();
                 localStorage.removeItem('admin');
                 this.$notify({
                     title: '成功',

@@ -5,6 +5,8 @@ namespace App\Repositories;
 
 
 use App\Models\Article;
+use App\Models\CommentLike;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class ArticleRepository
@@ -39,18 +41,20 @@ class ArticleRepository
         $article->save();
     }
 
-    public function showArticle(Article $article)
+    public function showArticle(Article $article, $user)
     {
         //取得当前文章的总评论数
-        $article = $article->select(['id', 'user_id', 'category_id', 'title', 'summary', 'content_html', 'publish_status', 'page_views', 'content_length', 'content_length','published_at'])
+        $article = $article->select(['id', 'user_id', 'category_id', 'title', 'summary', 'content_html', 'publish_status', 'page_views', 'content_length', 'content_length', 'published_at'])
             ->withCount('comments')
             ->with([
-                'comments' => function ($query) {
-                    $query->with([
+                'comments' => function ($comments_query) {
+                    $comments_query->with([
                         'user' => function ($query) {
                             $query->select(['id', 'username', 'avatar']);
                         }
-                    ])->withCount('likes')->get();
+                    ])
+                        ->withCount('likes')
+                        ->get();
                 },
                 'tags' => function ($query) {
                     $query->select(['id', 'name']);
@@ -59,6 +63,22 @@ class ArticleRepository
                     $query->select(['id', 'username', 'avatar']);
                 }
             ])->first()->toArray();
+        // 是否已赞
+        if (is_null($user)) {
+            foreach ($article['comments'] as $k => $comment) {
+                $article['comments'][$k]['is_liked'] = false;
+            }
+        } else {
+            $user_comment_likes = $user->commentLikes->toArray();
+            $user_comment_ids = array_column($user_comment_likes, 'comment_id');
+            foreach ($article['comments'] as $k => $comment) {
+                if (in_array($comment['id'], $user_comment_ids)) {
+                    $article['comments'][$k]['is_liked'] = true;
+                } else {
+                    $article['comments'][$k]['is_liked'] = false;
+                }
+            }
+        }
         $article['content_html'] = preg_replace("/<img\s+src=['\"](.+)['\"]\s(.*('|\"))>/", '<img src="' . asset('storage') . '${1}" ${2}>', $article['content_html']);
         return $article;
     }

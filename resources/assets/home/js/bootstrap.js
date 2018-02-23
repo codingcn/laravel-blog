@@ -40,8 +40,6 @@ if (token) {
 let authorization = document.head.querySelector('meta[name="authorization"]');
 if (authorization) {
     window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + authorization.content;
-} else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**

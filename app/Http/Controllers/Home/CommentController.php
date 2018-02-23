@@ -17,7 +17,7 @@ class CommentController extends CommonController
         ]);
         $data = [
             'article_id' => $article->id,
-            'user_id' => \Auth::id(),
+            'user_id' => \Auth::guard('home_session')->id(),
             'content' => $request->get('content'),
         ];
         Comment::create($data);
@@ -26,12 +26,13 @@ class CommentController extends CommonController
 
     public function like(Comment $comment)
     {
-        return $this->responseJson('OK', [\request()->user()], '赞+1');
-        if (\Auth::guard('home_session')->check()) {
-//            \Auth::guard('home_session')->user()->likeCommentFor($comment);
-            return $this->responseJson('OK', [\Auth::guard('home_session')], '赞+1');
+        $user = \Auth::guard('home_token')->user();
+        $res = $user->likeCommentFor($comment);
+        if (count($res['attached'])) {
+            $data['is_like'] = true;
         } else {
-            return $this->responseJson('OK', [], '请先登录');
+            $data['is_like'] = false;
         }
+        return $this->responseJson('OK', $data, '赞+1');
     }
 }

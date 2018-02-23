@@ -20,6 +20,10 @@ class User extends Authentication
         return $this->hasMany(Article::class);
     }
 
+    /**
+     * 用户评论列表
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -27,10 +31,15 @@ class User extends Authentication
 
     public function commentLikes()
     {
-        return $this->belongsToMany(CommentLike::class, 'comment_likes')->withTimestamps();
+        return $this->hasMany(CommentLike::class);
     }
+    public function commentLike()
+    {
+        return $this->belongsToMany(CommentLike::class, 'comment_likes', 'user_id', 'comment_id');
+    }
+
     public function likeCommentFor(Comment $comment)
     {
-        return $this->commentLikes()->toggle($comment);
+        return $this->commentLike()->toggle($comment);
     }
 }

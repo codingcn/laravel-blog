@@ -1,12 +1,14 @@
 <template>
     <div class="sidebar">
+        <div class="contraction" @click="isCollapseClick">
+            <i class="fa fa-ellipsis-h"></i>
+            <span>收展</span>
+        </div>
+
         <el-menu unique-opened router class="el-menu-vertical" @open="handleOpen"
                  @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#42b983"
                  :collapse="isCollapse">
-            <el-menu-item v-on:click="isCollapseClick">
-                <span slot="title">收展</span>
-                <i class="fa fa-ellipsis-h"></i>
-            </el-menu-item>
+
             <template v-for="item in items">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index">
@@ -41,7 +43,7 @@
                 items: [
                     {
                         icon: 'fas fa-tachometer-alt',
-                        index: '',
+                        index: 'index',
                         title: '控制面板'
                     },
                     {
@@ -89,8 +91,7 @@
                 ]
             }
         },
-        computed: {
-        },
+        computed: {},
         methods: {
             handleOpen(key, keyPath) {
 //                console.log(key, keyPath);
@@ -108,6 +109,18 @@
 </script>
 
 <style scoped>
+    .contraction{
+        cursor: pointer;
+        height: 2rem;
+        line-height: 2rem;
+        background-color: rgb(84, 92, 100);
+        color: #ffffff;
+        padding-left: 20px;
+    }
+    .contraction span {
+        padding-left: 12px;
+    }
+
     .el-menu-vertical:not(.el-menu--collapse) {
         width: 200px;
         min-height: 400px;

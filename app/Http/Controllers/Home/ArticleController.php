@@ -24,12 +24,16 @@ class ArticleController extends CommonController
      */
     public function show(Article $article)
     {
-        if ($article->publish_status == 1) {
+        if (\Auth::guard('home_session')->check()) {
+            $user = \Auth::guard('home_session')->user();
+        } else {
+            $user = null;
+        }
+        if ($article->publish_status === 1) {
             return response()->view('errors.404', [], 404);
         }
         $this->articleRepository->addPageViews($article);
-        $article = $this->articleRepository->showArticle($article);
-//        dd($article);
+        $article = $this->articleRepository->showArticle($article,$user);
         $seoTitle = $article['title'] . '_' . getSetting('site_title');
         $seoKeywords = '面朝大海，春暖花开';
         $seoDescription = $article['summary'];

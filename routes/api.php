@@ -15,7 +15,7 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'admin', 'namespace' => 'A
     Route::get('/users/search', 'UserController@search');
 });
 // 系统设置
-Route::group(['middleware' => ['auth:api', 'can:setting'], 'prefix' => 'admin/settings', 'namespace' => 'Admin'], function () {
+Route::group(['middleware' => ['auth:api'], 'prefix' => 'admin/settings', 'namespace' => 'Admin'], function () {
     Route::get('/', 'SettingController@index');
     Route::put('/', 'SettingController@update');
     Route::post('/upload-logo', 'SettingController@logoUpload');
@@ -46,4 +46,4 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function () {
 Route::post('/oauth/token', 'Admin\AuthController@token');
 Route::post('/oauth/refresh-token', 'Admin\AuthController@refreshToken');
 
-Route::post('/comment/{comment}/like', 'CommentController@like')->middleware('auth:home_token');
+Route::post('/comment/{comment}/like', 'Home\CommentController@like')->middleware('auth:home_token');

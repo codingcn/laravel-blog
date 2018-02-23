@@ -58,7 +58,7 @@
                 this.$router.push('/admin-user');
             },
             signOut() {
-                this.$auth.destoryToken()
+                this.$auth.destroyToken()
                 localStorage.removeItem('admin_user')
                 this.$notify({
                     title: '成功',

@@ -45,6 +45,7 @@
                             <div class="comment-like">
                                 <like comment_id="{{$comment['id']}}"
                                       like_count="{{$comment['likes_count']}}"
+                                      is_liked="{{$comment['is_liked']}}"
                                 >
                                 </like>
                             </div>

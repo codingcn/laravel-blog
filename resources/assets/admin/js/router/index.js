@@ -34,7 +34,7 @@ let router = new Router({
             component: Home,
             children: [
                 {
-                    path: '',
+                    path: '/index',
                     component: Index
                 },
                 {
@@ -83,7 +83,7 @@ router.beforeEach(
     (to, from, next) => {
         if (to.matched.some(record => record.meta.forVisitors)) {
             if (Vue.auth.isAuthenticated()) {
-                next({path: ''})
+                next({path: '/index'})
             } else {
                 next()
             }

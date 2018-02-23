@@ -95,7 +95,7 @@ axios.interceptors.response.use(
             switch (error.response.status) {
                 case 401: {
                     // 返回 401 清除token信息并跳转到登录页面
-                    Vue.auth.destoryToken();
+                    Vue.auth.destroyToken();
                     Notification.error({
                         title: '权限错误',
                         message: '请重新登陆'

@@ -19,16 +19,6 @@ class Comment extends Model
     }
 
     /**
-     * 和用户关联
-     * @param $user_id
-     * @return $this
-     */
-    public function like($user_id)
-    {
-        return $this->hasOne(CommentLike::class)->where('user_id', $user_id);
-    }
-
-    /**
      * 文章所有赞
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -36,4 +26,5 @@ class Comment extends Model
     {
         return $this->hasMany(CommentLike::class);
     }
+
 }

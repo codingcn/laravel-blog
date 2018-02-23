@@ -57,8 +57,7 @@
                             data:data
                         }).then(response => {
                                 // 刚开始踩坑了，js的时间戳微妙为单位，而且木有时区，和PHP不一样
-                                let js_time = Math.round(new Date().getTime() / 1000 - 28800)
-                                this.$auth.setToken(response.data.access_token, response.data.refresh_token, response.data.expires_in + js_time);
+                                this.$auth.setToken(response.data.data);
                                 this.getAdmin()
                             })
                             .catch(err => {

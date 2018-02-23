@@ -25,14 +25,8 @@ php artisan db:seed
 ### 4. 配置passport
 ```
 php artisan passport:keys
-php artisan passport:client --password
+php artisan passport:client --personal
 # 可以直接回车
-```
-将生成的密钥与令牌ID填写到.env
-```
-OAUTH_CLIENT_ID=你的令牌ID
-OAUTH_CLIENT_SECRET=你的密钥
-OAUTH_SCOPE=*
 ```
 ### 5. 测试
 后台访问：ServerName/admin
