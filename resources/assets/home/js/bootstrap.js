@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 /**
@@ -10,7 +9,8 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
     require('bootstrap');
-} catch (e) {}
+} catch (e) {
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -32,6 +32,14 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+// api token简易认证
+let authorization = document.head.querySelector('meta[name="authorization"]');
+if (authorization) {
+    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + authorization.content;
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }

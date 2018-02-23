@@ -61,7 +61,6 @@ Route::group(['prefix' => 'comment', 'namespace' => 'Home'], function () {
     Route::get('/', 'CommentController@list');
     //创建评论
     Route::post('/store/{article}', 'CommentController@store');
-    Route::put('{comment}/like', 'CommentController@like');
 });
 Route::view('/about', 'home.about');
 

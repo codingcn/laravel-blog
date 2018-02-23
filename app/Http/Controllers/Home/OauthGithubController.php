@@ -78,6 +78,7 @@ class OauthGithubController
             'email' => $oauth_user_data['email'],
             'avatar' => $oauth_user_data['avatar_url'],
             'password' => '',
+            'email_verify_status' => 2,
             'api_token' => str_random(64),
         ];
         try {
@@ -88,16 +89,20 @@ class OauthGithubController
                 User::where('id', $oauth_github_user->user_id)->update($user_data);
                 \Auth::guard('home_session')->loginUsingId($oauth_github_user->user_id);
             } else {
-                $user = User::create($user_data);
+                $user = User::updateOrCreate(
+                    [
+                        'email' => $user_data['email']
+                    ],
+                    $user_data
+                );
                 $oauth_user_data['user_id'] = $user->id;
-                $oauth_user_data['email_verify_status'] = 2;
                 OauthGithubUser::create($oauth_user_data);
                 \Auth::guard('home_session')->loginUsingId($user->id);
             }
             \DB::commit();
             return true;
         } catch (\Exception $e) {
-            \Log::info('Github Oauth error ' . $e);
+            \Log::info('Github Oauth error ' , (array)$e);
             \DB::rollBack();
             return false;
         }

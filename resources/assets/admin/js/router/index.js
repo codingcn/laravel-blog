@@ -110,7 +110,7 @@ router.beforeEach(
                     next()
                 })
                 .catch(response => {
-                    next({path: '/login'})
+                    next({path: '/sign-in'})
                 });
         }
     }

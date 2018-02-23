@@ -84,7 +84,7 @@ class UserController extends CommonController
             }
         }
         $this->sendVerifyEmailTo($email_verify);
-        return back()->withInput()->withErrors(['result' => '注册成功，请注意查看激活邮件！']);
+        return back()->withInput()->withErrors(['result' => '注册成功，请注意查收激活邮件！']);
     }
 
     /**
@@ -110,14 +110,14 @@ class UserController extends CommonController
         } else {
             try {
                 \DB::beginTransaction();
-                $user = User::where('email', $email_verify->email)->first();
+                $user = User::where('email', (array)$email_verify->email)->first();
                 $user->email_verify_status = 2;
                 $user->save();
                 $email_verify->delete();
                 \Auth::guard('home_session')->loginUsingId($user->id);
                 \DB::commit();
             } catch (\Exception $e) {
-                \Log::info('EmailVerify error ' . $e);
+                \Log::info('EmailVerify error ', (array)$e);
                 \DB::rollBack();
             }
             return \redirect('/');
@@ -129,6 +129,10 @@ class UserController extends CommonController
         $this->validate($request, [
             'email' => 'required|email',
         ]);
+        $user = User::where('email', $request->input('email'))->first();
+        if (is_null($user)) {
+            return back()->withInput()->withErrors(['result' => '该邮箱未注册，请直接注册。']);
+        }
         $reset_email = \App\Models\PasswordReset::updateOrCreate(
             [
                 'email' => $request->input('email')
@@ -171,7 +175,7 @@ class UserController extends CommonController
                 \Auth::guard('home_session')->loginUsingId($user->id);
                 \DB::commit();
             } catch (\Exception $e) {
-                \Log::info('PasswordReset error ' . $e);
+                \Log::info('PasswordReset error ', (array)$e);
                 \DB::rollBack();
             }
             return \redirect('/');

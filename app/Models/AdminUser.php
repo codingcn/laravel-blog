@@ -9,8 +9,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class AdminUser extends Authenticatable
 {
     use HasApiTokens, Notifiable;
-
-
     public function findForPassport($username) {
         return $this->orWhere('username', $username)->orWhere('email', $username)->orWhere('phone', $username)->first();
     }

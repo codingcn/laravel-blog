@@ -59,7 +59,7 @@ class ArticleController extends CommonController
             return $this->responseJson('INVALID_REQUEST', $validator->errors()->first());
         }
         $data = [
-            'user_id' => \Auth::guard('admin_passport')->id(),
+            'user_id' => \Auth::guard('api')->id(),
             'title' => $request->input('title'),
             'category_id' => $request->input('category_id', 0),
             'summary' => $request->input('summary'),

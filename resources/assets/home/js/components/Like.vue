@@ -42,8 +42,9 @@
                 if (this.user_id === '') {
                     location.href = site_uri + "/sign-in"
                 } else {
-                    axios.put(site_uri + '/comment/' + this.comment_id + '/like').then(response => {
-                        this.liked = response.data.liked;
+                    axios.post(site_uri + '/api/comment/' + this.comment_id + '/like').then(response => {
+                        console.log(response.data)
+                        // this.liked = response.data.liked;
                     });
                 }
             }

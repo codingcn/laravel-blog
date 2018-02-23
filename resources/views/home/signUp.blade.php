@@ -24,13 +24,13 @@
                     </div>
                     <div class="form-group">
                         <div class="sign-up-mail">
-                            <label for="password" class="control-label">电子邮箱</label>
+                            <label for="email" class="control-label">电子邮箱</label>
                             <input class="form-control" name="email" placeholder="您的邮箱地址" type="text">
                             <span class="text-danger small">{{$errors->first('email')}}</span>
                         </div>
                         <div class="form-group">
                             <label for="password" class="control-label">密码</label>
-                            <input type="text" class="form-control" name="password" required="" placeholder="不少于 6 位">
+                            <input type="password" class="form-control" name="password" required="" placeholder="不少于 6 位">
                             <span class="text-danger small">{{$errors->first('password')}}</span>
                         </div>
                         @if($errors->first('result'))

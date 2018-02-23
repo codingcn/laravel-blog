@@ -19,7 +19,7 @@
                     </div>
                     @if($errors->first('result'))
                         <div class="alert alert-success">
-                            <strong>成功！</strong>{{$errors->first('result')}}
+                            {{$errors->first('result')}}
                         </div>
                     @endif
                     <hr>
