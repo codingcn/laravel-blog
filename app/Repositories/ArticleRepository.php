@@ -70,7 +70,7 @@ class ArticleRepository
                 'user' => function ($query) {
                     $query->select(['id', 'username', 'avatar']);
                 }
-            ])->first()->toArray();
+            ])->find($article->id)->toArray();
         // 是否已赞
         if (is_null($user)) {
             foreach ($article['comments'] as $k => $comment) {
