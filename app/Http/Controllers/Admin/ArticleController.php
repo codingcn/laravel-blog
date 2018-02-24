@@ -185,7 +185,6 @@ class ArticleController extends CommonController
      */
     public function update(Article $article, Request $request)
     {
-        \Debugbar::disable();
         $this->validate($request, [
             'title' => 'required|string:max:255|min:2',
             'summary' => 'required|string|min:3',

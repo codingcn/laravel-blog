@@ -18,6 +18,7 @@ composer install
 
 ### 3. 建立目录链接及数据初始化
 ```shell
+php artisan key:generate
 php artisan storage:link
 php artisan migrate
 php artisan db:seed
