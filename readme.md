@@ -32,6 +32,10 @@ php artisan passport:client --personal
 ```
 ### 5. 设置目录及文件权限
 ```
+# 进入项目的上层目录
+cd ../
+mkdir -p blog/storage/{app,framework/views}
+mkdir -p blog/storage/framework/{cache,sessions/views}
 sudo chown -R www:www blog/
 sudo find blog/ -type f -exec chmod 644 {} \;
 sudo find blog/ -type d -exec chmod 755 {} \;
