@@ -75,7 +75,7 @@ class ArticleController extends CommonController
         if ($data['publish_status'] == 2) {
             $data['published_at'] = Carbon::now();
         }
-        $data['content_length'] = mb_strlen($data['content_html']);
+        $data['content_length'] = mb_strlen(strip_tags($data['content_html']));
         //dd($request->all());
         $article = Article::create($data);
         //添加标签
@@ -201,7 +201,7 @@ class ArticleController extends CommonController
         }
         $article->content_md = preg_replace('/^!\[.*\]\(http.*\/storage(\/.*)\)/m', '![](${1})', $request->get('content_md'));
         $article->content_html = preg_replace("/<img\s+src=['\"].+storage(.+)['\"]\s(.*('|\"))>/", '<img src="${1}" ${2}>', $request->get('content_html'));
-        $article->content_length = mb_strlen($article->content_html);
+        $article->content_length = mb_strlen(strip_tags($article->content_html));
         $article->recommend = $request->get('recommend');
         $article->category_id = $request->input('category_id', 0);
         $article->publish_status = $request->get('publish_status');

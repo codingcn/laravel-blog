@@ -28,10 +28,10 @@ let router = new Router({
         },
         {
             path: '/',
+            component: Home,
             meta: {
                 forAuth: true
             },
-            component: Home,
             children: [
                 {
                     path: '/index',
@@ -95,23 +95,6 @@ router.beforeEach(
             }
         } else {
             next()
-        }
-        if (!localStorage.getItem('access_token') && localStorage.getItem('refresh_token')) {
-            console.log(1)
-            const data = {
-                refresh_token: localStorage.getItem('refresh_token'),
-                scope: '*'
-            };
-            axios.post('http://localhost/blog/public/api/oauth/refresh-token', data)
-                .then(response => {
-                    // 刚开始踩坑了，js的时间戳微妙为单位，而且木有时区，和PHP不一样
-                    let js_time = Math.round(new Date().getTime() / 1000 - 28800)
-                    Vue.auth.setToken(response.data.access_token, response.data.refresh_token, response.data.expires_in + js_time);
-                    next()
-                })
-                .catch(response => {
-                    next({path: '/sign-in'})
-                });
         }
     }
 )

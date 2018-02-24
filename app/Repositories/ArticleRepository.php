@@ -5,7 +5,9 @@ namespace App\Repositories;
 
 
 use App\Models\Article;
+use App\Models\Comment;
 use App\Models\CommentLike;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -23,12 +25,17 @@ class ArticleRepository
     public function indexArticles()
     {
         return Article::where('publish_status', '2')
+            ->select(['id', 'category_id', 'title', 'summary', 'cover', 'content_length', 'page_views', 'published_at'])
             ->withCount('comments')
             ->with('tags')
-            ->with('articleCategory')
+            ->with([
+                'articleCategory' => function ($query) {
+                    $query->select(['id', 'name']);
+                }
+            ])
             ->orderBy('created_at', 'desc')
             ->latest()
-            ->paginate(8);
+            ->paginate(10);
     }
 
     /**
@@ -53,6 +60,7 @@ class ArticleRepository
                             $query->select(['id', 'username', 'avatar']);
                         }
                     ])
+                        ->select(['id', 'user_id', 'article_id', 'content','created_at'])
                         ->withCount('likes')
                         ->get();
                 },
@@ -129,6 +137,8 @@ class ArticleRepository
             }
         }
         $article->tags()->detach();
+        Comment::where('article_id',$article->id)->delete();
+        CommentLike::where('article_id',$article->id)->delete();
         $article->delete();
     }
 }

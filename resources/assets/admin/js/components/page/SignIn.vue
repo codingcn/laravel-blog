@@ -91,7 +91,7 @@
                         type: 'success',
                         offset: 60
                     });
-                    self.$router.push('/');
+                    self.$router.push('/index');
                 }).catch(response => {
                 });
             }

@@ -14,7 +14,7 @@ npm install
 npm run prod
 composer install
 ```
-### 2. 修改`.env`中的数据库信息以及邮件服务器信息
+### 2. 修改`.env`中的数据库信息以及邮件服务器信息（github登录）
 
 ### 3. 建立目录链接及数据初始化
 ```shell

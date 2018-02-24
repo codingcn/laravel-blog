@@ -1,12 +1,12 @@
 <template>
-    <div v-loading.body="loading">
+    <section class="main">
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: '/settings' }">系统设置</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <div class="form-box">
+        <div class="form-box" v-loading.body="loading">
             <el-form ref="form" :model="form" label-width="80px">
                 <el-form-item label="站点名称">
                     <el-input v-model="form.site_title"></el-input>
@@ -40,12 +40,12 @@
                 </el-form-item>
             </el-form>
         </div>
-
-    </div>
+    </section>
 </template>
 
 <script>
     import qs from 'qs';
+
     export default {
         beforeMount() {
             this.getSettings()
@@ -72,9 +72,9 @@
                 }).then(response => {
                     let data = response.data.data
                     this.form = data
-                    if(data.site_logo===''){
+                    if (data.site_logo === '') {
                         this.file_list.splice(0)
-                    }else{
+                    } else {
                         this.file_list.push({
                             name: 'LOGO',
                             url: data.site_logo,
@@ -103,7 +103,7 @@
                             title: '错误',
                             message: '移除文件出错了'
                         });
-                    }else{
+                    } else {
                         this.$notify.success({
                             title: '成功',
                             message: '移除文件成功'

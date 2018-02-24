@@ -48,6 +48,8 @@ class SettingController extends CommonController
             }
             $setting->save();
         }
+        // 删除缓存
+        \Cache::forget('settings');
         return $this->responseJson('OK');
     }
 

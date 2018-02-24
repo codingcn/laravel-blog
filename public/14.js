@@ -1,6 +1,58 @@
 webpackJsonp([14],{
 
-/***/ 216:
+/***/ 213:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(456)
+}
+var normalizeComponent = __webpack_require__(97)
+/* script */
+var __vue_script__ = __webpack_require__(458)
+/* template */
+var __vue_template__ = __webpack_require__(459)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\admin\\js\\components\\page\\AdminUser.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-757fa911", Component.options)
+  } else {
+    hotAPI.reload("data-v-757fa911", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -19,7 +71,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(217)
+var listToStyles = __webpack_require__(215)
 
 /*
 type StyleObject = {
@@ -229,7 +281,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 217:
+/***/ 215:
 /***/ (function(module, exports) {
 
 /**
@@ -263,7 +315,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 218:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -473,7 +525,7 @@ exports.isBuffer = function isBuffer(obj) {
 
 /***/ }),
 
-/***/ 219:
+/***/ 217:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -499,15 +551,15 @@ module.exports = {
 
 /***/ }),
 
-/***/ 220:
+/***/ 218:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var stringify = __webpack_require__(221);
-var parse = __webpack_require__(222);
-var formats = __webpack_require__(219);
+var stringify = __webpack_require__(219);
+var parse = __webpack_require__(220);
+var formats = __webpack_require__(217);
 
 module.exports = {
     formats: formats,
@@ -518,14 +570,14 @@ module.exports = {
 
 /***/ }),
 
-/***/ 221:
+/***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(218);
-var formats = __webpack_require__(219);
+var utils = __webpack_require__(216);
+var formats = __webpack_require__(217);
 
 var arrayPrefixGenerators = {
     brackets: function brackets(prefix) { // eslint-disable-line func-name-matching
@@ -736,13 +788,13 @@ module.exports = function (object, opts) {
 
 /***/ }),
 
-/***/ 222:
+/***/ 220:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(218);
+var utils = __webpack_require__(216);
 
 var has = Object.prototype.hasOwnProperty;
 
@@ -918,69 +970,17 @@ module.exports = function (str, opts) {
 
 /***/ }),
 
-/***/ 462:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(463)
-}
-var normalizeComponent = __webpack_require__(76)
-/* script */
-var __vue_script__ = __webpack_require__(465)
-/* template */
-var __vue_template__ = __webpack_require__(466)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\admin\\js\\components\\page\\AdminUser.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-757fa911", Component.options)
-  } else {
-    hotAPI.reload("data-v-757fa911", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 463:
+/***/ 456:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(464);
+var content = __webpack_require__(457);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(216)("accf85b2", content, false, {});
+var update = __webpack_require__(214)("accf85b2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -997,7 +997,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 464:
+/***/ 457:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(98)(false);
@@ -1012,12 +1012,12 @@ exports.push([module.i, "\n.el-upload-dragger {\n    width: auto;\n    height: a
 
 /***/ }),
 
-/***/ 465:
+/***/ 458:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_qs__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_qs__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_qs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_qs__);
 //
 //
@@ -1065,18 +1065,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     beforeMount: function beforeMount() {
-        this.getSettings();
+        this.getAdminUser();
     },
 
     data: function data() {
         return {
             loading: false,
             form: {},
-            upload_action_logo: this.$difines.root_url + '/api/admin/settings/upload-logo',
+            upload_action_avatar: this.$difines.root_url + '/api/admin/admin-user/upload-avatar',
             file_list: [],
             dialogImageUrl: '',
             dialogVisible: false,
@@ -1086,29 +1096,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     methods: {
-        getSettings: function getSettings() {
+        getAdminUser: function getAdminUser() {
             var _this = this;
 
             this.loading = true;
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/settings',
-                method: 'GET'
+                url: this.$difines.root_url + '/api/admin/admin-user',
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + this.$auth.getToken()
+                }
             }).then(function (response) {
                 var data = response.data.data;
                 _this.form = data;
-                if (data.site_logo === '') {
+                localStorage.setItem('admin_user', JSON.stringify(data));
+                if (data.avatar === '') {
                     _this.file_list.splice(0);
                 } else {
                     _this.file_list.push({
-                        name: 'LOGO',
-                        url: data.site_logo
+                        name: 'avatar',
+                        url: data.avatar
                     });
                 }
                 _this.loading = false;
-            }).catch(function (response) {
-                // console.log(response)
-                _this.loading = false;
-            });
+            }).catch(function (response) {});
         },
         handleChange: function handleChange(file, file_list) {
             this.file_list.splice(0);
@@ -1118,10 +1129,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/settings/upload-logo-delete',
+                url: this.$difines.root_url + '/api/admin/settings/upload-avatar-delete',
                 method: 'POST',
                 data: {
-                    site_logo: file.url
+                    avatar: file.url
                 }
             }).then(function (response) {
                 if (response.data.err_no !== 0) {
@@ -1134,7 +1145,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         title: '成功',
                         message: '移除文件成功'
                     });
-                    _this2.form.site_logo = '';
+                    _this2.form.avatar = '';
                 }
             }).catch(function (response) {});
         },
@@ -1144,23 +1155,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         handleUploadSuccess: function handleUploadSuccess(response, file, fileList) {
             this.file_list.splice(0);
             this.file_list.push(file);
-            this.form.site_logo = response.data.site_logo;
+            this.form.avatar = response.data.avatar;
         },
         onSubmit: function onSubmit() {
             var _this3 = this;
 
             console.log(this.form);
             this.$axios({
-                url: this.$difines.root_url + '/api/admin/settings',
+                url: this.$difines.root_url + '/api/admin/admin-user',
                 method: 'PUT',
                 data: __WEBPACK_IMPORTED_MODULE_0_qs___default.a.stringify(this.form)
             }).then(function (response) {
                 if (response.data.err_no === 0) {
-                    _this3.$notify.success({
-                        title: '成功',
-                        message: response.data.err_msg
-                    });
-                    _this3.$router.push({ path: '/settings' });
+                    if (response.data.data.change_password === 'yes') {
+                        _this3.$notify.success({
+                            title: '成功',
+                            message: '修改成功，请重新登录'
+                        });
+                        _this3.$auth.destroyToken();
+                        localStorage.removeItem('admin_user');
+                        _this3.$router.push('/sign-in');
+                    } else {
+                        _this3.$notify.success({
+                            title: '成功',
+                            message: '修改成功'
+                        });
+                    }
                 } else {
                     _this3.$notify.error({
                         title: '失败',
@@ -1174,7 +1194,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 466:
+/***/ 459:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1209,8 +1229,8 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-breadcrumb-item",
-                { attrs: { to: { path: "/settings" } } },
-                [_vm._v("系统设置")]
+                { attrs: { to: { path: "/admin-user" } } },
+                [_vm._v("管理员信息修改")]
               )
             ],
             1
@@ -1229,15 +1249,15 @@ var render = function() {
             [
               _c(
                 "el-form-item",
-                { attrs: { label: "站点名称" } },
+                { attrs: { label: "用户名" } },
                 [
                   _c("el-input", {
                     model: {
-                      value: _vm.form.site_title,
+                      value: _vm.form.username,
                       callback: function($$v) {
-                        _vm.$set(_vm.form, "site_title", $$v)
+                        _vm.$set(_vm.form, "username", $$v)
                       },
-                      expression: "form.site_title"
+                      expression: "form.username"
                     }
                   })
                 ],
@@ -1246,15 +1266,15 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "IPC备案号" } },
+                { attrs: { label: "旧密码" } },
                 [
                   _c("el-input", {
                     model: {
-                      value: _vm.form.site_icp,
+                      value: _vm.form.old_password,
                       callback: function($$v) {
-                        _vm.$set(_vm.form, "site_icp", $$v)
+                        _vm.$set(_vm.form, "old_password", $$v)
                       },
-                      expression: "form.site_icp"
+                      expression: "form.old_password"
                     }
                   })
                 ],
@@ -1263,7 +1283,58 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "网站LOGO" } },
+                { attrs: { label: "新密码" } },
+                [
+                  _c("el-input", {
+                    model: {
+                      value: _vm.form.new_password,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "new_password", $$v)
+                      },
+                      expression: "form.new_password"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "邮箱" } },
+                [
+                  _c("el-input", {
+                    model: {
+                      value: _vm.form.email,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "email", $$v)
+                      },
+                      expression: "form.email"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "手机号" } },
+                [
+                  _c("el-input", {
+                    model: {
+                      value: _vm.form.phone,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "phone", $$v)
+                      },
+                      expression: "form.phone"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "头像" } },
                 [
                   _c(
                     "el-upload",
@@ -1271,7 +1342,7 @@ var render = function() {
                       staticClass: "upload-cover",
                       attrs: {
                         "list-type": "picture-card",
-                        name: "site_logo",
+                        name: "avatar",
                         multiple: false,
                         "on-preview": _vm.handlePictureCardPreview,
                         "on-change": _vm.handleChange,
@@ -1279,7 +1350,7 @@ var render = function() {
                         "file-list": _vm.file_list,
                         "on-success": _vm.handleUploadSuccess,
                         headers: _vm.headers,
-                        action: _vm.upload_action_logo
+                        action: _vm.upload_action_avatar
                       }
                     },
                     [
@@ -1347,7 +1418,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 76:
+/***/ 97:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */

@@ -53,9 +53,9 @@ class Article extends Model
     public static function recommends()
     {
         return static::where(['recommend' => 2, 'publish_status' => 2])
+            ->select(['id','category_id', 'title',  'content_length', 'page_views', 'published_at'])
             ->take(5)
-            // ->orderBy(\DB::raw('RAND()'))
-            ->orderByRaw('RAND()')
+            ->orderByRaw('published_at')
             ->withCount('comments')
             ->get(['id', 'title', 'published_at', 'page_views', 'content_length']);
     }

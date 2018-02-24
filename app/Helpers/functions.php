@@ -32,7 +32,18 @@ if (!function_exists('getSetting')) {
      */
     function getSetting($key = '')
     {
-        return \App\Models\Setting::where('key', $key)
-            ->value('value');
+        if (\Cache::has('settings')) {
+            $settings = \Cache::get('settings');
+        } else {
+            $settings = \App\Models\Setting::get(['key', 'value'])->toArray();
+            \Cache::forever('settings', $settings);
+        }
+        $value = '';
+        foreach ($settings as $setting) {
+            if ($setting['key'] == $key) {
+                $value = $setting['value'];
+            }
+        }
+        return $value;
     }
 }

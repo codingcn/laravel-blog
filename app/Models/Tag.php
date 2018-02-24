@@ -21,9 +21,7 @@ class Tag extends Model
      */
     public static function asideTags()
     {
-        return self::withCount('articles')
-            ->orderBy(\DB::raw('RAND()'))
-            ->take(20)
+        return self::take(20)
             ->get(['id','name'])
             ->toArray();
     }

@@ -1,18 +1,18 @@
 webpackJsonp([16],{
 
-/***/ 207:
+/***/ 204:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(223)
+  __webpack_require__(221)
 }
-var normalizeComponent = __webpack_require__(76)
+var normalizeComponent = __webpack_require__(97)
 /* script */
-var __vue_script__ = __webpack_require__(225)
+var __vue_script__ = __webpack_require__(223)
 /* template */
-var __vue_template__ = __webpack_require__(226)
+var __vue_template__ = __webpack_require__(224)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52,7 +52,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 216:
+/***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -71,7 +71,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(217)
+var listToStyles = __webpack_require__(215)
 
 /*
 type StyleObject = {
@@ -281,7 +281,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 217:
+/***/ 215:
 /***/ (function(module, exports) {
 
 /**
@@ -315,17 +315,17 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 223:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(224);
+var content = __webpack_require__(222);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(216)("1c1f203a", content, false, {});
+var update = __webpack_require__(214)("1c1f203a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -342,7 +342,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 224:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(98)(false);
@@ -357,7 +357,7 @@ exports.push([module.i, "\n.login-wrap[data-v-5e285dfb] {\n    background-color:
 
 /***/ }),
 
-/***/ 225:
+/***/ 223:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -419,8 +419,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         data: data
                     }).then(function (response) {
                         // 刚开始踩坑了，js的时间戳微妙为单位，而且木有时区，和PHP不一样
-                        var js_time = Math.round(new Date().getTime() / 1000 - 28800);
-                        _this.$auth.setToken(response.data.access_token, response.data.refresh_token, response.data.expires_in + js_time);
+                        _this.$auth.setToken(response.data.data);
                         _this.getAdmin();
                     }).catch(function (err) {
                         _this.loading = false;
@@ -442,13 +441,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var self = this;
             this.$axios({
-                url: this.$difines.root_url + '/api/admin-user',
-                method: 'post',
+                url: this.$difines.root_url + '/api/admin/admin-user',
+                method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + this.$auth.getToken()
                 }
             }).then(function (response) {
-                localStorage.setItem('admin', JSON.stringify(response.data));
+                localStorage.setItem('admin_user', JSON.stringify(response.data.data));
                 _this2.$notify({
                     title: '成功',
                     message: '登陆成功',
@@ -463,7 +462,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 226:
+/***/ 224:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -587,7 +586,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 76:
+/***/ 97:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */

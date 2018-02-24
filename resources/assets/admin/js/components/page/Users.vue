@@ -41,11 +41,6 @@
                         width="180">
                 </el-table-column>
                 <el-table-column
-                        prop="phone"
-                        label="手机号"
-                        width="180">
-                </el-table-column>
-                <el-table-column
                         prop="created_at"
                         label="注册时间"
                         width="180">
@@ -115,11 +110,6 @@
                     this.tableData = response.data.data.data
                     this.page.pageSize = response.data.data.per_page
                     this.page.total = response.data.data.total
-//                    console.log(this.response.data.data)
-//                    this.tableData.recommend = data.recommend === 2 ? '是' : '否'
-//                    this.tableData.status = data.status === 2 ?'是' : '否'
-//                    this.tableData.cover_path = data.cover
-//                    console.log(this.tableData)
                     this.loading = false
                 }).catch(response => {
 

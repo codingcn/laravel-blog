@@ -33,7 +33,7 @@ class ArticleController extends CommonController
             return response()->view('errors.404', [], 404);
         }
         $this->articleRepository->addPageViews($article);
-        $article = $this->articleRepository->showArticle($article,$user);
+        $article = $this->articleRepository->showArticle($article, $user);
         $seoTitle = $article['title'] . '_' . getSetting('site_title');
         $seoKeywords = '面朝大海，春暖花开';
         $seoDescription = $article['summary'];
