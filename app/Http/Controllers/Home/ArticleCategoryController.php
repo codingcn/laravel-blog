@@ -9,7 +9,7 @@ class ArticleCategoryController extends CommonController
 {
     public function show(ArticleCategory $category)
     {
-        $articles = $category->articles()->paginate(10);
+        $articles = $category->articles()->orderBy('published_at','DESC')->paginate(10);
         $data = [
             'articles' => $articles,
             'seo' => [
