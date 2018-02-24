@@ -7,12 +7,13 @@
 ### 1. 获取项目
 ```
 git clone https://github.com/codingcn/blog.git
-cd blog
-cp .env.example .env
 
-npm install
+cd blog
+npm i
 npm run prod
 composer install
+
+cp .env.example .env
 ```
 ### 2. 修改`.env`中的数据库信息以及邮件服务器信息（github登录）
 
@@ -29,7 +30,15 @@ php artisan passport:keys
 php artisan passport:client --personal
 # 可以直接回车
 ```
-### 5. 测试
+### 5. 设置目录及文件权限
+```
+sudo chown -R www:www blog/
+sudo find blog/ -type f -exec chmod 644 {} \;
+sudo find blog/ -type d -exec chmod 755 {} \;
+sudo chmod -R 777 blog/storage
+sudo chmod -R 777 blog/bootstrap/cache
+```
+### 6. 测试
 后台访问：ServerName/admin
 账号：`admin`
 密码：`123456`
