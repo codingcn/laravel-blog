@@ -75,6 +75,7 @@ class LinkController extends CommonController
             'description',
         ]);
         $link->name = $data['name'];
+        $link->uri = $data['uri'];
         $link->description = $data['description'];
         $link->serial_number = $data['serial_number'];
         $link->save();
