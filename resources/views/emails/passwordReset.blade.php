@@ -16,7 +16,7 @@
                         <table cellpadding="0" cellspacing="0" width="640">
                             <tbody>
                             <tr style="line-height: 40px;">
-                                <td style="font-size: 24px;color:#292c33;">【{{getSetting('site_title')}}】密码重置申请</td>
+                                <td style="font-size: 24px;color:#292c33;">{{getSetting('site_title')}}密码重置申请</td>
                             </tr>
                             </tbody>
                         </table>

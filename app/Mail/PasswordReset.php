@@ -16,7 +16,7 @@ class PasswordReset extends Mailable
     public function __construct(\App\Models\PasswordReset $password_reset)
     {
         $this->password_reset = $password_reset;
-        $this->subject('【' . getSetting('site_title') . '】账号密码重置申请！');
+        $this->subject('账号密码重置申请！');
     }
 
     /**

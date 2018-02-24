@@ -21,7 +21,7 @@ class EmailVerification extends Mailable
     public function __construct(EmailVerify $verify)
     {
         $this->verify = $verify;
-        $this->subject('【' . getSetting('site_title') . '】账号注册邮箱确认！');
+        $this->subject('账号注册邮箱确认！');
     }
 
     /**
