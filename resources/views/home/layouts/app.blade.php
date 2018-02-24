@@ -203,7 +203,7 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
                 //how the content is presented。
                 fov: 800,
                 //标签云动画的速度。
-                speed: 0.8,
+                speed: 0.4,
                 //标签云的字体。
                 fontFamily: 'Oswald, Arial, sans-serif',
                 //标签云的字体大小。
