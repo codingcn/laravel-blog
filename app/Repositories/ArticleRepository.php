@@ -33,7 +33,7 @@ class ArticleRepository
                     $query->select(['id', 'name']);
                 }
             ])
-            ->orderBy('created_at','ASC')
+            ->orderBy('created_at', 'DESC')
             ->paginate(10);
     }
 
@@ -59,7 +59,7 @@ class ArticleRepository
                             $query->select(['id', 'username', 'avatar']);
                         }
                     ])
-                        ->select(['id', 'user_id', 'article_id', 'content','created_at'])
+                        ->select(['id', 'user_id', 'article_id', 'content', 'created_at'])
                         ->withCount('likes')
                         ->get();
                 },
@@ -136,8 +136,8 @@ class ArticleRepository
             }
         }
         $article->tags()->detach();
-        Comment::where('article_id',$article->id)->delete();
-        CommentLike::where('article_id',$article->id)->delete();
+        Comment::where('article_id', $article->id)->delete();
+        CommentLike::where('article_id', $article->id)->delete();
         $article->delete();
     }
 }
