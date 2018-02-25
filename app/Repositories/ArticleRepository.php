@@ -34,7 +34,6 @@ class ArticleRepository
                 }
             ])
             ->orderBy('published_at','DESC')
-            ->latest()
             ->paginate(10);
     }
 
