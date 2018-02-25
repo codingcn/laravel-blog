@@ -115,12 +115,14 @@ body {
     margin-left: 1rem;
     color: #313131;
 }
-.menu-pc .member-btn img{
+
+.menu-pc .member-btn img {
     padding: 0.2rem;
     height: 2.8rem;
     width: 2.8rem;
     border-radius: 50%;
 }
+
 .menu-bar i {
     height: 5.2rem;
     line-height: 5.2rem;
@@ -396,6 +398,7 @@ body {
     padding-bottom: 1.5rem;
     border-bottom: solid 0.1rem #f0f0f0;
 }
+
 .aside .tags li,
 .aside .archives li,
 .aside .recommend li,
@@ -440,9 +443,11 @@ body {
     letter-spacing: 1px;
     color: rgba(0, 0, 0, .7);
 }
+
 .aside .tags li a text {
     cursor: pointer;
 }
+
 .aside li .notice-new {
 }
 
