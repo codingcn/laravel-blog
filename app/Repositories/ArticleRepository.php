@@ -33,7 +33,7 @@ class ArticleRepository
                     $query->select(['id', 'name']);
                 }
             ])
-            ->orderBy('created_at','DESC')
+            ->orderBy('created_at','ASC')
             ->paginate(10);
     }
 
