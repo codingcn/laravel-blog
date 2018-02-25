@@ -26,6 +26,7 @@ class ArticleRepository
     {
         return Article::where('publish_status', '2')
             ->select(['id', 'category_id', 'title', 'summary', 'cover', 'content_length', 'page_views', 'created_at'])
+            ->orderBy('created_at', 'desc')
             ->withCount('comments')
             ->with('tags')
             ->with([
@@ -33,7 +34,6 @@ class ArticleRepository
                     $query->select(['id', 'name']);
                 }
             ])
-            ->orderBy('created_at', 'DESC')
             ->paginate(10);
     }
 

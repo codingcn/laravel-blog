@@ -17,8 +17,10 @@
                         {{ str_limit($article->summary,250,'...') }}
                     </span>
                         <span class="col-3 col-sm-3 cover">
-                        <a href="{{url('/articles',$article->id )}}"><img src="{{ \Storage::url($article->cover) }}"
-                                                                          alt="{{ $article->title }}"></a>
+                        <a href="{{url('/articles',$article->id )}}">
+                            <img src="{{ \Storage::url($article->cover) }}"
+                                 alt="{{ $article->title }}">
+                        </a>
                     </span>
                     </div>
                     <div class="meta">
