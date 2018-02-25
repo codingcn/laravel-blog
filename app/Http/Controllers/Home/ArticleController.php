@@ -70,6 +70,6 @@ class ArticleController extends CommonController
             'articles' => $articles,
             'seo' => $this->getSeoInfo(getSetting('site_title'), '面朝大海，春暖花开')
         ];
-        return view('home.category', $data);
+        return view('home.search', $data);
     }
 }

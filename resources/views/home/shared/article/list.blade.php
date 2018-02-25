@@ -47,7 +47,7 @@
             @else
                 <li class="article-item">
                     <div class="title">
-                        <b><a href="articles/{{ $article->id }}">{{ $article->title }}</a></b>
+                        <b><a href="{{ url('/articles',$article->id) }}">{{ $article->title }}</a></b>
                         <span class="date float-right">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
                             {{ $article->created_at->diffForHumans() }}

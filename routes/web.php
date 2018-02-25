@@ -15,7 +15,6 @@
  * 前台路由
  */
 
-Route::view('/t', 'emails.verify');
 Route::get('/', 'Home\IndexController@index');
 Route::get('/index', 'Home\IndexController@index');
 Route::get('/welcome', 'Home\IndexController@welcome');
