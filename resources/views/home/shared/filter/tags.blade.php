@@ -7,7 +7,7 @@
             <li class="content">
                 <span class="date">{{$article->created_at->toDateString() }}</span>
                 —
-                <a href="{{url('/article/'.$article->id)}}">{{$article->title}}</a>
+                <a href="{{url('/articles/'.$article->id)}}">{{$article->title}}</a>
             </li>
         @endforeach
     @else
