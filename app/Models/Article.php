@@ -42,7 +42,7 @@ class Article extends Model
             ->where('publish_status', '2')
             ->groupBy('year', 'month')
             ->orderByRaw('MIN(created_at) desc')
-            ->take(10)
+            ->take(8)
             ->get()
             ->toArray();
     }
