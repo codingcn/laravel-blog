@@ -1,9 +1,16 @@
 <template>
-    <section class="editor-container">
+    <section class="editor-container"
+             :class="{
+              'full': screen_mode === 'full',
+              'general': screen_mode === 'general'
+              }">
         <div class="editor-toolbar">
             <ul class="editor-menu">
                 <li class="">
-                    <span v-on:click="changeMode" v-text="labels"></span>
+                    <span v-on:click="changeEditMode" v-text="edit_labels"></span>
+                </li>
+                <li class="">
+                    <span v-on:click="changeScreenMode" v-text="screen_labels"></span>
                 </li>
             </ul>
         </div>
@@ -13,8 +20,8 @@
                 v-on:paste="pasteFile"
                 :value="content_md"
                 :class="{
-                  'edit': mode === 'edit',
-                  'preview': mode === 'preview',
+                  'edit': edit_mode === 'edit',
+                  'preview': edit_mode === 'preview',
                 }"
                 @input="update"
                 @drop="drop($event)"
@@ -25,10 +32,9 @@
                  class="markdown-body"
                  v-html="compiledMarkdown"
                  :class="{
-              'edit': mode === 'edit',
-              'preview': mode === 'preview'
+              'edit': edit_mode === 'edit',
+              'preview': edit_mode === 'preview'
             }">
-
             </div>
             <textarea name="content_html" :value="content_html" style="display: none"></textarea>
         </div>
@@ -65,8 +71,10 @@
             return {
                 content_md: this.markdown,
                 content_html: this.content_html,
-                labels: '编辑',
-                mode: 'preview'
+                edit_labels: '编辑',
+                edit_mode: 'preview',
+                screen_labels: '全屏',
+                screen_mode: 'general'
             }
         },
         computed: {
@@ -83,10 +91,15 @@
             }
         },
         methods: {
-            changeMode: function () {
+            changeEditMode: function () {
                 // 切换模式
-                this.mode = this.mode === 'preview' ? 'edit' : 'preview'
-                this.labels = this.mode === 'edit' ? '预览' : '编辑'
+                this.edit_mode = this.edit_mode === 'preview' ? 'edit' : 'preview'
+                this.edit_labels = this.edit_mode === 'edit' ? '预览' : '编辑'
+            },
+            changeScreenMode: function () {
+                // 切换模式
+                this.screen_mode = this.screen_mode === 'general' ? 'full' : 'general'
+                this.screen_labels = this.screen_mode === 'full' ? '收缩' : '全屏'
             },
             /**
              * 设置marked参数
@@ -96,13 +109,11 @@
                 renderer.code = (code, language) => {
                     // Check whether the given language is valid for highlight.js.
                     const validLang = !!(language && highlightjs.getLanguage(language));
+                    const codeClass = language ? 'hljs ' + language : '';
                     // Highlight only if the language is valid.
-                    const highlighted = validLang ? highlightjs.highlight(language, code).value : code;
+                    const highlighted = validLang ? highlightjs.highlight(language, code).value : highlightjs.highlightAuto(code).value;
                     // Render the highlighted code with `hljs` class.
-                    return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
-                };
-                renderer.html = (code) => {
-                    return `<pre>哈哈哈${code}</pre>`;
+                    return `<pre><code class="${codeClass}">${highlighted}</code></pre>`;
                 };
                 marked.setOptions({
                     renderer: renderer,
@@ -113,10 +124,7 @@
                     sanitize: true,
                     smartLists: true,
                     smartypants: false,
-                    xhtml:false,
-                    highlight: function (code) {
-                        return highlightjs.highlightAuto(code).value
-                    }
+                    xhtml: false
                 })
             },
             /**
@@ -224,12 +232,12 @@
              * @param file base64数据
              */
             uploadFile: function (file) {
-                let formdata = new FormData()
-                formdata.append('image', file)
+                let form_data = new FormData()
+                form_data.append('image', file)
                 axios({
                     url: this.upload_action_editor,
                     method: 'post',
-                    data: formdata,
+                    data: form_data,
                     headers: {
                         'Authorization': 'Bearer ' + this.$auth.getToken(),
                         'Content-Type': 'application/multipart/form-data'
@@ -260,15 +268,57 @@
         }
     }
 </script>
+<style>
+    /*重新定义code块背景色*/
+    .markdown-body .highlight pre, .markdown-body pre {
+        background-color: #2b303b;
+    }
 
+    /*重写github-markdown.css 适配highlight.js黑色主题*/
+    .markdown-body pre code {
+        color: #ffffff;
+    }
+</style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px
+    }
 
-    .editor-container {
+    ::-webkit-scrollbar-thumb {
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        background-color: #c3c3c3
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent
+    }
+
+    .editor-container.general {
         margin: 0 auto;
         width: 100%;
         height: 30rem;
+    }
+
+    .editor-container.full {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        min-height: 100%; /*或 100%*/
+        z-index: 1000;
+    }
+
+    .editor-container.full .editor-toolbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10000;
     }
 
     .editor-menu {
@@ -279,9 +329,17 @@
         background-color: #eee;
     }
 
-    .editor-body {
+    .editor-container.general .editor-body {
         border: 0.1rem solid #eee;
         height: 27.3rem;
+    }
+
+    .editor-container.full .editor-body {
+        margin-top: 2.5rem;
+        margin-bottom: 4rem;
+        border: 0.1rem solid #eee;
+        height: 100%;
+        background-color: #fcfaf2;
     }
 
     .editor-menu li {
@@ -312,7 +370,16 @@
         width: 50%;
         overflow: auto;
         display: block;
-        padding: 1rem;
+    }
+
+    .editor-container.general #editor_md,
+    .editor-container.general #editor_preview {
+        padding: 1rem 1rem 2.5rem 1rem;
+    }
+
+    .editor-container.full #editor_md,
+    .editor-container.full #editor_preview {
+        padding: 1rem 1rem 5rem 1rem;
     }
 
     #editor_preview.preview {
@@ -321,7 +388,6 @@
 
     #editor_md.preview {
         border-right: 0.15rem solid #ccc;
-        background: #f6f6f6;
     }
 
     #editor_md.edit {
