@@ -4,10 +4,6 @@
     margin-top: 7.2rem;
     clear: both;
 }
-.main .article-list {
-    margin-bottom: 6.8rem;
-}
-
 .main .article-list > li {
     /*list-style-position: inside;*/
     list-style: none;
