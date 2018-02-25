@@ -31,7 +31,7 @@
 }
 
 .main .article-list .article-item .title a {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
 }
 
 .main .article-list .article-item .title .date {
@@ -46,7 +46,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
-    color: #232323;
+    color: rgba(0, 0, 0, 0.7);
     letter-spacing: 0.1rem;
     line-height: 2.8rem;
 }
