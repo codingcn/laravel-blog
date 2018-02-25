@@ -6,7 +6,7 @@
         <ul>
             @foreach($articles as $article)
                 <li class="content">
-                    <span class="date">{{  \Carbon\Carbon::parse($article->published_at)->toDateString() }}</span>
+                    <span class="date">{{  $article->created_at->toDateString() }}</span>
                     —
                     <a href="{{ url('articles/'.$article->id) }}">{{$article->title}}</a>
                 </li>
@@ -21,7 +21,7 @@
             <ul>
                 @foreach($article as $item)
                     <li class="content">
-                        <span class="date">{{  \Carbon\Carbon::parse($item->published_at)->toDateString() }}</span>
+                        <span class="date">{{  $article->created_at->toDateString() }}</span>
                         —
                         <a href="{{ url('articles/'.$item->id) }}">{{$item->title}}</a>
                     </li>

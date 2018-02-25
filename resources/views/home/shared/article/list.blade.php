@@ -9,7 +9,7 @@
                         <strong><a href="{{url('/articles',$article->id )}}">{{ $article->title }}</a></strong>
                         <span class="date float-right">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            {{ \Carbon\Carbon::parse($article->published_at)->diffForHumans() }}
+                            {{ $article->created_at->diffForHumans() }}
                     </span>
                     </div>
                     <div class="row summary">
@@ -48,7 +48,7 @@
                         <b><a href="articles/{{ $article->id }}">{{ $article->title }}</a></b>
                         <span class="date float-right">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            {{ \Carbon\Carbon::parse($article->published_at)->diffForHumans() }}
+                            {{ $article->created_at->diffForHumans() }}
                     </span>
                     </div>
                     <div class="summary">

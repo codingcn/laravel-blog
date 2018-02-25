@@ -26,7 +26,6 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('recommend')->unsigned()->default(1)->comment('是否推荐（1不推荐，2推荐）');
             $table->integer('page_views')->unsigned()->default(0)->comment('浏览量');
             $table->integer('content_length')->unsigned()->default(0)->comment('字数');
-            $table->timestamp('published_at')->nullable()->comment('发布时间');
             $table->timestamps();
         });
     }

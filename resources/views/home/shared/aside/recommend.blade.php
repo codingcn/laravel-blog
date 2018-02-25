@@ -8,7 +8,7 @@
                 <a class="title" href="{{url('/articles/'.$recommend->id)}}" target="_blank">{{$recommend->title}}</a>
 
                 <div class="notice-new">
-                    <span class="date">{{$recommend->published_at}}</span>
+                    <span class="date">{{$recommend->created_at}}</span>
                     <span class="statistics">
                         {{$recommend->content_length}}字/{{$recommend->page_views}}次阅读/{{$recommend->comments_count}}条评论
                     </span>

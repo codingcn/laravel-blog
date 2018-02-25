@@ -38,7 +38,7 @@ class Article extends Model
      */
     public static function archives()
     {
-        return static::selectRaw('YEAR(published_at) AS year,MONTH(published_at) AS month,COUNT(*) published')
+        return static::selectRaw('YEAR(created_at) AS year,MONTH(created_at) AS month,COUNT(*) published')
             ->where('publish_status', '2')
             ->groupBy('year', 'month')
             ->orderByRaw('MIN(created_at) desc')
@@ -54,11 +54,11 @@ class Article extends Model
     public static function recommends()
     {
         return static::where(['recommend' => 2, 'publish_status' => 2])
-            ->select(['id','category_id', 'title',  'content_length', 'page_views', 'published_at'])
+            ->select(['id','category_id', 'title',  'content_length', 'page_views', 'created_at'])
             ->take(5)
-            ->orderByRaw('published_at')
+            ->orderByRaw('created_at')
             ->withCount('comments')
-            ->get(['id', 'title', 'published_at', 'page_views', 'content_length']);
+            ->get(['id', 'title', 'created_at', 'page_views', 'content_length']);
     }
 
     /**
@@ -69,10 +69,10 @@ class Article extends Model
     public function scopeFilter($query, $filters)
     {
         if ($year = !empty($filters['year']) ? $filters['year'] : false) {
-            $query->whereYear('published_at', $year);
+            $query->whereYear('created_at', $year);
         }
         if ($month = !empty($filters['month']) ? $filters['month'] : false) {
-            $query->whereMonth('published_at', $month);
+            $query->whereMonth('created_at', $month);
         }
     }
 }

@@ -25,7 +25,7 @@ class ArticleRepository
     public function indexArticles()
     {
         return Article::where('publish_status', '2')
-            ->select(['id', 'category_id', 'title', 'summary', 'cover', 'content_length', 'page_views', 'published_at'])
+            ->select(['id', 'category_id', 'title', 'summary', 'cover', 'content_length', 'page_views', 'created_at'])
             ->withCount('comments')
             ->with('tags')
             ->with([
@@ -33,7 +33,7 @@ class ArticleRepository
                     $query->select(['id', 'name']);
                 }
             ])
-            ->orderBy('published_at','DESC')
+            ->orderBy('created_at','DESC')
             ->paginate(10);
     }
 
@@ -50,7 +50,7 @@ class ArticleRepository
     public function showArticle(Article $article, $user)
     {
         //取得当前文章的总评论数
-        $article = $article->select(['id', 'user_id', 'category_id', 'title', 'summary', 'content_html', 'publish_status', 'page_views', 'content_length', 'content_length', 'published_at'])
+        $article = $article->select(['id', 'user_id', 'category_id', 'title', 'summary', 'content_html', 'publish_status', 'page_views', 'content_length', 'content_length', 'created_at'])
             ->withCount('comments')
             ->with([
                 'comments' => function ($comments_query) {
@@ -95,14 +95,14 @@ class ArticleRepository
         if (request('year') && request('month')) {
             return Article::where('publish_status', '=', '2')
                 ->select(['*'])
-                ->orderBy('published_at', 'desc')
+                ->orderBy('created_at', 'desc')
                 ->filter(request()->only(['year', 'month']))
                 ->latest()
                 ->paginate(10);
         } else {
             return Article::where('publish_status', '=', '2')
-                ->select(['*', DB::raw("DATE_FORMAT( published_at,'%Y-%m') as published_date")])
-                ->orderBy('published_at', 'desc')
+                ->select(['*', DB::raw("DATE_FORMAT( created_at,'%Y-%m') as published_date")])
+                ->orderBy('created_at', 'desc')
                 ->latest()
                 ->get()
                 ->groupBy('published_date')

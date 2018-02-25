@@ -69,9 +69,9 @@
                         prop="updated_at">
                 </el-table-column>
                 <el-table-column
-                        label="发布时间"
+                        label="创建时间"
                         width="180"
-                        prop="published_at">
+                        prop="created_at">
                 </el-table-column>
                 <el-table-column
                         width="250"

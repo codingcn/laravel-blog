@@ -2,7 +2,7 @@
     <h1 class="title">{{ $article['title'] }}</h1>
     <div class="meta">
         <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
-        <span class="publish-time">{{$article['published_at']}}</span>
+        <span class="publish-time">{{$article['created_at']}}</span>
         <span class="wordage">字数 {{ mb_strlen(strip_tags($article['content_html'])) }}</span>
         <span class="views-count">阅读 {{$article['page_views']}}</span>
         <span class="comments-count">评论 {{$article['comments_count']}}</span>

@@ -71,10 +71,6 @@ class ArticleController extends CommonController
         if (!empty($request->input('cover'))) {
             $data['cover'] = preg_replace("/storage(\/.+)/m", '${1}', $request->get('cover'));
         }
-
-        if ($data['publish_status'] == 2) {
-            $data['published_at'] = Carbon::now();
-        }
         $data['content_length'] = mb_strlen(strip_tags($data['content_html']));
         //dd($request->all());
         $article = Article::create($data);
@@ -213,9 +209,6 @@ class ArticleController extends CommonController
             }
             $tag_ids = array_column($tag, 'id');
             $article->tags()->sync($tag_ids);
-        }
-        if ($request->get('publish_status') == 2) {
-            $article->published_at = Carbon::now();
         }
         $article->save();
         return $this->responseJson('OK');
