@@ -52,7 +52,6 @@ class ArticleController extends CommonController
     public function archives()
     {
         $article = $this->articleRepository->archives();
-        dd($article);
         $data = [
             'articles' => $article,
             'seo' => [
