@@ -1,7 +1,18 @@
 <div class="about">
     <div class="me">
         <h2>关于我</h2>
-        <p>一名2017年毕业的小学生，向往美好的生活、工作、爱情...总之热爱美好的一切。</p>
+        <p>
+            一名<strong>伪全栈工程师</strong>，目前主要靠拍黄片吃饭，还会点Linux Python C# Js CSS HTML...
+        </p>
+        <p>
+            正在学习Go与Python，不断地从错误中认识自己，总结积累知识。
+        </p>
+        <p>
+            理想也是要有的，希望着某一天灵光乍现做出一个产品，Change the World.
+        </p>
+        <p>
+            面朝大海，春暖花开。向往美好的生活、工作、爱情...总之热爱美好的一切。
+        </p>
     </div>
     <div class="contact-way">
         <h2>我的联系方式</h2>
