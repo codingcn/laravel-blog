@@ -32,13 +32,14 @@ class Article extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
     /**
      * 获取归档列表
      * @return mixed
      */
     public static function archives()
     {
-        return static::selectRaw('YEAR(created_at) AS year,MONTH(created_at) AS month,COUNT(*) published')
+        return static::selectRaw('YEAR(created_at) AS year,MONTH(created_at) AS month,COUNT(*) published,created_at')
             ->where('publish_status', '2')
             ->groupBy('year', 'month')
             ->orderByRaw('MIN(created_at) desc')
@@ -54,7 +55,7 @@ class Article extends Model
     public static function recommends()
     {
         return static::where(['recommend' => 2, 'publish_status' => 2])
-            ->select(['id','category_id', 'title',  'content_length', 'page_views', 'created_at'])
+            ->select(['id', 'category_id', 'title', 'content_length', 'page_views', 'created_at'])
             ->take(5)
             ->orderByRaw('created_at')
             ->withCount('comments')
