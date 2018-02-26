@@ -21,7 +21,7 @@
             <ul>
                 @foreach($article as $item)
                     <li class="content">
-                        <span class="date">{{  $article->created_at->toDateString() }}</span>
+                        <span class="date">{{ $item->created_at->toDateString() }}</span>
                         —
                         <a href="{{ url('articles/'.$item->id) }}">{{$item->title}}</a>
                     </li>
