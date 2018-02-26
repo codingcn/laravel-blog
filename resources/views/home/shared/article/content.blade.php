@@ -16,7 +16,7 @@
     <div class="tags">
         标签：
         @foreach($article['tags'] as $tag)
-            <a href="{{url('/tag/'.$tag['name'])}}">{{ $tag['name'] }}</a>
+            <a href="{{url('/tags',$tag['name'])}}">{{ $tag['name'] }}</a>
         @endforeach
     </div>
 </section>
