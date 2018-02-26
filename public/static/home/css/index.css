@@ -4,6 +4,7 @@
     margin-top: 7.2rem;
     clear: both;
 }
+
 .main .article-list > li {
     /*list-style-position: inside;*/
     list-style: none;
@@ -27,7 +28,7 @@
 }
 
 .main .article-list .article-item .title a {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
 }
 
 .main .article-list .article-item .title .date {
@@ -41,9 +42,9 @@
     max-height: 9rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+    font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
     color: rgba(0, 0, 0, 0.7);
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
     line-height: 2.8rem;
 }
 
@@ -71,7 +72,8 @@
 .main .article-list .article-item .meta a {
     color: #666;
 }
-.main .article-list .article-item .meta .category a{
+
+.main .article-list .article-item .meta .category a {
     display: inline-block;
     padding: 1.5px 4px;
     margin-top: -1px;
@@ -82,11 +84,12 @@
     white-space: nowrap;
     line-height: 1;
     vertical-align: middle;
-    color: #989898!important;
+    color: #989898 !important;
     /*border: 1px solid rgba(236,97,73,.7);*/
     border: 1px solid #989898;
     border-radius: 3px;
 }
+
 .main .article-list .article-item .meta .tags a {
     display: inline-block;
     margin-right: 0.8rem;
