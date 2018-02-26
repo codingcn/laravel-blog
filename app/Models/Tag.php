@@ -21,7 +21,7 @@ class Tag extends Model
      */
     public static function asideTags()
     {
-        return self::take(20)
+        return self::take(50)
             ->get(['id','name'])
             ->toArray();
     }
