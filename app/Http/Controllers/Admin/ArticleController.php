@@ -134,8 +134,9 @@ class ArticleController extends CommonController
     {
         $base64_img = trim($request->input('image'));
         $upload_path = '/articles/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
-        if (!is_dir(storage_path($upload_path))) {
-            mkdir(storage_path($upload_path), 0777, true);
+        $absolute_path = config('filesystems.disks.' . config('filesystems.default') . '.root') . $upload_path;
+        if (!is_dir($absolute_path)) {
+            mkdir($absolute_path, 0777, true);
         }
         //preg_match有字符串长度限制
         ini_set('pcre.backtrack_limit', 999999999);
@@ -145,7 +146,7 @@ class ArticleController extends CommonController
             $type = $result[2];
             if (in_array($type, array('pjpeg', 'jpeg', 'jpg', 'gif', 'bmp', 'png'))) {
                 $img_file = str_random(32) . '.' . $type;
-                $img_path = config('filesystems.disks.' . config('filesystems.default') . '.root') . $upload_path . $img_file;
+                $img_path = $absolute_path . $img_file;
                 if (file_put_contents($img_path, base64_decode(str_replace($result[1], '', $base64_img)))) {
                     echo \Storage::url($upload_path . $img_file);
                 } else {
