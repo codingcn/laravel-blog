@@ -91,7 +91,7 @@
         <i class="fas fa-map-marker-alt"></i> Yunnan,Kunming,China
     </div>
     <div class="about">
-        The more you have learned,the more senseless you will feel.
+        The more you learn the less you know.
     </div>
 
     <div class="link">
