@@ -136,7 +136,7 @@ class ArticleController extends CommonController
         $upload_path = '/articles/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
         return json_encode([
             storage_path($upload_path),
-            storage_path() . $upload_path,
+            config('filesystems.disks.'.config('filesystems.default').'.root') . $upload_path,
             \Storage::url($upload_path),
         ]);
         if (!is_dir(storage_path($upload_path))) {
