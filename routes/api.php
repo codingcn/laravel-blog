@@ -9,41 +9,49 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// 用户管理
+
+// 文章管理
 Route::group(['middleware' => 'auth:api', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    // 用户管理
     Route::get('/users', 'UserController@index');
     Route::get('/users/search', 'UserController@search');
-});
-// 系统设置
-Route::group(['middleware' => ['auth:api'], 'prefix' => 'admin/settings', 'namespace' => 'Admin'], function () {
-    Route::get('/', 'SettingController@index');
-    Route::put('/', 'SettingController@update');
-    Route::post('/upload-logo', 'SettingController@logoUpload');
-    Route::post('/upload-logo-delete', 'SettingController@logoDestroy');
-});
-// 文章管理
-Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function () {
-    Route::post('/admin/articles/upload-editor', 'ArticleController@uploadBase64');
-    Route::post('/admin/articles/upload-cover', 'ArticleController@uploadCover');
-    Route::post('/admin/articles/upload-cover-del', 'ArticleController@uploadCoverDel');
+
+    Route::post('/articles/upload-editor', 'ArticleController@uploadBase64');
+    Route::post('/articles/upload-cover', 'ArticleController@uploadCover');
+    Route::post('/articles/upload-cover-del', 'ArticleController@uploadCoverDel');
     // 文章分类
-    Route::resource('/admin/article-categories', 'ArticleCategoryController', ['index', 'update', 'store', 'destroy']);
+    Route::resource('/article-categories', 'ArticleCategoryController', ['index', 'update', 'store', 'destroy']);
     // 文章
-    Route::resource('/admin/articles', 'ArticleController', ['index', 'update', 'store', 'show', 'destroy']);
+    Route::resource('/articles', 'ArticleController', ['index', 'update', 'store', 'show', 'destroy']);
 
-    Route::get('/admin/article/categories', 'ArticleController@categories');
-    Route::get('/admin/article/tag/search', 'ArticleController@searchTag');
-    Route::resource('/admin/links', 'LinkController', ['index', 'update', 'destroy']);
-    // editor.md图片上传
-    Route::post('/admin/articles/upload/image', 'ArticleController@imageUpload');
+    Route::get('/article/categories', 'ArticleController@categories');
+    Route::get('/article/tag/search', 'ArticleController@searchTag');
 
-    Route::get('/admin/admin-user', 'AdminUserController@show');
-    Route::put('/admin/admin-user', 'AdminUserController@update');
-    Route::post('/admin/admin-user/upload-avatar', 'AdminUserController@avatarUpload');
-    Route::post('/admin/admin-user/upload-avatar-delete', 'AdminUserController@avatarDestroy');
+    // 友链管理
+    Route::resource('/links', 'LinkController', ['index', 'update', 'destroy']);
+
+    // editor图片上传
+    Route::post('/articles/upload/image', 'ArticleController@imageUpload');
+
+    // 管理员信息修改
+    Route::get('/admin-user', 'AdminUserController@show');
+    Route::put('/admin-user', 'AdminUserController@update');
+    Route::post('/admin-user/upload-avatar', 'AdminUserController@avatarUpload');
+    Route::post('/admin-user/upload-avatar-delete', 'AdminUserController@avatarDestroy');
+
+    // 系统设置
+    Route::get('/settings', 'SettingController@index');
+    Route::put('/settings', 'SettingController@update');
+    Route::post('/settings/upload-logo', 'SettingController@logoUpload');
+    Route::post('/settings/upload-logo-delete', 'SettingController@logoDestroy');
 });
 
 Route::post('/oauth/token', 'Admin\AuthController@token');
 Route::post('/oauth/refresh-token', 'Admin\AuthController@refreshToken');
 
-Route::post('/comment/{comment}/like', 'Home\CommentController@like')->middleware('auth:home_token');
+/**
+ * 前台API
+ */
+// 点赞
+Route::post('/comment/{comment}/like', 'Home\CommentController@like')
+    ->middleware('auth:home_token');

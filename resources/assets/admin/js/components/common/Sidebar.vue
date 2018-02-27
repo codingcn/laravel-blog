@@ -73,8 +73,8 @@
                         ]
                     },
                     {
-                        icon: 'fas fa-link',
-                        index: 'link',
+                        icon: 'far fa-chart-bar',
+                        index: 'operation',
                         title: '运营管理',
                         subs: [
                             {
