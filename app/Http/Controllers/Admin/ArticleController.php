@@ -100,7 +100,7 @@ class ArticleController extends CommonController
         //等等关于上传文件的设置。
         if ($request->hasFile('cover')) {
             if ($request->file('cover')->isValid()) {
-                $cover_path = $request->file('cover')->storePublicly('article/cover/' . date('Y', time()) . '/' . date('md', time()));
+                $cover_path = $request->file('cover')->storePublicly('articles/cover/' . date('Y', time()) . '/' . date('md', time()));
                 return $this->responseJson('OK', ['cover_path' => $cover_path]);
             } else {
                 return responseApi(1, 'error');
