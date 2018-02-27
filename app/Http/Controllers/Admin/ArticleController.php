@@ -134,9 +134,9 @@ class ArticleController extends CommonController
     {
         $base64_img = trim($request->input('image'));
         $upload_path = storage_path('app/public/uploads') . '/articles/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
-        return $upload_path;
-        if (!is_dir('.' . $upload_path)) {
-            mkdir('.' . $upload_path, 0777, true);
+        return \Storage::url('/articles/editor');
+        if (!is_dir($upload_path)) {
+            mkdir($upload_path, 0777, true);
         }
         //preg_match有字符串长度限制
         ini_set('pcre.backtrack_limit', 999999999);
