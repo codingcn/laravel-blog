@@ -135,13 +135,14 @@ class ArticleController extends CommonController
         $base64_img = trim($request->input('image'));
         $upload_path = '/articles/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
         $absolute_path = config('filesystems.disks.' . config('filesystems.default') . '.root') . $upload_path;
+
+        if (!is_dir($absolute_path)) {
+            mkdir($absolute_path, 0777, true);
+        }
         return json_encode([
             $absolute_path,
             is_dir($absolute_path),
         ]);
-        if (!is_dir($absolute_path)) {
-            mkdir($absolute_path, 0777, true);
-        }
         //preg_match有字符串长度限制
         ini_set('pcre.backtrack_limit', 999999999);
         ini_set('pcre.recursion_limit', 99999);
