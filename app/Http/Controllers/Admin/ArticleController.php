@@ -133,7 +133,8 @@ class ArticleController extends CommonController
     public function uploadBase64(Request $request)
     {
         $base64_img = trim($request->input('image'));
-        $upload_path = storage_path() . '/article/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
+        $upload_path = storage_path() . '/articles/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
+        return json_encode($upload_path);
         if (!is_dir('.' . $upload_path)) {
             mkdir('.' . $upload_path, 0777, true);
         }
@@ -202,7 +203,6 @@ class ArticleController extends CommonController
         $article->publish_status = $request->get('publish_status');
         //添加标签
         $tags_arr = $request->input('tags');
-
         if (is_array($tags_arr)) {
             foreach ($tags_arr as $tag_item) {
                 $tag[] = Tag::firstOrCreate(['name' => $tag_item])->toArray();
