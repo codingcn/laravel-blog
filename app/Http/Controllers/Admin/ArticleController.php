@@ -133,7 +133,7 @@ class ArticleController extends CommonController
     public function uploadBase64(Request $request)
     {
         $base64_img = trim($request->input('image'));
-        $upload_path = storage_path() . '/articles/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
+        $upload_path = storage_path('app/public/uploads') . '/articles/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
         return json_encode($upload_path);
         if (!is_dir('.' . $upload_path)) {
             mkdir('.' . $upload_path, 0777, true);
