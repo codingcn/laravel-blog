@@ -147,7 +147,7 @@ class ArticleController extends CommonController
                 $img_file = str_random(32) . '.' . $type;
                 $img_path = storage_path($upload_path) . $img_file;
                 if (file_put_contents($img_path, base64_decode(str_replace($result[1], '', $base64_img)))) {
-                    echo \Storage::url($img_file);
+                    echo \Storage::url($img_path);
                 } else {
                     echo '图片上传失败</br>';
                 }
