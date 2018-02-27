@@ -134,11 +134,6 @@ class ArticleController extends CommonController
     {
         $base64_img = trim($request->input('image'));
         $upload_path = '/articles/editor/' . date('Y', time()) . '/' . date('md', time()) . '/';
-        return json_encode([
-            storage_path($upload_path),
-            config('filesystems.disks.'.config('filesystems.default').'.root') . $upload_path,
-            \Storage::url($upload_path),
-        ]);
         if (!is_dir(storage_path($upload_path))) {
             mkdir(storage_path($upload_path), 0777, true);
         }
@@ -150,9 +145,9 @@ class ArticleController extends CommonController
             $type = $result[2];
             if (in_array($type, array('pjpeg', 'jpeg', 'jpg', 'gif', 'bmp', 'png'))) {
                 $img_file = str_random(32) . '.' . $type;
-                $img_path = storage_path() . $upload_path . $img_file;
+                $img_path = config('filesystems.disks.' . config('filesystems.default') . '.root') . $upload_path . $img_file;
                 if (file_put_contents($img_path, base64_decode(str_replace($result[1], '', $base64_img)))) {
-                    echo \Storage::url($img_path);
+                    echo \Storage::url($upload_path . $img_file);
                 } else {
                     echo '图片上传失败</br>';
                 }
