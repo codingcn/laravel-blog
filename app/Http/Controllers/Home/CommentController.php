@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Home;
 
 use App\Models\Article;
 use App\Models\Comment;
-use App\Models\CommentLike;
 use Illuminate\Http\Request;
 
 

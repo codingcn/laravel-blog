@@ -3,12 +3,8 @@
 namespace App\Http\Controllers\Home;
 
 
-use App\Models\Article;
 use App\Repositories\ArticleRepository;
-use App\Repositories\ArticleRepositoryInterface;
-use App\Repositories\SeoRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class IndexController extends CommonController
 {
@@ -41,10 +37,5 @@ class IndexController extends CommonController
     {
         session(['hello' => 'worlds']);
         return view('home.welcome');
-    }
-
-    public function test()
-    {
-        exit(getAvatar(random_int(100,456),80));
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Home;
 
 use App\Models\Article;
 use App\Repositories\ArticleRepository;
-use App\Repositories\SeoRepository;
 use Illuminate\Http\Request;
 
 

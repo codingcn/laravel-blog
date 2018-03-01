@@ -9,8 +9,6 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Models\AdminUser;
-use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class AdminUserController extends CommonController

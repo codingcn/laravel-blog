@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\ApiError\ErrorInfo;
-use App\Models\Setting;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;

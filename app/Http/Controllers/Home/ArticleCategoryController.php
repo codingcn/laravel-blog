@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\ArticleCategory;
-use Illuminate\Http\Request;
 
 class ArticleCategoryController extends CommonController
 {
