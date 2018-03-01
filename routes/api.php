@@ -10,7 +10,6 @@
 |
 */
 
-// 文章管理
 Route::group(['middleware' => 'auth:api', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     // 用户管理
     Route::get('/users', 'UserController@index');
@@ -23,7 +22,6 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'admin', 'namespace' => 'A
     Route::resource('/article-categories', 'ArticleCategoryController', ['index', 'update', 'store', 'destroy']);
     // 文章
     Route::resource('/articles', 'ArticleController', ['index', 'update', 'store', 'show', 'destroy']);
-
     Route::get('/article/categories', 'ArticleController@categories');
     Route::get('/article/tag/search', 'ArticleController@searchTag');
 
