@@ -46,8 +46,8 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'admin', 'namespace' => 'A
     Route::post('/settings/upload-logo-delete', 'SettingController@logoDestroy');
 });
 
+// 登录
 Route::post('/oauth/token', 'Admin\AuthController@token');
-Route::post('/oauth/refresh-token', 'Admin\AuthController@refreshToken');
 
 /**
  * 前台API
