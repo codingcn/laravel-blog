@@ -11,6 +11,32 @@ class Article extends Model
 
     protected $hidden = ['pivot'];
     protected $guarded = [];
+    protected $appends = ['format_recommend','format_publish_status'];
+
+public function getFormatPublishStatusAttribute()
+{
+    if ($this->attributes['publish_status'] === 1) {
+        $format_publish_status = '未发布';
+    } elseif ($this->getOriginal('publish_status') === 2) {
+        $format_publish_status = '已发布';
+    } else {
+        $format_publish_status = '未知';
+    }
+    return $format_publish_status;
+}
+    public function getFormatRecommendAttribute()
+    {
+        if ($this->attributes['recommend'] === 1) {
+            $format_recommend = '不推荐';
+        } elseif ($this->getOriginal('recommend') === 2) {
+            $format_recommend = '推荐';
+        } else {
+            $format_recommend = '未知';
+        }
+        return $format_recommend;
+    }
+
+
 
     public function articleCategory()
     {
@@ -32,6 +58,7 @@ class Article extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
     /**
      * 获取归档列表
      * @return mixed
@@ -54,7 +81,7 @@ class Article extends Model
     public static function recommends()
     {
         return static::where(['recommend' => 2, 'publish_status' => 2])
-            ->select(['id','category_id', 'title',  'content_length', 'page_views', 'created_at'])
+            ->select(['id', 'category_id', 'title', 'content_length', 'page_views', 'created_at'])
             ->take(5)
             ->orderByRaw('created_at')
             ->withCount('comments')

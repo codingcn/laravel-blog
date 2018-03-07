@@ -20,27 +20,12 @@
                 <el-table-column type="expand">
                     <template slot-scope="props">
                         <el-form label-position="left" inline class="demo-table-expand">
-                            <el-form-item label="分类ID">
-                                <span>{{ props.row.category_id }}</span>
-                            </el-form-item>
                             <el-form-item label="文章ID">
                                 <span>{{ props.row.id }}</span>
-                            </el-form-item>
-                            <el-form-item label="点击量">
-                                <span>{{ props.row.page_views }}</span>
                             </el-form-item>
                             <el-form-item label="标签">
                                 <el-tag type="primary" v-for="item in props.row.tags" :key="item.id">{{ item.name }}
                                 </el-tag>
-                            </el-form-item>
-                            <el-form-item label="是否推荐">
-                                <span>{{ props.row.recommend===2?'是':'否' }}</span>
-                            </el-form-item>
-                            <el-form-item label="发布状态">
-                                <span>{{ props.row.publish_status===2?'已发布':'草稿' }}</span>
-                            </el-form-item>
-                            <el-form-item label="创建时间">
-                                <span>{{ props.row.created_at }}</span>
                             </el-form-item>
                             <el-form-item label="描述">
                                 <span>{{ props.row.summary }}</span>
@@ -49,19 +34,29 @@
                     </template>
                 </el-table-column>
                 <el-table-column
-                        label="文章 ID"
-                        width="150"
-                        prop="id">
-                </el-table-column>
-                <el-table-column
                         label="分类"
-                        width="180"
+                        width="80"
                         prop="article_category.name">
                 </el-table-column>
                 <el-table-column
                         label="标题"
-                        width="150"
+                        width="200"
                         prop="title">
+                </el-table-column>
+                <el-table-column
+                        label="推荐状态"
+                        width="80"
+                        prop="format_recommend">
+                </el-table-column>
+                <el-table-column
+                        label="发布状态"
+                        width="80"
+                        prop="format_publish_status">
+                </el-table-column>
+                <el-table-column
+                        label="点击量"
+                        width="80"
+                        prop="page_views">
                 </el-table-column>
                 <el-table-column
                         label="更新时间"

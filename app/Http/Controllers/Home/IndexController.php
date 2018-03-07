@@ -22,6 +22,7 @@ class IndexController extends CommonController
      */
     public function index(Request $request)
     {
+        dd($this->articleRepository->indexArticles()->toArray());
         if ($request->session()->has('hello')) {
             $data = [
                 'seo' => $this->getSeoInfo(getSetting('site_title'), '边城', '面朝大海，春暖花开'),
