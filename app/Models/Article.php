@@ -15,7 +15,7 @@ class Article extends Model
 
 public function getFormatPublishStatusAttribute()
 {
-    if ($this->attributes['publish_status'] === 1) {
+    if ($this->getOriginal('recommend') === 1) {
         $format_publish_status = '未发布';
     } elseif ($this->getOriginal('publish_status') === 2) {
         $format_publish_status = '已发布';
@@ -26,7 +26,7 @@ public function getFormatPublishStatusAttribute()
 }
     public function getFormatRecommendAttribute()
     {
-        if ($this->attributes['recommend'] === 1) {
+        if ($this->getOriginal('recommend') === 1) {
             $format_recommend = '不推荐';
         } elseif ($this->getOriginal('recommend') === 2) {
             $format_recommend = '推荐';
