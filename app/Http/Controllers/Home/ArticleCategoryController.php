@@ -8,7 +8,9 @@ class ArticleCategoryController extends CommonController
 {
     public function show(ArticleCategory $category)
     {
-        $articles = $category->articles()->orderBy('created_at','DESC')->paginate(10);
+        $articles = $category->articles()->where('publish_status', 2)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
         $data = [
             'articles' => $articles,
             'seo' => [
