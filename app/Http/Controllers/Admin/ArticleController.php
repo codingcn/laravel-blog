@@ -192,6 +192,7 @@ class ArticleController extends CommonController
         ]);
         $article->title = $request->input('title');
         $article->summary = $request->input('summary');
+        $article->cover = '';
         //正则去除url地址前缀入库
         if (!empty($request->input('cover'))) {
             $article->cover = preg_replace('/^http.*storage\/uploads\/(.*)/m', '${1}', $request->input('cover'));
