@@ -119,7 +119,7 @@ class ArticleController extends CommonController
     public function uploadCoverDel(Request $request)
     {
         if ($request->has('cover_path')) {
-            $cover_path = preg_replace("/.+\/storage\/uploads\/(.+)/m", '${0}', $request->input('cover_path'));
+            $cover_path = preg_replace("/.+\/storage\/uploads\/(.+)/m", '${1}', $request->input('cover_path'));
             if (Storage::delete($cover_path) === false) {
                 return $this->responseJson('DELETE_FAIL', [$cover_path, $request->input('cover_path')]);
             }
