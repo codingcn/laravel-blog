@@ -269,16 +269,12 @@
     }
 </script>
 <style>
-    /*重新定义code块背景色*/
-    .markdown-body .highlight pre, .markdown-body pre {
-        background-color: #2b303b;
-    }
-
     /*重写github-markdown.css 适配highlight.js黑色主题*/
     .markdown-body pre code {
         color: #ffffff;
     }
-    .markdown-body p {
+
+    .markdown-body {
         font-size: 16px;
         color: #4f4f4f;
         font-weight: 400;
