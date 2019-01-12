@@ -44,7 +44,7 @@
 <script>
     require('../../../../../../node_modules/github-markdown-css/github-markdown.css')
     // 高亮央视
-    require('../../../../../../node_modules/highlight.js/styles/ocean.css')
+    require('../../../../../../node_modules/highlight.js/styles/atom-one-dark.css')
     import highlightjs from 'highlight.js';
 
     import marked from 'marked'
@@ -277,6 +277,13 @@
     /*重写github-markdown.css 适配highlight.js黑色主题*/
     .markdown-body pre code {
         color: #ffffff;
+    }
+    .markdown-body p {
+        font-size: 16px;
+        color: #4f4f4f;
+        font-weight: 400;
+        line-height: 26px;
+        margin: 0 0 16px;
     }
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
