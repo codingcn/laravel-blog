@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>CSS3 404页面特效</title>
+<title>页面不存在-404</title>
 
 <style>
 body {
