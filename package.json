@@ -22,7 +22,7 @@
         "jquery": "^3.3.1",
         "laravel-mix": "^3.0.0",
         "lodash": "^4.17.5",
-        "marked": "^0.3.15",
+        "marked": "^0.7.0",
         "popper.js": "^1.12.9",
         "promise-polyfill": "^7.1.0",
         "qs": "^6.5.1",
