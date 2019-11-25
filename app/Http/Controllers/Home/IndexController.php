@@ -16,8 +16,8 @@ class IndexController extends CommonController
     }
 
     /**
-     * @param Request $request
      * 首页
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function index(Request $request)

@@ -155,11 +155,11 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
         </div>
     </div>
     <div class="footer">
-        <p> ©2015-2018
+        <p> ©2015-2019
             <a href="https://ashub.cn" target="_blank">AsHub</a> All Rights Reserved. Powered by Alan
         </p>
         <p>
-            <a href="http://www.miitbeian.gov.cn/" target="_blank"><?=getSetting('site_icp')?></a>
+            <a href="http://www.beian.miit.gov.cn/" target="_blank"><?=getSetting('site_icp')?></a>
         </p>
     </div>
 </div>

@@ -448,9 +448,6 @@ body {
     cursor: pointer;
 }
 
-.aside li .notice-new {
-}
-
 .aside li .notice-new .author {
     color: rgba(0, 0, 0, .6);
     display: inline-block;
@@ -499,6 +496,15 @@ body {
 
 .aside .links li {
     width: 100%;
+}
+
+.aside .ad li {
+    list-style-type: none;
+}
+
+.aside .ad img {
+    width: 100%;
+    height: auto;
 }
 
 .aside .links li a {
