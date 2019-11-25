@@ -17,8 +17,8 @@
     @include('home.shared.aside.recommend')
     @include('home.shared.aside.archives')
     @include('home.shared.aside.links')
-    @include('home.shared.aside.articleMap')
     @include('home.shared.aside.ad_bottom')
+    @include('home.shared.aside.articleMap')
 @endsection
 
 @section('app-js')
