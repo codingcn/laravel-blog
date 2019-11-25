@@ -2,10 +2,10 @@
     <div class="me">
         <h2>关于我</h2>
         <p>
-            一名<strong>伪全栈工程师</strong>，目前主要靠拍黄片吃饭，还会点Linux Python C# Js CSS HTML...
+            一名<strong>伪全栈工程师</strong>，目前主要靠 Golang 和 拍黄片 吃饭，还会点Linux Python C# Js CSS HTML...
         </p>
         <p>
-            正在学习Go与Python，不断地从错误中认识自己，总结积累知识。
+            从事游戏开发，工作中不断地从错误中认识自己，总结积累知识。
         </p>
         <p>
             理想也是要有的，希望着某一天灵光乍现做出一个产品，Change the World.
