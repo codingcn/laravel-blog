@@ -99,13 +99,11 @@ class ArticleRepository
                 ->filter(request()->only(['year', 'month']))
                 ->latest()
                 ->paginate(10);
-        } else {
+        }else{
             return Article::where('publish_status', '=', '2')
-                ->select(['*', DB::raw("DATE_FORMAT( created_at,'%Y-%m') as published_date")])
+                ->select(['*'])
                 ->orderBy('created_at', 'desc')
                 ->latest()
-                ->get()
-                ->groupBy('published_date')
                 ->paginate(10);
         }
 

@@ -34,7 +34,7 @@
         <div>
             <h3>服务器</h3>
             <p>
-                CentOS7+Docker(Nginx+MySQL5.7+PHP7+Redis4)
+                CentOS7+Docker(Nginx+MySQL8+PHP7+Redis4)
             </p>
         </div>
         <div>
@@ -44,7 +44,7 @@
         </div>
         <div>
             <h3>后端</h3>
-            <p>laravel5.5</p>
+            <p>laravel6.x</p>
         </div>
     </div>
 

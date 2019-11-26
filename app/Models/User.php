@@ -8,7 +8,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authentication
 {
-    use HasApiTokens, Notifiable;
+    use  Notifiable;
     /**
      * 不可被批量赋值的属性。
      * @var array
