@@ -25,7 +25,6 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/layout.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/index.css') }}">
     <title>@yield('title')</title>
-    <script data-ad-client="ca-pub-1824227678900132" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
 <!--进度加载块start-->
