@@ -12,7 +12,6 @@
     @section('app_css')
     @show
     <title>@yield('title')</title>
-    <script data-ad-client="ca-pub-1824227678900132" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 
 <body>

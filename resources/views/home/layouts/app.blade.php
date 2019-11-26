@@ -25,15 +25,6 @@ $categories = \App\Models\ArticleCategory::orderBy('serial_number', 'ASC')->get(
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/layout.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('static/home/css/index.css') }}">
     <title>@yield('title')</title>
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?8b621fa6b5c2343a2e74bc9b66ae558e";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
     <script data-ad-client="ca-pub-1824227678900132" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
