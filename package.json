@@ -18,7 +18,7 @@
         "cross-env": "^5.2.0",
         "element-ui": "^2.2.0",
         "github-markdown-css": "^2.10.0",
-        "highlight.js": "^9.12.0",
+        "highlight.js": "^10.4.1",
         "jquery": "^3.3.1",
         "laravel-mix": "^3.0.0",
         "lodash": "^4.17.5",
